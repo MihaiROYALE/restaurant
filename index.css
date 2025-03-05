@@ -12,6 +12,7 @@ body {
 header {
     background: #000;
     padding: 20px 5px;
+    position: relative;
 }
 
 .logo {
@@ -19,6 +20,57 @@ header {
     font-weight: bold;
     color: #fff;
     text-transform: uppercase;
+}
+
+/* Language Selector */
+.language-selector {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    background: #222;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer; /* Makes the whole area clickable */
+    transition: background 0.3s;
+}
+
+.language-selector:hover {
+    background: #333; /* Subtle hover effect */
+}
+
+#selected-language {
+    margin-right: 5px; /* Space between language text and arrow */
+    font-weight: 500;
+}
+
+.dropdown-arrow {
+    font-size: 10px; /* Smaller arrow for a sleek look */
+    color: #ccc; /* Slightly lighter for contrast */
+}
+
+.language-selector select {
+    position: absolute; /* Overlay the select element */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width of the container */
+    height: 100%; /* Full height of the container */
+    opacity: 0; /* Hide the select visually */
+    cursor: pointer; /* Ensure it’s clickable */
+    z-index: 1; /* Bring it above other elements */
+}
+
+/* Remove flag-specific styles since they won’t show in hidden select */
+.language-selector select option,
+.language-selector select option[data-flag],
+.language-selector select option[data-flag="🇬🇧"],
+.language-selector select option[data-flag="🇫🇷"],
+.language-selector select option[data-flag="🇷🇺"] {
+    padding-left: 10px; /* Reset to simple padding */
+    background: none; /* Remove flag backgrounds */
 }
 
 /* Hero Section */
@@ -126,6 +178,21 @@ footer {
         font-size: 28px;
     }
 
+    .language-selector {
+        top: 10px;
+        right: 15px;
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    #selected-language {
+        margin-right: 3px; /* Adjust spacing for smaller screens */
+    }
+
+    .dropdown-arrow {
+        font-size: 8px; /* Smaller arrow */
+    }
+
     .about {
         padding: 30px;
     }
@@ -168,86 +235,7 @@ footer {
         font-size: 18px;
     }
 
-    /* Ensure the footer is lower on mobile */
     .main-content {
         min-height: 80vh;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo {
-        font-size: 24px;
-    }
-
-    .about {
-        padding: 20px;
-    }
-
-    .about-content {
-        padding: 15px;
-    }
-
-    .about-content img {
-        width: 160px;
-    }
-
-    .text h2,
-    .team h2 {
-        font-size: 22px;
-    }
-
-    .text p {
-        font-size: 14px;
-    }
-
-    .team {
-        padding: 20px;
-    }
-
-    .member {
-        width: 95%;
-    }
-
-    .hero h1 {
-        font-size: 28px;
-        text-transform: uppercase;
-    }
-    
-    .hero p {
-        font-size: 16px;
-    }
-
-    /* Ensures footer is lower on small screens */
-    .main-content {
-        min-height: 85vh;
-    }
-}
-
-@media (max-width: 360px) {
-    .logo {
-        font-size: 20px;
-    }
-
-    .text h2,
-    .team h2 {
-        font-size: 20px;
-    }
-
-    .text p {
-        font-size: 13px;
-    }
-
-    .hero h1 {
-        font-size: 26px;
-        text-transform: uppercase;
-    }
-    
-    .hero p {
-        font-size: 14px;
-    }
-
-    /* Push footer down even more for very small screens */
-    .main-content {
-        min-height: 90vh;
     }
 }
