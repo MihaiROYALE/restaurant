@@ -6,11 +6,10 @@
     <title>Mihai's Restaurant</title>
     <link rel="stylesheet" href="index.css">
 </head>
-<body>
-
+<body class="restaurant-theme">
     <header>
         <nav>
-            <div class="logo" data-en="ROYAL" data-fr="ROYAL" data-ru="ROYAL">ROYAL</div>
+            <div class="logo" data-en="ROYAL" data-fr="ROYAL" data-ru="ROYAL" data-ro="ROYAL">ROYAL</div>
             <div class="language-selector">
                 <span id="selected-language">English</span>
                 <span class="dropdown-arrow">▼</span>
@@ -18,6 +17,7 @@
                     <option value="en">English</option>
                     <option value="fr">Français</option>
                     <option value="ru">Русский</option>
+                    <option value="ro">Română</option>
                 </select>
             </div>
         </nav>
@@ -25,30 +25,30 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1 data-en="Cortac's Best Steaks" data-fr="Les meilleurs steaks de Cortac" data-ru="Лучшие стейки Кортака">Cortac's Best Steaks</h1>
-            <p data-en="Experience the finest steaks crafted with passion." data-fr="Découvrez les meilleurs steaks préparés avec passion." data-ru="Испытайте лучшие стейки, приготовленные с любовью.">Experience the finest steaks crafted with passion.</p>
+            <h1 data-en="PUT A CATCHY TITLE" data-fr="METTRE UN TITRE ACCROCHEUR" data-ru="ДАЙТЕ ЦИКЛОВЫЙ НАЗВАНИЕ" data-ro="PUNE UN TITLUL CAPTICANT">PUT A CATCHY TITLE</h1>
+            <p data-en="Add a description about your food or restaurant or a quote." data-fr="Ajoutez une description sur votre nourriture ou votre restaurant ou une citation." data-ru="Добавьте описание вашей еды или ресторана или цитату." data-ro="Adăugați o descriere despre mâncarea sau restaurantul dvs. sau o cotație.">Add a description about your food or restaurant or a quote.</p>
         </div>
     </section>
 
     <section class="tables">
         <table>
             <tr>
-                <td>
+                <td class="table-card">
                     <a href="about.html">
-                        <img src="about.jpg" alt="About Us">
-                        <h3 data-en="About Us" data-fr="À propos de nous" data-ru="О нас">About Us</h3>
+                        <span class="emoji">ℹ️</span>
+                        <h3 data-en="About Us" data-fr="À propos de nous" data-ru="О нас" data-ro="Despre noi">About Us</h3>
                     </a>
                 </td>
-                <td>
+                <td class="table-card">
                     <a href="menu.html">
-                        <img src="menu.jpg" alt="Menu">
-                        <h3 data-en="Menu" data-fr="Menu" data-ru="Меню">Menu</h3>
+                        <span class="emoji">🍽️</span>
+                        <h3 data-en="Menu" data-fr="Menu" data-ru="Меню" data-ro="Meniu">Menu</h3>
                     </a>
                 </td>
-                <td>
+                <td class="table-card">
                     <a href="contact.html">
-                        <img src="contact.jpg" alt="Contact">
-                        <h3 data-en="Contact" data-fr="Contact" data-ru="Контакты">Contact</h3>
+                        <span class="emoji">📞</span>
+                        <h3 data-en="Contact" data-fr="Contact" data-ru="Контакты" data-ro="Contact">Contact</h3>
                     </a>
                 </td>
             </tr>
@@ -56,10 +56,9 @@
     </section>
 
     <footer>
-        <p data-en="© 2025 Mihai's Restaurant. All rights reserved." data-fr="© 2025 Restaurant de Mihai. Tous droits réservés." data-ru="© 2025 Ресторан Михаила. Все права защищены.">© 2025 Mihai's Restaurant. All rights reserved.</p>
+        <p data-en="© 2025 Mihai's Restaurant. All rights reserved." data-fr="© 2025 Restaurant de Mihai. Tous droits réservés." data-ru="© 2025 Ресторан Михаила. Все права защищены." data-ro="© 2025 Restaurantul lui Mihai. Toate drepturile rezervate.">© 2025 Mihai's Restaurant. All rights reserved.</p>
     </footer>
 
-    <!-- Load JavaScript at the end for better performance -->
     <script src="index.js"></script>
 </body>
 </html>
