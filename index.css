@@ -1,25 +1,69 @@
 /* General Styles */
-body {
+body.restaurant-theme {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #111;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    /* Background setup: Replace 'restaurant-bg.jpg' with your image */
+    background: url('IMG_1193.png') no-repeat center center/cover;
+    /* Fallback color until you add your image */
+    background-color: #1a1a1a; /* Dark, elegant gray */
     color: #eee;
     text-align: center;
+    min-height: 100vh; /* Ensures full-page coverage */
+    position: relative; /* For overlay */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-/* Header */
+/* Optional subtle overlay for readability */
+body.restaurant-theme::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay for contrast */
+    z-index: -1; /* Behind content */
+}
+
+/* Mobile-Specific Background */
+@media only screen and (max-width: 768px) {
+    body.restaurant-theme {
+        background: url('IMG_1194.AVIF') no-repeat right center/cover;
+        background-color: #1a1a1a;
+        background-attachment: scroll; /* Prevents content shift */
+        background-position: right -50px center; /* Fine-tune right alignment */
+        -webkit-background-size: cover; /* Safari support */
+        -moz-background-size: cover;    /* Firefox support */
+        -o-background-size: cover;      /* Opera support */
+        background-size: cover;         /* Standard */
+        padding: 0 20px; /* Buffer to prevent content overlap */
+    }
+}
+
+/* Header - Updated to match table but darker */
 header {
-    background: #000;
-    padding: 20px 5px;
+    background: rgba(34, 34, 34, 0.6); /* Transparent gray */
+    padding: 20px 0; /* Remove side padding to reach edges */
     position: relative;
+    backdrop-filter: blur(2px); /* Matches table’s blur */
+    z-index: 10; /* Above background */
+    width: 100%; /* Ensure full width */
+    left: 0; /* Align to left edge */
+    /* Extend beyond body padding on mobile */
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
+/* Logo */
 .logo {
     font-size: 32px;
     font-weight: bold;
     color: #fff;
     text-transform: uppercase;
+    margin: 0; /* Remove default margin */
 }
 
 /* Language Selector */
@@ -29,48 +73,40 @@ header {
     right: 20px;
     display: flex;
     align-items: center;
-    background: #222;
+    background: rgba(0, 0, 0, 0.513); /* Transparent gray */
     padding: 5px 10px;
     border-radius: 5px;
     color: white;
     font-size: 14px;
-    cursor: pointer; /* Makes the whole area clickable */
+    cursor: pointer;
     transition: background 0.3s;
+    backdrop-filter: blur(5px); /* Glass effect */
+    z-index: 10; /* Above background */
 }
 
 .language-selector:hover {
-    background: #333; /* Subtle hover effect */
+    background: rgba(51, 51, 51, 0.7);
 }
 
 #selected-language {
-    margin-right: 5px; /* Space between language text and arrow */
+    margin-right: 5px;
     font-weight: 500;
 }
 
 .dropdown-arrow {
-    font-size: 10px; /* Smaller arrow for a sleek look */
-    color: #ccc; /* Slightly lighter for contrast */
+    font-size: 10px;
+    color: #ccc;
 }
 
 .language-selector select {
-    position: absolute; /* Overlay the select element */
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%; /* Full width of the container */
-    height: 100%; /* Full height of the container */
-    opacity: 0; /* Hide the select visually */
-    cursor: pointer; /* Ensure it’s clickable */
-    z-index: 1; /* Bring it above other elements */
-}
-
-/* Remove flag-specific styles since they won’t show in hidden select */
-.language-selector select option,
-.language-selector select option[data-flag],
-.language-selector select option[data-flag="🇬🇧"],
-.language-selector select option[data-flag="🇫🇷"],
-.language-selector select option[data-flag="🇷🇺"] {
-    padding-left: 10px; /* Reset to simple padding */
-    background: none; /* Remove flag backgrounds */
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
 }
 
 /* Hero Section */
@@ -82,43 +118,67 @@ header {
     justify-content: center;
     text-align: center;
     padding: 20px;
+    position: relative;
+    z-index: 5; /* Above background */
 }
 
-/* Hero Content */
+/* Hero Content - Blurry & Transparent */
 .hero-content {
-    background: #22222242;
+    background: rgba(34, 34, 34, 0.3); /* Semi-transparent gray */
     padding: 20px;
     border-radius: 10px;
     width: 80%;
     max-width: 600px;
+    backdrop-filter: blur(2px); /* Strong blur for futuristic effect */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Soft shadow */
 }
 
 .hero h1 {
     font-size: 48px;
     text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Enhance readability */
 }
 
 .hero p {
     font-size: 20px;
+    color: #ddd;
 }
 
 /* Tables Section */
 .tables {
     padding: 50px 20px;
+    position: relative;
+    z-index: 5; /* Above background */
 }
 
 table {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
+    border-spacing: 15px; /* Reduced spacing for better fit */
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    justify-content: center;
 }
 
+/* Table Cells - Blurry & Transparent */
 td {
-    background: #222;
-    padding: 20px;
+    background: rgba(34, 34, 34, 0.3); /* Matching hero transparency */
+    padding: 15px; /* Reduced padding for mobile */
     border-radius: 10px;
-    transition: 0.3s;
+    transition: transform 0.3s;
     text-align: center;
+    vertical-align: top;
+    width: 30%; /* Slightly reduced to account for padding/margins */
+    min-width: 200px; /* Reduced min-width for smaller screens */
+    max-width: 250px; /* Added max-width to limit horizontal stretch */
+    box-sizing: border-box;
+    backdrop-filter: blur(2px); /* Glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Soft shadow */
+    margin: 10px; /* Added margin for spacing */
 }
 
 td a {
@@ -129,19 +189,31 @@ td a {
 
 td img {
     width: 100%;
-    max-width: 250px;
+    max-width: 200px; /* Reduced max-width for mobile */
     border-radius: 10px;
+    filter: brightness(90%); /* Slightly dim for aesthetic */
 }
 
 td:hover {
     transform: scale(1.05);
+    z-index: 1;
+    background: rgba(51, 51, 51, 0.6); /* Slightly darker on hover */
 }
 
 /* Footer */
 footer {
-    padding: 20px;
-    background: #000;
+    padding: 20px 0; /* Remove side padding to reach edges */
+    background: rgba(0, 0, 0, 0.8);
     margin-top: 20px;
+    backdrop-filter: blur(5px);
+    z-index: 5; /* Above background */
+    width: 100%; /* Ensure full width */
+    left: 0; /* Align to left edge */
+    /* Extend beyond body padding on mobile */
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 /* Responsive Design */
@@ -171,6 +243,12 @@ footer {
     .team {
         padding: 40px;
     }
+
+    td {
+        width: 45%; /* Adjust for medium screens */
+        padding: 15px; /* Consistent padding */
+        min-width: 180px; /* Adjusted for medium screens */
+    }
 }
 
 @media (max-width: 768px) {
@@ -186,56 +264,46 @@ footer {
     }
 
     #selected-language {
-        margin-right: 3px; /* Adjust spacing for smaller screens */
+        margin-right: 3px;
     }
 
     .dropdown-arrow {
-        font-size: 8px; /* Smaller arrow */
+        font-size: 8px;
     }
 
-    .about {
-        padding: 30px;
-    }
-
-    .about-content {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-    }
-
-    .about-content img {
-        width: 180px;
-        margin-bottom: 15px;
-        margin-right: 0;
-    }
-
-    .text {
-        max-width: 100%;
-    }
-
-    .team {
-        padding: 30px;
-    }
-
-    .team-members {
-        gap: 20px;
-    }
-
-    .member {
-        width: 90%;
-        max-width: 280px;
-    }
-    
     .hero h1 {
         font-size: 30px;
-        text-transform: uppercase;
     }
-    
+
     .hero p {
         font-size: 18px;
     }
 
     .main-content {
         min-height: 80vh;
+    }
+
+    td {
+        width: 100%; /* Full width on mobile */
+        min-width: 0; /* Allow full width */
+        max-width: 300px; /* Limit max width on mobile */
+        padding: 10px; /* Reduced padding for compact buttons */
+        margin: 10px 0; /* Vertical spacing only */
+    }
+
+    td img {
+        max-width: 180px; /* Further reduced for mobile */
+    }
+
+    table {
+        border-spacing: 10px; /* Further reduced for mobile */
+    }
+
+    header, footer {
+        padding: 15px 0; /* Reduced padding but still full width */
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
