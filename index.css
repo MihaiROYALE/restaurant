@@ -32,8 +32,9 @@ header {
     padding: 20px;
 }
 
+/* Hero Content */
 .hero-content {
-    background: rgba(0, 0, 0, 0.5);
+    background: #22222242;
     padding: 20px;
     border-radius: 10px;
     width: 80%;
@@ -93,24 +94,30 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-    .hero {
-        height: 50vh;
+    .about {
+        padding: 40px;
     }
 
-    .hero-content {
-        width: 90%;
+    .about-content {
+        max-width: 90%;
+        padding: 25px;
     }
 
-    .hero h1 {
-        font-size: 42px;
+    .about-content img {
+        width: 200px;
     }
 
-    .hero p {
-        font-size: 18px;
+    .text h2,
+    .team h2 {
+        font-size: 26px;
     }
 
-    .tables {
-        padding: 30px;
+    .text p {
+        font-size: 15px;
+    }
+
+    .team {
+        padding: 40px;
     }
 }
 
@@ -119,34 +126,51 @@ footer {
         font-size: 28px;
     }
 
-    .hero {
-        height: 45vh;
-        padding: 10px;
+    .about {
+        padding: 30px;
     }
 
-    .hero-content {
-        padding: 15px;
-        width: 95%;
-    }
-
-    .hero h1 {
-        font-size: 36px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
-    .tables {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
         padding: 20px;
     }
 
-    td {
-        padding: 15px;
+    .about-content img {
+        width: 180px;
+        margin-bottom: 15px;
+        margin-right: 0;
     }
 
-    td img {
-        max-width: 200px;
+    .text {
+        max-width: 100%;
+    }
+
+    .team {
+        padding: 30px;
+    }
+
+    .team-members {
+        gap: 20px;
+    }
+
+    .member {
+        width: 90%;
+        max-width: 280px;
+    }
+    
+    .hero h1 {
+        font-size: 30px;
+        text-transform: uppercase;
+    }
+    
+    .hero p {
+        font-size: 18px;
+    }
+
+    /* Ensure the footer is lower on mobile */
+    .main-content {
+        min-height: 80vh;
     }
 }
 
@@ -155,28 +179,47 @@ footer {
         font-size: 24px;
     }
 
-    .hero {
-        height: 40vh;
+    .about {
+        padding: 20px;
+    }
+
+    .about-content {
+        padding: 15px;
+    }
+
+    .about-content img {
+        width: 160px;
+    }
+
+    .text h2,
+    .team h2 {
+        font-size: 22px;
+    }
+
+    .text p {
+        font-size: 14px;
+    }
+
+    .team {
+        padding: 20px;
+    }
+
+    .member {
+        width: 95%;
     }
 
     .hero h1 {
         font-size: 28px;
+        text-transform: uppercase;
     }
-
+    
     .hero p {
-        font-size: 14px;
+        font-size: 16px;
     }
 
-    .tables {
-        padding: 15px;
-    }
-
-    td {
-        padding: 10px;
-    }
-
-    td img {
-        max-width: 150px;
+    /* Ensures footer is lower on small screens */
+    .main-content {
+        min-height: 85vh;
     }
 }
 
@@ -185,19 +228,26 @@ footer {
         font-size: 20px;
     }
 
-    .hero {
-        height: 35vh;
+    .text h2,
+    .team h2 {
+        font-size: 20px;
+    }
+
+    .text p {
+        font-size: 13px;
     }
 
     .hero h1 {
-        font-size: 24px;
+        font-size: 26px;
+        text-transform: uppercase;
     }
-
+    
     .hero p {
-        font-size: 12px;
+        font-size: 14px;
     }
 
-    td img {
-        max-width: 130px;
+    /* Push footer down even more for very small screens */
+    .main-content {
+        min-height: 90vh;
     }
 }
