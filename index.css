@@ -44,7 +44,7 @@ body.restaurant-theme::before {
 /* Header - Updated to match table but darker */
 header {
     background: rgba(34, 34, 34, 0.6); /* Transparent gray */
-    padding: 20px 0; /* Remove side padding to reach edges */
+    padding: 14px 0; /* Remove side padding to reach edges */
     position: relative;
     backdrop-filter: blur(2px); /* Matches table’s blur */
     z-index: 10; /* Above background */
@@ -59,7 +59,7 @@ header {
 
 /* Logo */
 .logo {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: bold;
     color: #fff;
     text-transform: uppercase;
@@ -202,8 +202,8 @@ td:hover {
 
 /* Footer */
 footer {
-    padding: 20px 0; /* Remove side padding to reach edges */
-    background: rgba(0, 0, 0, 0.8);
+    padding: 8px 0; /* Remove side padding to reach edges */
+    background: rgba(0, 0, 0, 0.5);
     margin-top: 20px;
     backdrop-filter: blur(5px);
     z-index: 5; /* Above background */
@@ -214,6 +214,10 @@ footer {
     margin-right: -20px;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+footer p {
+    font-size: 12px;
 }
 
 /* Responsive Design */
@@ -299,11 +303,27 @@ footer {
         border-spacing: 10px; /* Further reduced for mobile */
     }
 
-    header, footer {
-        padding: 15px 0; /* Reduced padding but still full width */
+    header {
+        padding: 12px 0; /* Reduced padding but still full width */
         margin-left: -20px;
         margin-right: -20px;
         padding-left: 20px;
         padding-right: 20px;
+    }
+
+    footer {
+        padding: 4.8px 0; /* Reduced padding but still full width */
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    footer p {
+        font-size: 10px;
     }
 }
