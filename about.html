@@ -6,44 +6,113 @@
     <title>About Us - Mihai's Restaurant</title>
     <link rel="stylesheet" href="about.css">
 </head>
-<body>
+<body class="restaurant-theme">
 
     <header>
         <nav>
-            <div class="logo">ABOUT US</div>
+            <div class="logo" 
+                data-en="ABOUT US" 
+                data-fr="À PROPOS DE NOUS" 
+                data-ru="О НАС" 
+                data-ro="DESPRE NOI"
+                data-it="CHI SIAMO"
+                data-es="SOBRE NOSOTROS">
+            </div>
+            <div class="language-selector">
+                <span id="selected-language">English</span>
+                <span class="dropdown-arrow">▼</span>
+                <select id="language-select" onchange="changeLanguage()">
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="ru">Русский</option>
+                    <option value="ro">Română</option>
+                    <option value="it">Italiano</option>
+                    <option value="es">Español</option>
+                </select>
+            </div>
         </nav>
     </header>
 
     <section class="about">
         <div class="about-content">
-            <img src="restaurant.jpg" alt="Our Restaurant">
+            <img src="-j5x22t 2.JPG" alt="Our Restaurant">
             <div class="text">
-                <h2>Welcome to Mihai's Restaurant</h2>
-                <p>At Mihai's Restaurant, we believe in delivering the finest dining experience. From our carefully selected ingredients to our talented chefs, we ensure every dish is a masterpiece.</p>
-                <p>Our passion for food is matched only by our dedication to exceptional service. Whether you're here for a casual meal or a special occasion, we aim to make every visit unforgettable.</p>
+                <h2 
+                    data-en="Welcome to Mihai's Restaurant" 
+                    data-fr="Bienvenue au Restaurant de Mihai" 
+                    data-ru="Добро пожаловать в ресторан Михаила" 
+                    data-ro="Bine ați venit la Restaurantul lui Mihai"
+                    data-it="Benvenuti al ristorante di Mihai"
+                    data-es="Bienvenidos al restaurante de Mihai">
+                </h2>
+                <p 
+                    data-en="At Mihai's Restaurant, we believe in delivering the finest dining experience. From our carefully selected ingredients to our talented chefs, we ensure every dish is a masterpiece." 
+                    data-fr="Au Restaurant de Mihai, nous croyons en une expérience culinaire d'exception. De nos ingrédients soigneusement sélectionnés à nos chefs talentueux, chaque plat est une œuvre d'art." 
+                    data-ru="В ресторане Михаила мы стремимся к высочайшему качеству. От тщательно отобранных ингредиентов до талантливых шеф-поваров – каждое блюдо является шедевром." 
+                    data-ro="La Restaurantul lui Mihai, credem în oferirea unei experiențe culinare deosebite. De la ingredientele atent selectate până la bucătarii noștri talentați, fiecare fel de mâncare este o capodoperă."
+                    data-it="Al Ristorante di Mihai, crediamo nel fornire un'esperienza culinaria straordinaria. Dagli ingredienti selezionati ai nostri chef talentuosi, ogni piatto è un capolavoro."
+                    data-es="En el Restaurante de Mihai, creemos en ofrecer la mejor experiencia gastronómica. Desde nuestros ingredientes cuidadosamente seleccionados hasta nuestros talentosos chefs, cada plato es una obra maestra.">
+                </p>
+                <p 
+                    data-en="Our passion for food is matched only by our dedication to exceptional service. Whether you're here for a casual meal or a special occasion, we aim to make every visit unforgettable." 
+                    data-fr="Notre passion pour la cuisine est égalée seulement par notre dévouement au service exceptionnel. Que vous soyez ici pour un repas décontracté ou une occasion spéciale, nous voulons rendre chaque visite inoubliable." 
+                    data-ru="Наша страсть к еде соперничает только с нашей преданностью исключительному сервису. Будь то обычный обед или особенный случай, мы стремимся сделать ваш визит незабываемым." 
+                    data-ro="Pasiunea noastră pentru mâncare este egalată doar de devotamentul nostru față de un serviciu excepțional. Fie că sunteți aici pentru o masă casual sau o ocazie specială, ne dorim să facem fiecare vizită de neuitat."
+                    data-it="La nostra passione per il cibo è pari solo alla nostra dedizione al servizio eccezionale. Che tu sia qui per un pasto informale o per un'occasione speciale, vogliamo rendere ogni visita indimenticabile."
+                    data-es="Nuestra pasión por la comida solo se iguala a nuestra dedicación a un servicio excepcional. Ya sea para una comida informal o una ocasión especial, nuestro objetivo es hacer que cada visita sea inolvidable.">
+                </p>
             </div>
         </div>
     </section>
 
     <section class="team">
-        <h2>Meet Our Team</h2>
+        <h2 
+            data-en="Meet Our Team" 
+            data-fr="Rencontrez Notre Équipe" 
+            data-ru="Познакомьтесь с нашей командой" 
+            data-ro="Faceți cunoștință cu echipa noastră"
+            data-it="Incontra il nostro team"
+            data-es="Conoce a nuestro equipo">
+        </h2>
         <div class="team-members">
             <div class="member">
-                <img src="chef.jpg" alt="Head Chef">
-                <h3>Chef Marco</h3>
-                <p>Our head chef, with over 20 years of experience, is passionate about blending flavors to create unique dishes.</p>
+                <img src="-j5x22t 2.JPG" alt="Head Chef">
+                <h3 data-en="Chef Marco" data-fr="Chef Marco" data-ru="Шеф Марко" data-ro="Chef Marco" data-it="Chef Marco" data-es="Chef Marco"></h3>
+                <p 
+                    data-en="Our head chef, with over 20 years of experience, is passionate about blending flavors to create unique dishes." 
+                    data-fr="Notre chef, avec plus de 20 ans d'expérience, est passionné par l'association des saveurs pour créer des plats uniques."
+                    data-ru="Наш шеф-повар с более чем 20-летним опытом увлечен сочетанием вкусов для создания уникальных блюд." 
+                    data-ro="Bucătarul nostru șef, cu peste 20 de ani de experiență, este pasionat de combinarea aromelor pentru a crea preparate unice."
+                    data-it="Il nostro chef, con oltre 20 anni di esperienza, è appassionato di mescolare sapori per creare piatti unici."
+                    data-es="Nuestro chef, con más de 20 años de experiencia, es un apasionado de la combinación de sabores para crear platos únicos.">
+                </p>
             </div>
             <div class="member">
-                <img src="manager.jpg" alt="Restaurant Manager">
-                <h3>Emma Roberts</h3>
-                <p>Emma ensures every guest has a delightful dining experience with impeccable service and hospitality.</p>
+                <img src="-j5x22t 2.JPG" alt="Restaurant Manager">
+                <h3 data-en="Emma Roberts" data-fr="Emma Roberts" data-ru="Эмма Робертс" data-ro="Emma Roberts" data-it="Emma Roberts" data-es="Emma Roberts"></h3>
+                <p 
+                    data-en="Emma ensures every guest has a delightful dining experience with impeccable service and hospitality." 
+                    data-fr="Emma veille à ce que chaque client profite d'une expérience gastronomique inoubliable avec un service et une hospitalité impeccables."
+                    data-ru="Эмма обеспечивает каждому гостю приятные впечатления от ужина с безупречным обслуживанием и гостеприимством."
+                    data-ro="Emma se asigură că fiecare oaspete are o experiență culinară plăcută, cu servicii impecabile și ospitalitate."
+                    data-it="Emma si assicura che ogni ospite abbia un'esperienza culinaria piacevole con un servizio impeccabile e ospitalità."
+                    data-es="Emma garantiza que cada cliente tenga una experiencia gastronómica placentera con un servicio impecable y hospitalidad.">
+                </p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 Mihai's Restaurant. All rights reserved.</p>
+        <p 
+            data-en="© 2025 Mihai's Restaurant. All rights reserved." 
+            data-fr="© 2025 Restaurant de Mihai. Tous droits réservés."
+            data-ru="© 2025 Ресторан Михаила. Все права защищены."
+            data-ro="© 2025 Restaurantul lui Mihai. Toate drepturile rezervate."
+            data-it="© 2025 Il ristorante di Mihai. Tutti i diritti riservati."
+            data-es="© 2025 El restaurante de Mihai. Todos los derechos reservados.">
+        </p>
     </footer>
 
+    <script src="index.js"></script>
 </body>
 </html>
