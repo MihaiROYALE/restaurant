@@ -6,47 +6,117 @@
     <title>Contact Us - Mihai's Restaurant</title>
     <link rel="stylesheet" href="contact.css">
 </head>
-<body>
+<body class="restaurant-theme">
 
     <header>
         <nav>
-            <div class="logo">CONTACT</div>
+            <div class="logo" 
+                data-en="CONTACT" 
+                data-fr="CONTACT" 
+                data-ru="КОНТАКТ" 
+                data-ro="CONTACT"
+                data-it="CONTATTO"
+                data-es="CONTACTO">
+            </div>
+            <div class="language-selector">
+                <span id="selected-language">English</span>
+                <span class="dropdown-arrow">▼</span>
+                <select id="language-select" onchange="changeLanguage()">
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="ru">Русский</option>
+                    <option value="ro">Română</option>
+                    <option value="it">Italiano</option>
+                    <option value="es">Español</option>
+                </select>
+            </div>
         </nav>
     </header>
 
     <section class="contact-info">
-        <h2>Get in Touch</h2>
-        <p>If you have any questions or would like to make a reservation, feel free to contact us!</p>
+        <h2 
+            data-en="Get in Touch" 
+            data-fr="Contactez-nous" 
+            data-ru="Свяжитесь с нами" 
+            data-ro="Contactați-ne"
+            data-it="Mettiti in contatto"
+            data-es="Ponte en contacto">
+        </h2>
+        <p 
+            data-en="If you have any questions or would like to make a reservation, feel free to contact us!" 
+            data-fr="Si vous avez des questions ou si vous souhaitez faire une réservation, n'hésitez pas à nous contacter!" 
+            data-ru="Если у вас есть вопросы или вы хотите сделать бронирование, не стесняйтесь связаться с нами!" 
+            data-ro="Dacă aveți întrebări sau doriți să faceți o rezervare, nu ezitați să ne contactați!"
+            data-it="Se hai domande o desideri fare una prenotazione, non esitare a contattarci."
+            data-es="Si tienes alguna pregunta o deseas hacer una reserva, no dudes en ponerte en contacto con nosotros.">
+        </p>
 
         <div class="info">
             <div class="info-box">
                 <h3>📍 Our Location</h3>
-                <p>123 Royal Street, Nice, France</p>
+                <p 
+                    data-en="123 Royal Street, Nice, France" 
+                    data-fr="123 Rue Royale, Nice, France" 
+                    data-ru="123 Royal Street, Ницца, Франция" 
+                    data-ro="123 Royal Street, Nice, Franța"
+                    data-it="123 Royal Street, Nizza, Francia"
+                    data-es="123 Royal Street, Niza, Francia">
+                </p>
             </div>
             <div class="info-box">
                 <h3>📞 Call Us</h3>
-                <p>+33 6 12 34 56 78</p>
+                <p 
+                    data-en="+33 6 12 34 56 78" 
+                    data-fr="+33 6 12 34 56 78" 
+                    data-ru="+33 6 12 34 56 78" 
+                    data-ro="+33 6 12 34 56 78"
+                    data-it="+33 6 12 34 56 78"
+                    data-es="+33 6 12 34 56 78">
+                </p>
             </div>
             <div class="info-box">
                 <h3>📧 Email Us</h3>
-                <p>contact@mihaisrestaurant.com</p>
+                <p 
+                    data-en="contact@mihaisrestaurant.com" 
+                    data-fr="contact@mihaisrestaurant.com" 
+                    data-ru="contact@mihaisrestaurant.com" 
+                    data-ro="contact@mihaisrestaurant.com"
+                    data-it="contact@mihaisrestaurant.com"
+                    data-es="contact@mihaisrestaurant.com">
+                </p>
             </div>
         </div>
     </section>
 
     <section class="contact-form">
-        <h2>Send Us a Message</h2>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
+        <h2 
+            data-en="Send Us a Message" 
+            data-fr="Envoyez-nous un message" 
+            data-ru="Отправьте нам сообщение" 
+            data-ro="Trimiteți-ne un mesaj"
+            data-it="Inviaci un messaggio"
+            data-es="Envíanos un mensaje">
+        </h2>
+<form action="https://formspree.io/f/xdkengeb" method="POST" id="contact-form">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send</button>
+</form>
     </section>
 
     <footer>
-        <p>&copy; 2025 Mihai's Restaurant. All rights reserved.</p>
+        <p 
+            data-en="© 2025 Mihai's Restaurant. All rights reserved." 
+            data-fr="© 2025 Restaurant de Mihai. Tous droits réservés." 
+            data-ru="© 2025 Ресторан Михаила. Все права защищены." 
+            data-ro="© 2025 Restaurantul lui Mihai. Toate drepturile rezervate."
+            data-it="© 2025 Il ristorante di Mihai. Tutti i diritti riservati."
+            data-es="© 2025 El restaurante de Mihai. Todos los derechos reservados.">
+        </p>
     </footer>
+
+    <script src="index.js"></script>
 
 </body>
 </html>
