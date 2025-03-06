@@ -1,27 +1,105 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #111;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    /* Background setup: Replace 'restaurant-bg.jpg' with your image */
+    background: url('DBG1.JPG') no-repeat center center/cover;
+    /* Fallback color until you add your image */
+    background-color: #1a1a1a; /* Dark, elegant gray */
     color: #eee;
     text-align: center;
+    min-height: 100vh; /* Ensures full-page coverage */
+    position: relative; /* For overlay */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    background-size: 110% auto; /* Ensures background scales properly */
 }
 
-/* Header */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay for contrast */
+    z-index: -1; /* Behind content */
+}
+
+/* Mobile-Specific Background */
+@media only screen and (max-width: 768px) {
+    body.restaurant-theme {
+        background: url('MBG1.AVIF') no-repeat right center/cover;
+        background-color: #1a1a1a;
+        background-attachment: scroll; /* Prevents content shift */
+        background-position: right -50px center; /* Fine-tune right alignment */
+        -webkit-background-size: cover; /* Safari support */
+        -moz-background-size: cover;    /* Firefox support */
+        -o-background-size: cover;      /* Opera support */
+        background-size: cover;         /* Standard */
+        padding: 0 20px; /* Buffer to prevent content overlap */
+    }
+}
+
+/* Header - Updated to match table but darker */
 header {
-    background: #000;
-    padding: 20px 5px;
+    background: rgba(34, 34, 34, 0.6); /* Transparent gray */
+    padding: 14px 0; /* Remove side padding to reach edges */
+    position: relative;
+    backdrop-filter: blur(2px); /* Matches table’s blur */
+    z-index: 10; /* Above background */
+    width: 100%; /* Ensure full width */
+    left: 0; /* Align to left edge */
+    /* Extend beyond body padding on mobile */
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
+/* Logo */
 .logo {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: bold;
     color: #fff;
     text-transform: uppercase;
+    margin: 0; /* Remove default margin */
 }
 
-/* Menu Items */
+/* Language Selector */
+.language-selector {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+    backdrop-filter: blur(5px);
+    z-index: 10;
+}
+
+.language-selector:hover {
+    background: rgba(51, 51, 51, 0.7);
+}
+
+.language-selector select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* Menu Section */
 .menu {
     display: flex;
     flex-direction: column;
@@ -32,16 +110,18 @@ header {
 .menu-item {
     display: flex;
     align-items: center;
-    background: #22222230;
+    background: rgba(34, 34, 34, 0.3);
     margin: 20px 0;
     padding: 20px;
     border-radius: 10px;
     width: 80%;
     max-width: 800px;
     transition: 0.3s;
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
 }
 
-/* Adjust photo and text order */
 .menu-item img {
     width: 150px;
     border-radius: 10px;
@@ -62,9 +142,9 @@ header {
     font-size: 16px;
 }
 
-/* Alternate layout */
+/* Alternate layout for even items */
 .menu-item:nth-child(even) {
-    flex-direction: row-reverse; /* For even items, flip the order */
+    flex-direction: row-reverse;
 }
 
 .menu-item:nth-child(even) img {
@@ -79,9 +159,22 @@ header {
 
 /* Footer */
 footer {
-    padding: 20px;
-    background: #000;
+    padding: 8px 0; /* Remove side padding to reach edges */
+    background: rgba(0, 0, 0, 0.5);
     margin-top: 20px;
+    backdrop-filter: blur(5px);
+    z-index: 5; /* Above background */
+    width: 100%; /* Ensure full width */
+    left: 0; /* Align to left edge */
+    /* Extend beyond body padding on mobile */
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+footer p {
+    font-size: 12px;
 }
 
 /* Responsive Design */
