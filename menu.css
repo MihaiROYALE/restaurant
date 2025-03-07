@@ -1,287 +1,331 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    /* Background setup: Replace 'restaurant-bg.jpg' with your image */
-    background: url('DBG1.JPG') no-repeat center center/cover;
-    /* Fallback color until you add your image */
-    background-color: #1a1a1a; /* Dark, elegant gray */
-    color: #eee;
-    text-align: center;
-    min-height: 100vh; /* Ensures full-page coverage */
-    position: relative; /* For overlay */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    background-size: 110% auto; /* Ensures background scales properly */
+    font-family: Arial, sans-serif; /* Default font for consistency */
+    margin: 0; /* Remove default browser margin */
+    padding: 0; /* Remove default browser padding */
+    background: url('DBG1.JPG') no-repeat center center fixed; /* Desktop background image, fixed for parallax effect */
+    background-size: cover; /* Scales image to cover entire viewport */
+    background-color: #1a1a1a; /* Fallback color if image fails to load */
+    color: #eee; /* Light text color for contrast */
+    text-align: center; /* Center-align all text by default */
+    min-height: 100vh; /* Ensures body takes full viewport height */
+    position: relative; /* Allows positioning of overlay */
+    overflow-x: hidden; /* Prevents horizontal scrolling issues */
 }
 
+/* Dark overlay for readability */
 body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Dark overlay for contrast */
-    z-index: -1; /* Behind content */
+    content: ''; /* Pseudo-element requires content, even if empty */
+    position: absolute; /* Overlay spans entire body */
+    top: 0; /* Align to top */
+    left: 0; /* Align to left */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay for better contrast */
+    z-index: -1; /* Places overlay behind content */
 }
 
 /* Mobile-Specific Background */
-@media only screen and (max-width: 768px) {
-    body.restaurant-theme {
-        background: url('MBG1.AVIF') no-repeat right center/cover;
-        background-color: #1a1a1a;
-        background-attachment: scroll; /* Prevents content shift */
-        background-position: right -50px center; /* Fine-tune right alignment */
-        -webkit-background-size: cover; /* Safari support */
-        -moz-background-size: cover;    /* Firefox support */
-        -o-background-size: cover;      /* Opera support */
-        background-size: cover;         /* Standard */
-        padding: 0 20px; /* Buffer to prevent content overlap */
+@media only screen and (max-width: 768px) { /* Targets screens up to 768px (tablets and phones) */
+    body {
+        background: url('MBG1.AVIF') no-repeat center center fixed; /* Mobile-specific background image, fixed for parallax effect */
+        background-size: cover; /* Ensures image covers screen */
+        padding: 0 15px; /* Side padding to prevent content from touching edges */
+    }
+
+    header, footer { /* Adjust header/footer to match body padding on mobile */
+        margin-left: -15px; /* Offset body padding for full-width effect */
+        margin-right: -15px; /* Offset body padding for full-width effect */
+        padding-left: 15px; /* Restore internal padding */
+        padding-right: 15px; /* Restore internal padding */
     }
 }
 
 /* Header - Updated to match table but darker */
 header {
-    background: rgba(34, 34, 34, 0.6); /* Transparent gray */
-    padding: 14px 0; /* Remove side padding to reach edges */
-    position: relative;
-    backdrop-filter: blur(2px); /* Matches table’s blur */
-    z-index: 10; /* Above background */
-    width: 100%; /* Ensure full width */
-    left: 0; /* Align to left edge */
-    /* Extend beyond body padding on mobile */
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    background: rgba(34, 34, 34, 0.6); /* Transparent gray background for subtle contrast */
+    padding: 14px 0; /* Vertical padding only, full width horizontally */
+    position: relative; /* For positioning child elements like language selector */
+    backdrop-filter: blur(2px); /* Subtle blur effect for glass-like appearance */
+    z-index: 10; /* Ensures header stays above background and other content */
+    width: 100%; /* Full width of viewport */
 }
 
 /* Logo */
 .logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: #fff;
-    text-transform: uppercase;
-    margin: 0; /* Remove default margin */
+    font-size: 28px; /* Large, bold logo text for prominence */
+    font-weight: bold; /* Emphasizes logo for branding */
+    color: #fff; /* White for contrast against dark header */
+    text-transform: uppercase; /* All caps for stylish, professional look */
+    margin: 0; /* Remove default margin to align properly */
 }
 
 /* Language Selector */
 .language-selector {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background 0.3s;
-    backdrop-filter: blur(5px);
-    z-index: 10;
+    position: absolute; /* Positioned relative to header */
+    top: 15px; /* Distance from top of header */
+    right: 20px; /* Distance from right of header */
+    display: flex; /* Flex for alignment of text and arrow */
+    align-items: center; /* Vertically center content inside selector */
+    background: rgba(0, 0, 0, 0.513); /* Slightly transparent gray background */
+    padding: 5px 10px; /* Internal spacing for comfort */
+    border-radius: 5px; /* Rounded corners for softness */
+    color: white; /* Text color for readability */
+    font-size: 14px; /* Smaller font for selector to save space */
+    cursor: pointer; /* Hand cursor on hover to indicate interactivity */
+    transition: background 0.3s; /* Smooth background change on hover */
+    backdrop-filter: blur(5px); /* Glass effect for modern look */
+    z-index: 10; /* Above header content to ensure visibility */
 }
 
 .language-selector:hover {
-    background: rgba(51, 51, 51, 0.7);
+    background: rgba(51, 51, 51, 0.7); /* Lighter gray on hover for feedback */
+}
+
+#selected-language {
+    margin-right: 5px; /* Space before arrow for readability */
+    font-weight: 500; /* Medium weight for visibility without being too bold */
+}
+
+.dropdown-arrow {
+    font-size: 10px; /* Small arrow size to keep it subtle */
+    color: #ccc; /* Light gray arrow for contrast */
 }
 
 .language-selector select {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 1;
+    position: absolute; /* Overlaps the visible selector for functionality */
+    top: 0; /* Align to top of parent */
+    left: 0; /* Align to left of parent */
+    width: 100%; /* Full width of parent for clickable area */
+    height: 100%; /* Full height of parent for clickable area */
+    opacity: 0; /* Invisible but clickable to preserve design */
+    cursor: pointer; /* Hand cursor for usability */
+    z-index: 1; /* Above background but below text for layering */
 }
 
 /* Menu Section */
 .menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px;
+    display: flex; /* Flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    padding: 40px; /* Generous padding around section */
 }
 
 .menu-item {
-    display: flex;
-    align-items: center;
-    background: rgba(34, 34, 34, 0.3);
-    margin: 20px 0;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 800px;
-    transition: 0.3s;
-    backdrop-filter: blur(2px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    display: flex; /* Flexbox for image and text */
+    align-items: center; /* Vertically align items */
+    background: rgba(34, 34, 34, 0.3); /* Semi-transparent background */
+    margin: 20px 0; /* Vertical spacing between items */
+    padding: 20px; /* Internal spacing */
+    border-radius: 10px; /* Rounded corners */
+    width: 80%; /* Relative width */
+    max-width: 800px; /* Limit max width */
+    transition: transform 0.3s; /* Smooth scale on hover */
+    backdrop-filter: blur(2px); /* Glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Soft shadow */
 }
 
 .menu-item img {
-    width: 150px;
-    border-radius: 10px;
-    margin-right: 20px;
+    width: 150px; /* Fixed image width */
+    border-radius: 10px; /* Rounded corners */
+    margin-right: 20px; /* Space between image and text */
 }
 
 .menu-text {
-    text-align: left;
-    max-width: 400px;
+    text-align: left; /* Left-align text */
+    max-width: 400px; /* Limit text width */
 }
 
 .menu-text h3 {
-    font-size: 24px;
-    color: #ffcc00;
+    font-size: 24px; /* Title size */
+    color: #ffcc00; /* Gold color */
 }
 
 .menu-text p {
-    font-size: 16px;
+    font-size: 16px; /* Description size */
 }
 
 /* Alternate layout for even items */
 .menu-item:nth-child(even) {
-    flex-direction: row-reverse;
+    flex-direction: row-reverse; /* Reverse layout for even items */
 }
 
 .menu-item:nth-child(even) img {
-    margin-right: 0;
-    margin-left: 20px;
+    margin-right: 0; /* Remove right margin */
+    margin-left: 20px; /* Add left margin for reversed layout */
 }
 
 /* Hover Effect */
 .menu-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Slight zoom on hover */
 }
 
 /* Footer */
 footer {
-    padding: 8px 0; /* Remove side padding to reach edges */
-    background: rgba(0, 0, 0, 0.5);
-    margin-top: 20px;
-    backdrop-filter: blur(5px);
+    padding: 8px 0; /* Vertical padding only */
+    background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+    margin-top: 20px; /* Space above footer */
+    backdrop-filter: blur(5px); /* Glass effect */
     z-index: 5; /* Above background */
-    width: 100%; /* Ensure full width */
-    left: 0; /* Align to left edge */
-    /* Extend beyond body padding on mobile */
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    width: 100%; /* Full width */
 }
 
 footer p {
-    font-size: 12px;
+    font-size: 12px; /* Small text */
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 1024px) { /* Tablets and smaller laptops */
     .menu {
-        padding: 30px;
+        padding: 30px; /* Reduced padding */
     }
 
     .menu-item {
-        width: 90%;
+        width: 90%; /* More flexible width */
     }
 
     .menu-text h3 {
-        font-size: 22px;
+        font-size: 22px; /* Slightly smaller title */
     }
 
     .menu-text p {
-        font-size: 15px;
+        font-size: 15px; /* Slightly smaller text */
+    }
+
+    header {
+        padding: 12px 0; /* Slightly less padding, matches first and second CSS */
+    }
+
+    footer {
+        padding: 5px 0; /* Reduced padding, matches first and second CSS */
+    }
+
+    footer p {
+        font-size: 10px; /* Smaller text, matches first and second CSS */
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px) { /* Mobile devices */
+    header {
+        padding: 12px 0; /* Reduced padding, matches first and second CSS */
+    }
+
     .logo {
-        font-size: 28px;
+        font-size: 28px; /* Maintain logo size, matches first and second CSS */
+    }
+
+    .language-selector {
+        top: 10px; /* Slightly closer to top, matches first and second CSS */
+        right: 15px; /* Slightly closer to right, matches first and second CSS */
+        padding: 4px 8px; /* Reduced padding for compact layout, matches first and second CSS */
+        font-size: 12px; /* Smaller font for mobile, matches first and second CSS */
+    }
+
+    #selected-language {
+        margin-right: 3px; /* Reduced spacing for mobile, matches first and second CSS */
+    }
+
+    .dropdown-arrow {
+        font-size: 8px; /* Smaller arrow for mobile, matches first and second CSS */
     }
 
     .menu {
-        padding: 20px;
+        padding: 20px; /* Reduced padding */
     }
 
     .menu-item {
-        flex-direction: column;
-        text-align: center;
-        padding: 15px;
+        flex-direction: column; /* Stack image and text vertically */
+        text-align: center; /* Center text */
+        padding: 15px; /* Reduced padding */
     }
 
     .menu-item img {
-        width: 120px;
-        margin: 0 0 15px 0;
+        width: 120px; /* Smaller image */
+        margin: 0 0 15px 0; /* Center image with bottom margin */
     }
 
     .menu-text {
-        max-width: 100%;
-        text-align: center;
+        max-width: 100%; /* Full width for text */
+        text-align: center; /* Center text */
     }
 
     .menu-text h3 {
-        font-size: 20px;
+        font-size: 20px; /* Smaller title */
     }
 
     .menu-text p {
-        font-size: 14px;
+        font-size: 14px; /* Smaller text */
     }
 
     .menu-item:nth-child(even) {
-        flex-direction: column;
+        flex-direction: column; /* Maintain column layout for even items */
     }
 
     .menu-item:nth-child(even) img {
-        margin-left: 0;
+        margin-left: 0; /* Remove left margin in column layout */
+    }
+
+    footer {
+        padding: 5px 0; /* Matches first and second CSS */
+    }
+
+    footer p {
+        font-size: 10px; /* Matches first and second CSS */
+    }
+
+    header, footer {
+        margin-left: -15px;
+        margin-right: -15px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px) { /* Smaller phones */
     .logo {
-        font-size: 24px;
+        font-size: 24px; /* Smaller logo, matches first and second CSS */
     }
 
     .menu {
-        padding: 15px;
+        padding: 15px; /* Reduced padding */
     }
 
     .menu-item {
-        width: 95%;
+        width: 95%; /* Nearly full width */
     }
 
     .menu-item img {
-        width: 100px;
+        width: 100px; /* Smaller image */
     }
 
     .menu-text h3 {
-        font-size: 18px;
+        font-size: 18px; /* Smaller title */
     }
 
     .menu-text p {
-        font-size: 13px;
+        font-size: 13px; /* Smaller text */
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 360px) { /* Very small screens */
     .logo {
-        font-size: 20px;
+        font-size: 20px; /* Smallest logo, matches first and second CSS */
     }
 
     .menu-item {
-        padding: 10px;
+        padding: 10px; /* Reduced padding */
     }
 
     .menu-item img {
-        width: 90px;
+        width: 90px; /* Smallest image */
     }
 
     .menu-text h3 {
-        font-size: 16px;
+        font-size: 16px; /* Smallest title */
     }
 
     .menu-text p {
-        font-size: 12px;
+        font-size: 12px; /* Smallest text */
     }
 }
