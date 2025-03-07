@@ -1,482 +1,497 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif; /* Default font for consistency */
-    margin: 0; /* Remove default browser margin */
-    padding: 0; /* Remove default browser padding */
-    background: url('DBG2.JPG') no-repeat center center fixed; /* Desktop background image, fixed for parallax effect */
-    background-size: cover; /* Scales image to cover entire viewport */
-    background-color: #1a1a1a; /* Fallback color if image fails to load */
-    color: #eee; /* Light text color for contrast */
-    text-align: center; /* Center-align all text by default */
-    min-height: 100vh; /* Ensures body takes full viewport height */
-    position: relative; /* Allows positioning of overlay */
-    overflow-x: hidden; /* Prevents horizontal scrolling issues */
+    font-family: Arial, sans-serif; /** Sets a consistent, clean font across the site */
+    margin: 0; /** Removes default browser margin for full layout control */
+    padding: 0; /** Removes default padding for full layout control */
+    background-color: #1a1a1a; /** Dark gray fallback color if image fails */
+    color: #eee; /** Light text color for contrast against dark background */
+    text-align: center; /** Centers all text by default for symmetry */
+    min-height: 100vh; /** Ensures body takes full viewport height */
+    position: relative; /** Allows content to scroll over fixed background */
+    overflow-x: hidden; /** Prevents horizontal scrolling issues */
 }
 
-/* Dark overlay for readability */
+/* Fixed Background Container */
+body::after {
+    content: ''; /** Required for pseudo-element to render */
+    position: fixed; /** Fixes background in place, works on mobile */
+    top: 0; /** Aligns to top of viewport */
+    left: 0; /** Aligns to left of viewport */
+    width: 100%; /** Spans full viewport width */
+    height: 100%; /** Spans full viewport height */
+    background: url('DBG2.JPG') no-repeat center center; /** Desktop background, centered, no repeat */
+    background-size: cover; /** Scales image to cover entire area */
+    z-index: -2; /** Places background behind overlay and content */
+}
+
+/* Dark Overlay for Readability */
 body::before {
-    content: ''; /* Pseudo-element requires content, even if empty */
-    position: absolute; /* Overlay spans entire body */
-    top: 0; /* Align to top */
-    left: 0; /* Align to left */
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background: rgba(0, 0, 0, 0.6); /* Semi-transparent black for contrast */
-    z-index: -1; /* Places overlay behind content */
+    content: ''; /** Required for pseudo-element to render */
+    position: fixed; /** Fixes overlay in place with background */
+    top: 0; /** Aligns to top of viewport */
+    left: 0; /** Aligns to left of viewport */
+    width: 100%; /** Spans full viewport width */
+    height: 100%; /** Spans full viewport height */
+    background: rgba(0, 0, 0, 0.6); /** Semi-transparent black for text contrast */
+    z-index: -1; /** Places overlay behind content, above background */
 }
 
 /* Mobile-Specific Background */
-@media only screen and (max-width: 768px) { /* Targets screens up to 768px (tablets and phones) */
+@media only screen and (max-width: 768px) { /** Targets screens up to 768px (tablets and phones) */
     body {
-        background: url('MBG2.JPG') no-repeat center center fixed; /* Mobile-specific background image, fixed for parallax effect */
-        background-size: cover; /* Ensures image covers screen */
-        padding: 0 15px; /* Side padding to prevent content from touching edges */
+        padding: 0 15px; /** Adds side padding on mobile to keep content from edges */
     }
 
-    header, footer { /* Adjust header/footer to match body padding on mobile */
-        margin-left: -15px; /* Offset body padding for full-width effect */
-        margin-right: -15px; /* Offset body padding for full-width effect */
-        padding-left: 15px; /* Restore internal padding */
-        padding-right: 15px; /* Restore internal padding */
+    body::after {
+        background: url('MBG2.JPG') no-repeat center center; /** Switches to mobile-specific image */
+        background-size: cover; /** Ensures image covers screen fully */
+    }
+
+    header, footer {
+        margin-left: -15px; /** Offsets body padding for full-width effect */
+        margin-right: -15px; /** Offsets body padding for full-width effect */
+        padding-left: 15px; /** Restores internal padding inside header/footer */
+        padding-right: 15px; /** Restores internal padding inside header/footer */
     }
 }
 
 /* Header */
 header {
-    background: rgba(34, 34, 34, 0.6); /* Transparent gray */
-    padding: 14px 0; /* Remove side padding to reach edges */
-    position: relative;
-    backdrop-filter: blur(2px); /* Matches table’s blur */
-    z-index: 10; /* Above background */
-    width: 100%; /* Ensure full width */
+    background: rgba(34, 34, 34, 0.6); /** Transparent gray for subtle contrast */
+    padding: 14px 0; /** Vertical padding only, full width horizontally */
+    position: relative; /** Allows positioning of child elements like language selector */
+    backdrop-filter: blur(2px); /** Subtle blur for glass-like appearance */
+    z-index: 10; /** Ensures header stays above background and content */
+    width: 100%; /** Full viewport width */
 }
 
 /* Logo */
 .logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: #fff;
-    text-transform: uppercase;
-    margin: 0; /* Remove default margin */
+    font-size: 28px; /** Large, bold text for logo prominence */
+    font-weight: bold; /** Emphasizes logo for branding */
+    color: #fff; /** White for contrast against dark header */
+    text-transform: uppercase; /** All caps for stylish, professional look */
+    margin: 0; /** Removes default margin for precise alignment */
 }
 
 /* Language Selector */
 .language-selector {
-    position: absolute; /* Positioned relative to header */
-    top: 15px; /* Distance from top of header */
-    right: 20px; /* Distance from right of header */
-    display: flex; /* Flex for alignment of text and arrow */
-    align-items: center; /* Vertically center content inside selector */
-    background: rgba(0, 0, 0, 0.513); /* Slightly transparent gray background */
-    padding: 5px 10px; /* Internal spacing for comfort */
-    border-radius: 5px; /* Rounded corners for softness */
-    color: white; /* Text color for readability */
-    font-size: 14px; /* Smaller font for selector to save space */
-    cursor: pointer; /* Hand cursor on hover to indicate interactivity */
-    transition: background 0.3s; /* Smooth background change on hover */
-    backdrop-filter: blur(5px); /* Glass effect for modern look */
-    z-index: 10; /* Above header content to ensure visibility */
+    position: absolute; /** Positions relative to header */
+    top: 15px; /** Distance from top of header */
+    right: 20px; /** Distance from right of header */
+    display: flex; /** Aligns text and arrow horizontally */
+    align-items: center; /** Vertically centers content */
+    background: rgba(0, 0, 0, 0.513); /** Slightly transparent gray background */
+    padding: 5px 10px; /** Internal spacing for comfort */
+    border-radius: 5px; /** Rounded corners for softness */
+    color: white; /** Text color for readability */
+    font-size: 14px; /** Smaller font to save space */
+    cursor: pointer; /** Hand cursor to indicate interactivity */
+    transition: background 0.3s; /** Smooth background change on hover */
+    backdrop-filter: blur(5px); /** Glass effect for modern look */
+    z-index: 10; /** Ensures visibility above header content */
 }
 
 .language-selector:hover {
-    background: rgba(51, 51, 51, 0.7); /* Lighter gray on hover for feedback */
+    background: rgba(51, 51, 51, 0.7); /** Lighter gray on hover for feedback */
 }
 
 #selected-language {
-    margin-right: 5px; /* Space before arrow for readability */
-    font-weight: 500; /* Medium weight for visibility without being too bold */
+    margin-right: 5px; /** Space before arrow for readability */
+    font-weight: 500; /** Medium weight for visibility */
 }
 
 .dropdown-arrow {
-    font-size: 10px; /* Small arrow size to keep it subtle */
-    color: #ccc; /* Light gray arrow for contrast */
+    font-size: 10px; /** Small arrow size for subtlety */
+    color: #ccc; /** Light gray for contrast */
 }
 
 .language-selector select {
-    position: absolute; /* Overlaps the visible selector for functionality */
-    top: 0; /* Align to top of parent */
-    left: 0; /* Align to left of parent */
-    width: 100%; /* Full width of parent for clickable area */
-    height: 100%; /* Full height of parent for clickable area */
-    opacity: 0; /* Invisible but clickable to preserve design */
-    cursor: pointer; /* Hand cursor for usability */
-    z-index: 1; /* Above background but below text for layering */
+    position: absolute; /** Overlaps visible selector for functionality */
+    top: 0; /** Aligns to top of parent */
+    left: 0; /** Aligns to left of parent */
+    width: 100%; /** Full width for clickable area */
+    height: 100%; /** Full height for clickable area */
+    opacity: 0; /** Invisible but clickable to preserve design */
+    cursor: pointer; /** Hand cursor for usability */
+    z-index: 1; /** Above background but below text */
 }
 
 /* Contact Info Section */
 .contact-info {
-    padding: 50px;
+    padding: 50px; /** Generous padding around section */
 }
 
 .contact-info h2 {
-    font-size: 28px;
-    color: #ffcc00;
+    font-size: 28px; /** Heading size for emphasis */
+    color: #ffcc00; /** Gold color for visual appeal */
 }
 
 .contact-info p {
-    font-size: 18px;
-    margin-bottom: 20px;
+    font-size: 18px; /** Paragraph size for legibility */
+    margin-bottom: 20px; /** Space below paragraph */
 }
 
 .info {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
+    display: flex; /** Flexbox for layout control */
+    justify-content: center; /** Centers info boxes horizontally */
+    gap: 40px; /** Space between info boxes */
+    flex-wrap: wrap; /** Allows wrapping on smaller screens */
 }
 
 .info-box {
-    background: rgba(34, 34, 34, 0.3); /* Matching hero transparency */
-    padding: 15px; /* Reduced padding for mobile */
-    border-radius: 10px;
-    transition: transform 0.3s;
-    text-align: center;
-    vertical-align: top;
-    width: 30%; /* Slightly reduced to account for padding/margins */
-    min-width: 200px; /* Reduced min-width for smaller screens */
-    max-width: 250px; /* Added max-width to limit horizontal stretch */
-    box-sizing: border-box;
-    backdrop-filter: blur(2px); /* Glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Soft shadow */
-    margin: 10px; /* Added margin for spacing */
+    background: rgba(34, 34, 34, 0.3); /** Semi-transparent background matching hero */
+    padding: 15px; /** Internal spacing */
+    border-radius: 10px; /** Rounded corners for softness */
+    transition: transform 0.3s; /** Smooth scale on hover */
+    text-align: center; /** Centers text inside */
+    vertical-align: top; /** Aligns content to top */
+    width: 30%; /** Relative width for desktop */
+    min-width: 200px; /** Minimum width for readability */
+    max-width: 250px; /** Limits max width to prevent stretching */
+    box-sizing: border-box; /** Includes padding/border in width */
+    backdrop-filter: blur(2px); /** Glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.1); /** Subtle border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /** Soft shadow for depth */
+    margin: 10px; /** Space around each box */
 }
 
 .info-box h3 {
-    font-size: 20px;
-    color: #ffcc00;
+    font-size: 20px; /** Heading size for emphasis */
+    color: #ffcc00; /** Gold color for visual appeal */
 }
 
 .info-box p {
-    font-size: 16px;
+    font-size: 16px; /** Paragraph size for legibility */
 }
 
 .info-box:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /** Slight zoom on hover for interactivity */
 }
 
 /* Contact Form */
 .contact-form {
-    padding: 50px;
+    padding: 50px; /** Generous padding around section */
 }
 
 .contact-form h2 {
-    font-size: 28px;
-    color: #ffcc00;
+    font-size: 28px; /** Heading size for emphasis */
+    color: #ffcc00; /** Gold color for visual appeal */
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    max-width: 500px;
-    margin: 0 auto;
+    display: flex; /** Flexbox for form layout */
+    flex-direction: column; /** Stacks form elements vertically */
+    align-items: center; /** Centers form elements horizontally */
+    gap: 15px; /** Space between form elements */
+    max-width: 500px; /** Limits form width for readability */
+    margin: 0 auto; /** Centers form horizontally */
 }
 
 input, textarea {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    padding: 6px 20px;
+    width: 100%; /** Full width of container */
+    padding: 10px; /** Internal spacing */
+    border: none; /** Removes default border */
+    border-radius: 5px; /** Rounded corners for softness */
+    font-size: 16px; /** Text size for legibility */
+    padding: 6px 20px; /** Overrides earlier padding for consistency */
 }
 
 textarea {
-    height: 120px;
+    height: 120px; /** Fixed height for textarea */
 }
 
 button {
-    background: #ffcc00;
-    color: #000;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
+    background: #ffcc00; /** Gold background for button */
+    color: #000; /** Black text for contrast */
+    padding: 10px 20px; /** Internal spacing */
+    font-size: 16px; /** Text size for legibility */
+    border: none; /** Removes default border */
+    border-radius: 5px; /** Rounded corners for softness */
+    cursor: pointer; /** Hand cursor for interactivity */
+    transition: 0.3s; /** Smooth transition for hover effect */
 }
 
 button:hover {
-    background: #e6b800;
+    background: #e6b800; /** Darker gold on hover for feedback */
 }
 
 /* Hero Section */
 .hero {
-    background: url('hero.jpg') no-repeat center center/cover;
-    height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-    position: relative;
-    z-index: 5; /* Above background */
+    background: url('hero.jpg') no-repeat center center/cover; /** Hero-specific background image */
+    height: 60vh; /** 60% viewport height for prominence */
+    display: flex; /** Flexbox for centering content */
+    align-items: center; /** Vertically centers content */
+    justify-content: center; /** Horizontally centers content */
+    text-align: center; /** Centers text within hero */
+    padding: 20px; /** Internal spacing */
+    position: relative; /** For layering with z-index */
+    z-index: 5; /** Above background */
 }
 
 /* Hero Content - Blurry & Transparent */
 .hero-content {
-    background: rgba(34, 34, 34, 0.3); /* Semi-transparent gray */
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
-    backdrop-filter: blur(2px); /* Strong blur for futuristic effect */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Soft shadow */
+    background: rgba(34, 34, 34, 0.3); /** Semi-transparent gray for contrast */
+    padding: 20px; /** Internal spacing */
+    border-radius: 10px; /** Rounded corners for softness */
+    width: 80%; /** Relative width for responsiveness */
+    max-width: 600px; /** Limits width for readability */
+    backdrop-filter: blur(2px); /** Strong blur for futuristic effect */
+    border: 1px solid rgba(255, 255, 255, 0.1); /** Subtle border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /** Soft shadow for depth */
 }
 
 .hero h1 {
-    font-size: 48px;
-    text-transform: uppercase;
-    color: #fff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Enhance readability */
+    font-size: 48px; /** Large heading for impact */
+    text-transform: uppercase; /** All caps for bold statement */
+    color: #fff; /** White text for contrast */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /** Shadow for readability */
 }
 
 .hero p {
-    font-size: 20px;
-    color: #ddd;
+    font-size: 20px; /** Paragraph size for legibility */
+    color: #ddd; /** Light gray for contrast */
 }
 
 /* Tables Section */
 .tables {
-    padding: 28px 20px;
-    position: relative;
-    z-index: 5;
+    padding: 28px 20px; /** Padding around section */
+    position: relative; /** For layering with z-index */
+    z-index: 5; /** Above background */
 }
 
 table {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    border-spacing: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    width: 100%; /** Full width of container */
+    max-width: 800px; /** Limits width to prevent overflow */
+    margin: 0 auto; /** Centers table horizontally */
+    border-spacing: 15px; /** Space between cells */
+    display: flex; /** Flexbox for layout control */
+    flex-wrap: wrap; /** Allows wrapping for responsiveness */
+    justify-content: center; /** Centers cells horizontally */
 }
 
 /* Table Cells - Blurry & Transparent */
 td {
-    background: rgba(34, 34, 34, 0.3);
-    padding: 15px;
-    border-radius: 10px;
-    transition: transform 0.3s;
-    text-align: center;
-    vertical-align: top;
-    width: 30%;
-    min-width: 200px;
-    max-width: 250px;
-    box-sizing: border-box;
-    backdrop-filter: blur(2px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
-    margin: 10px;
+    background: rgba(34, 34, 34, 0.3); /** Semi-transparent background */
+    padding: 15px; /** Internal spacing */
+    border-radius: 10px; /** Rounded corners for softness */
+    transition: transform 0.3s; /** Smooth scale on hover */
+    text-align: center; /** Centers text inside */
+    vertical-align: top; /** Aligns content to top */
+    width: 30%; /** Relative width for desktop */
+    min-width: 200px; /** Minimum width for readability */
+    max-width: 250px; /** Limits max width to prevent stretching */
+    box-sizing: border-box; /** Includes padding/border in width */
+    backdrop-filter: blur(2px); /** Glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.1); /** Subtle border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /** Soft shadow for depth */
+    margin: 10px; /** Space around each cell */
 }
 
 td a {
-    text-decoration: none;
-    color: white;
-    display: block;
+    text-decoration: none; /** Removes underline from links */
+    color: white; /** White text for contrast */
+    display: block; /** Makes link fill cell */
 }
 
 td img {
-    width: 100%;
-    max-width: 200px;
-    border-radius: 10px;
-    filter: brightness(90%);
+    width: 100%; /** Full width of container */
+    max-width: 200px; /** Limits image size */
+    border-radius: 10px; /** Rounded corners for images */
+    filter: brightness(90%); /** Slightly dims image for contrast */
 }
 
 td:hover {
-    transform: scale(1.05);
-    z-index: 1;
-    background: rgba(51, 51, 51, 0.6);
+    transform: scale(1.05); /** Slight zoom on hover */
+    z-index: 1; /** Brings cell forward on hover */
+    background: rgba(51, 51, 51, 0.6); /** Lighter background on hover */
 }
 
+/* Footer */
 footer {
-    padding: 8px 0; /* Remove side padding to reach edges */
-    background: rgba(0, 0, 0, 0.5);
-    margin-top: 20px;
-    backdrop-filter: blur(5px);
-    z-index: 5; /* Above background */
-    width: 100%; /* Ensure full width */
+    padding: 8px 0; /** Vertical padding only */
+    background: rgba(0, 0, 0, 0.5); /** Dark semi-transparent background */
+    margin-top: 20px; /** Space above footer */
+    backdrop-filter: blur(5px); /** Glass effect */
+    z-index: 5; /** Above background */
+    width: 100%; /** Full width */
 }
 
 footer p {
-    font-size: 12px;
+    font-size: 12px; /** Small text for footer */
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) { /* Tablets and smaller laptops */
+@media (max-width: 1024px) { /** Tablets and smaller laptops */
     .contact-info {
-        padding: 40px; /* Reduced padding */
+        padding: 40px; /** Reduced padding for smaller screens */
     }
 
     .contact-info h2,
     .contact-form h2 {
-        font-size: 26px; /* Slightly smaller headings */
+        font-size: 26px; /** Slightly smaller headings */
     }
 
     .contact-info p {
-        font-size: 16px; /* Slightly smaller text */
+        font-size: 16px; /** Slightly smaller text */
     }
 
     .info-box {
-        width: 220px; /* Adjusted width */
+        width: 220px; /** Adjusted width for tablet layout */
     }
 
     .contact-form {
-        padding: 40px; /* Reduced padding */
+        padding: 40px; /** Reduced padding for smaller screens */
     }
 
     input, textarea {
-        font-size: 15px; /* Slightly smaller text */
+        font-size: 15px; /** Slightly smaller text */
     }
 
     button {
-        font-size: 15px; /* Slightly smaller text */
+        font-size: 15px; /** Slightly smaller text */
     }
 
     header {
-        padding: 12px 0; /* Slightly less padding, matches other CSS files */
+        padding: 12px 0; /** Slightly less padding for compactness */
     }
 
     footer {
-        padding: 5px 0; /* Reduced padding, matches other CSS files */
+        padding: 5px 0; /** Reduced padding for smaller screens */
     }
 
     footer p {
-        font-size: 10px; /* Smaller text, matches other CSS files */
+        font-size: 10px; /** Smaller text for footer */
     }
 }
 
-@media (max-width: 768px) { /* Mobile devices */
+@media (max-width: 768px) { /** Mobile devices */
     header {
-        padding: 12px 0; /* Reduced padding, matches other CSS files */
+        padding: 12px 0; /** Reduced padding for mobile */
     }
 
     .logo {
-        font-size: 28px; /* Maintain logo size, matches other CSS files */
+        font-size: 28px; /** Maintains logo visibility */
     }
 
     .language-selector {
-        top: 10px; /* Slightly closer to top, matches other CSS files */
-        right: 15px; /* Slightly closer to right, matches other CSS files */
-        padding: 4px 8px; /* Reduced padding for compact layout, matches other CSS files */
-        font-size: 12px; /* Smaller font for mobile, matches other CSS files */
+        top: 10px; /** Closer to top for space */
+        right: 15px; /** Closer to right for space */
+        padding: 4px 8px; /** Reduced padding for compactness */
+        font-size: 12px; /** Smaller font for mobile */
     }
 
     #selected-language {
-        margin-right: 3px; /* Reduced spacing for mobile, matches other CSS files */
+        margin-right: 3px; /** Reduced spacing for compactness */
     }
 
     .dropdown-arrow {
-        font-size: 8px; /* Smaller arrow for mobile, matches other CSS files */
+        font-size: 8px; /** Smaller arrow for mobile */
     }
 
     .hero h1 {
-        font-size: 30px; /* Smaller heading */
+        font-size: 30px; /** Smaller heading for mobile */
     }
 
     .hero p {
-        font-size: 18px; /* Smaller text */
+        font-size: 18px; /** Smaller text for mobile */
     }
 
     .contact-info {
-        padding: 30px; /* Reduced padding */
+        padding: 30px; /** Reduced padding for mobile */
     }
 
     .info {
-        gap: 20px; /* Smaller gap */
+        gap: 20px; /** Smaller gap between info boxes */
     }
 
     .info-box {
-        width: 100%; /* More flexible width */
-        max-width: 300px; /* Limit max width */
+        width: 100%; /** More flexible width for mobile */
+        max-width: 300px; /** Limits max width */
     }
 
     .contact-form {
-        padding: 30px; /* Reduced padding */
+        padding: 30px; /** Reduced padding for mobile */
     }
 
     form {
-        max-width: 90%; /* More flexible width */
+        max-width: 90%; /** More flexible width for mobile */
     }
 
     input, textarea {
-        padding: 8px; /* Reduced padding */
-        font-size: 14px; /* Smaller text */
+        padding: 8px; /** Reduced padding for compactness */
+        font-size: 14px; /** Smaller text for mobile */
     }
 
     button {
-        font-size: 14px; /* Smaller text */
-        padding: 8px 16px; /* Adjusted padding */
+        font-size: 14px; /** Smaller text for mobile */
+        padding: 8px 16px; /** Adjusted padding */
     }
 
     footer {
-        padding: 5px 0; /* Matches other CSS files */
+        padding: 5px 0; /** Reduced padding */
     }
 
     footer p {
-        font-size: 10px; /* Matches other CSS files */
+        font-size: 10px; /** Smaller text */
     }
 
     header, footer {
-        margin-left: -15px;
-        margin-right: -15px;
-        padding-left: 15px;
-        padding-right: 15px;
+        margin-left: -15px; /** Offsets body padding */
+        margin-right: -15px; /** Offsets body padding */
+        padding-left: 15px; /** Restores internal padding */
+        padding-right: 15px; /** Restores internal padding */
     }
 }
 
-@media (max-width: 480px) { /* Smaller phones */
+@media (max-width: 480px) { /** Smaller phones */
     .logo {
-        font-size: 24px; /* Smaller logo, matches other CSS files */
+        font-size: 24px; /** Smaller logo for tiny screens */
     }
 
     .contact-info {
-        padding: 20px; /* Reduced padding */
+        padding: 20px; /** Reduced padding */
     }
 
     .contact-info h2,
     .contact-form h2 {
-        font-size: 22px; /* Smaller headings */
+        font-size: 22px; /** Smaller headings */
     }
 
     .info-box {
-        width: 95%; /* Nearly full width */
+        width: 95%; /** Nearly full width */
     }
 
     .contact-form {
-        padding: 20px; /* Reduced padding */
+        padding: 20px; /** Reduced padding */
     }
 
     input, textarea {
-        font-size: 13px; /* Smaller text */
+        font-size: 13px; /** Smaller text */
     }
 
     button {
-        font-size: 13px; /* Smaller text */
-        padding: 8px 14px; /* Adjusted padding */
+        font-size: 13px; /** Smaller text */
+        padding: 8px 14px; /** Adjusted padding */
     }
 }
 
-@media (max-width: 360px) { /* Very small screens */
+@media (max-width: 360px) { /** Very small screens */
     .logo {
-        font-size: 20px; /* Smallest logo, matches other CSS files */
+        font-size: 20px; /** Smallest logo size */
     }
 
     .contact-info h2,
     .contact-form h2 {
-        font-size: 20px; /* Smallest headings */
+        font-size: 20px; /** Smallest headings */
     }
 
     input, textarea {
-        font-size: 12px; /* Smallest text */
+        font-size: 12px; /** Smallest text */
     }
 
     button {
-        font-size: 12px; /* Smallest text */
-        padding: 7px 12px; /* Adjusted padding */
+        font-size: 12px; /** Smallest text */
+        padding: 7px 12px; /** Adjusted padding */
     }
 }
