@@ -1,331 +1,345 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif; /* Default font for consistency */
-    margin: 0; /* Remove default browser margin */
-    padding: 0; /* Remove default browser padding */
-    background: url('DBG1.JPG') no-repeat center center fixed; /* Desktop background image, fixed for parallax effect */
-    background-size: cover; /* Scales image to cover entire viewport */
-    background-color: #1a1a1a; /* Fallback color if image fails to load */
-    color: #eee; /* Light text color for contrast */
-    text-align: center; /* Center-align all text by default */
-    min-height: 100vh; /* Ensures body takes full viewport height */
-    position: relative; /* Allows positioning of overlay */
-    overflow-x: hidden; /* Prevents horizontal scrolling issues */
+    font-family: Arial, sans-serif; /** Sets a consistent, clean font across the site */
+    margin: 0; /** Removes default browser margin for full layout control */
+    padding: 0; /** Removes default padding for full layout control */
+    background-color: #1a1a1a; /** Dark gray fallback color if image fails */
+    color: #eee; /** Light text color for contrast against dark background */
+    text-align: center; /** Centers all text by default for symmetry */
+    min-height: 100vh; /** Ensures body takes full viewport height */
+    position: relative; /** Allows content to scroll over fixed background */
+    overflow-x: hidden; /** Prevents horizontal scrolling issues */
 }
 
-/* Dark overlay for readability */
+/* Fixed Background Container */
+body::after {
+    content: ''; /** Required for pseudo-element to render */
+    position: fixed; /** Fixes background in place, works on mobile */
+    top: 0; /** Aligns to top of viewport */
+    left: 0; /** Aligns to left of viewport */
+    width: 100%; /** Spans full viewport width */
+    height: 100%; /** Spans full viewport height */
+    background: url('DBG1.JPG') no-repeat center center; /** Desktop background, centered, no repeat */
+    background-size: cover; /** Scales image to cover entire area */
+    z-index: -2; /** Places background behind overlay and content */
+}
+
+/* Dark Overlay for Readability */
 body::before {
-    content: ''; /* Pseudo-element requires content, even if empty */
-    position: absolute; /* Overlay spans entire body */
-    top: 0; /* Align to top */
-    left: 0; /* Align to left */
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background: rgba(0, 0, 0, 0.6); /* Dark overlay for better contrast */
-    z-index: -1; /* Places overlay behind content */
+    content: ''; /** Required for pseudo-element to render */
+    position: fixed; /** Fixes overlay in place with background */
+    top: 0; /** Aligns to top of viewport */
+    left: 0; /** Aligns to left of viewport */
+    width: 100%; /** Spans full viewport width */
+    height: 100%; /** Spans full viewport height */
+    background: rgba(0, 0, 0, 0.6); /** Dark overlay for better text contrast */
+    z-index: -1; /** Places overlay behind content, above background */
 }
 
 /* Mobile-Specific Background */
-@media only screen and (max-width: 768px) { /* Targets screens up to 768px (tablets and phones) */
+@media only screen and (max-width: 768px) { /** Targets screens up to 768px (tablets and phones) */
     body {
-        background: url('MBG1.AVIF') no-repeat center center fixed; /* Mobile-specific background image, fixed for parallax effect */
-        background-size: cover; /* Ensures image covers screen */
-        padding: 0 15px; /* Side padding to prevent content from touching edges */
+        padding: 0 15px; /** Adds side padding on mobile to keep content from edges */
     }
 
-    header, footer { /* Adjust header/footer to match body padding on mobile */
-        margin-left: -15px; /* Offset body padding for full-width effect */
-        margin-right: -15px; /* Offset body padding for full-width effect */
-        padding-left: 15px; /* Restore internal padding */
-        padding-right: 15px; /* Restore internal padding */
+    body::after {
+        background: url('MBG1.AVIF') no-repeat center center; /** Switches to mobile-specific image */
+        background-size: cover; /** Ensures image covers screen fully */
+    }
+
+    header, footer {
+        margin-left: -15px; /** Offsets body padding for full-width effect */
+        margin-right: -15px; /** Offsets body padding for full-width effect */
+        padding-left: 15px; /** Restores internal padding inside header/footer */
+        padding-right: 15px; /** Restores internal padding inside header/footer */
     }
 }
 
-/* Header - Updated to match table but darker */
+/* Header */
 header {
-    background: rgba(34, 34, 34, 0.6); /* Transparent gray background for subtle contrast */
-    padding: 14px 0; /* Vertical padding only, full width horizontally */
-    position: relative; /* For positioning child elements like language selector */
-    backdrop-filter: blur(2px); /* Subtle blur effect for glass-like appearance */
-    z-index: 10; /* Ensures header stays above background and other content */
-    width: 100%; /* Full width of viewport */
+    background: rgba(34, 34, 34, 0.6); /** Semi-transparent gray for subtle contrast */
+    padding: 14px 0; /** Vertical padding only, full width horizontally */
+    position: relative; /** Allows positioning of child elements like language selector */
+    backdrop-filter: blur(2px); /** Subtle blur for glass-like appearance */
+    z-index: 10; /** Ensures header stays above background and content */
+    width: 100%; /** Full viewport width */
 }
 
 /* Logo */
 .logo {
-    font-size: 28px; /* Large, bold logo text for prominence */
-    font-weight: bold; /* Emphasizes logo for branding */
-    color: #fff; /* White for contrast against dark header */
-    text-transform: uppercase; /* All caps for stylish, professional look */
-    margin: 0; /* Remove default margin to align properly */
+    font-size: 28px; /** Large, bold text for logo prominence */
+    font-weight: bold; /** Emphasizes logo for branding */
+    color: #fff; /** White for contrast against dark header */
+    text-transform: uppercase; /** All caps for stylish, professional look */
+    margin: 0; /** Removes default margin for precise alignment */
 }
 
 /* Language Selector */
 .language-selector {
-    position: absolute; /* Positioned relative to header */
-    top: 15px; /* Distance from top of header */
-    right: 20px; /* Distance from right of header */
-    display: flex; /* Flex for alignment of text and arrow */
-    align-items: center; /* Vertically center content inside selector */
-    background: rgba(0, 0, 0, 0.513); /* Slightly transparent gray background */
-    padding: 5px 10px; /* Internal spacing for comfort */
-    border-radius: 5px; /* Rounded corners for softness */
-    color: white; /* Text color for readability */
-    font-size: 14px; /* Smaller font for selector to save space */
-    cursor: pointer; /* Hand cursor on hover to indicate interactivity */
-    transition: background 0.3s; /* Smooth background change on hover */
-    backdrop-filter: blur(5px); /* Glass effect for modern look */
-    z-index: 10; /* Above header content to ensure visibility */
+    position: absolute; /** Positions relative to header */
+    top: 15px; /** Distance from top of header */
+    right: 20px; /** Distance from right of header */
+    display: flex; /** Aligns text and arrow horizontally */
+    align-items: center; /** Vertically centers content */
+    background: rgba(0, 0, 0, 0.513); /** Slightly transparent gray background */
+    padding: 5px 10px; /** Internal spacing for comfort */
+    border-radius: 5px; /** Rounded corners for softness */
+    color: white; /** Text color for readability */
+    font-size: 14px; /** Smaller font to save space */
+    cursor: pointer; /** Hand cursor to indicate interactivity */
+    transition: background 0.3s; /** Smooth background change on hover */
+    backdrop-filter: blur(5px); /** Glass effect for modern look */
+    z-index: 10; /** Ensures visibility above header content */
 }
 
 .language-selector:hover {
-    background: rgba(51, 51, 51, 0.7); /* Lighter gray on hover for feedback */
+    background: rgba(51, 51, 51, 0.7); /** Lighter gray on hover for feedback */
 }
 
 #selected-language {
-    margin-right: 5px; /* Space before arrow for readability */
-    font-weight: 500; /* Medium weight for visibility without being too bold */
+    margin-right: 5px; /** Space before arrow for readability */
+    font-weight: 500; /** Medium weight for visibility */
 }
 
 .dropdown-arrow {
-    font-size: 10px; /* Small arrow size to keep it subtle */
-    color: #ccc; /* Light gray arrow for contrast */
+    font-size: 10px; /** Small arrow size for subtlety */
+    color: #ccc; /** Light gray for contrast */
 }
 
 .language-selector select {
-    position: absolute; /* Overlaps the visible selector for functionality */
-    top: 0; /* Align to top of parent */
-    left: 0; /* Align to left of parent */
-    width: 100%; /* Full width of parent for clickable area */
-    height: 100%; /* Full height of parent for clickable area */
-    opacity: 0; /* Invisible but clickable to preserve design */
-    cursor: pointer; /* Hand cursor for usability */
-    z-index: 1; /* Above background but below text for layering */
+    position: absolute; /** Overlaps visible selector for functionality */
+    top: 0; /** Aligns to top of parent */
+    left: 0; /** Aligns to left of parent */
+    width: 100%; /** Full width for clickable area */
+    height: 100%; /** Full height for clickable area */
+    opacity: 0; /** Invisible but clickable to preserve design */
+    cursor: pointer; /** Hand cursor for usability */
+    z-index: 1; /** Above background but below text */
 }
 
 /* Menu Section */
 .menu {
-    display: flex; /* Flexbox for layout */
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
-    padding: 40px; /* Generous padding around section */
+    display: flex; /** Flexbox for layout control */
+    flex-direction: column; /** Stacks items vertically */
+    align-items: center; /** Centers items horizontally */
+    padding: 40px; /** Generous padding around section */
 }
 
 .menu-item {
-    display: flex; /* Flexbox for image and text */
-    align-items: center; /* Vertically align items */
-    background: rgba(34, 34, 34, 0.3); /* Semi-transparent background */
-    margin: 20px 0; /* Vertical spacing between items */
-    padding: 20px; /* Internal spacing */
-    border-radius: 10px; /* Rounded corners */
-    width: 80%; /* Relative width */
-    max-width: 800px; /* Limit max width */
-    transition: transform 0.3s; /* Smooth scale on hover */
-    backdrop-filter: blur(2px); /* Glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Soft shadow */
+    display: flex; /** Flexbox for image and text alignment */
+    align-items: center; /** Vertically aligns items */
+    background: rgba(34, 34, 34, 0.3); /** Semi-transparent background */
+    margin: 20px 0; /** Vertical spacing between items */
+    padding: 20px; /** Internal spacing */
+    border-radius: 10px; /** Rounded corners for softness */
+    width: 80%; /** Relative width for responsiveness */
+    max-width: 800px; /** Limits max width for readability */
+    transition: transform 0.3s; /** Smooth scale on hover */
+    backdrop-filter: blur(2px); /** Glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.1); /** Subtle border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /** Soft shadow for depth */
 }
 
 .menu-item img {
-    width: 150px; /* Fixed image width */
-    border-radius: 10px; /* Rounded corners */
-    margin-right: 20px; /* Space between image and text */
+    width: 150px; /** Fixed image width */
+    border-radius: 10px; /** Rounded corners for images */
+    margin-right: 20px; /** Space between image and text */
 }
 
 .menu-text {
-    text-align: left; /* Left-align text */
-    max-width: 400px; /* Limit text width */
+    text-align: left; /** Left-aligns text for readability */
+    max-width: 400px; /** Limits text width for clean layout */
 }
 
 .menu-text h3 {
-    font-size: 24px; /* Title size */
-    color: #ffcc00; /* Gold color */
+    font-size: 24px; /** Title size for emphasis */
+    color: #ffcc00; /** Gold color for visual appeal */
 }
 
 .menu-text p {
-    font-size: 16px; /* Description size */
+    font-size: 16px; /** Description size for legibility */
 }
 
-/* Alternate layout for even items */
+/* Alternate Layout for Even Items */
 .menu-item:nth-child(even) {
-    flex-direction: row-reverse; /* Reverse layout for even items */
+    flex-direction: row-reverse; /** Reverses layout for even items */
 }
 
 .menu-item:nth-child(even) img {
-    margin-right: 0; /* Remove right margin */
-    margin-left: 20px; /* Add left margin for reversed layout */
+    margin-right: 0; /** Removes right margin in reversed layout */
+    margin-left: 20px; /** Adds left margin for reversed layout */
 }
 
 /* Hover Effect */
 .menu-item:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
+    transform: scale(1.05); /** Slight zoom on hover for interactivity */
 }
 
 /* Footer */
 footer {
-    padding: 8px 0; /* Vertical padding only */
-    background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
-    margin-top: 20px; /* Space above footer */
-    backdrop-filter: blur(5px); /* Glass effect */
-    z-index: 5; /* Above background */
-    width: 100%; /* Full width */
+    padding: 8px 0; /** Vertical padding only */
+    background: rgba(0, 0, 0, 0.5); /** Dark semi-transparent background */
+    margin-top: 20px; /** Space above footer */
+    backdrop-filter: blur(5px); /** Glass effect */
+    z-index: 5; /** Above background */
+    width: 100%; /** Full width */
 }
 
 footer p {
-    font-size: 12px; /* Small text */
+    font-size: 12px; /** Small text for footer */
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) { /* Tablets and smaller laptops */
+@media (max-width: 1024px) { /** Tablets and smaller laptops */
     .menu {
-        padding: 30px; /* Reduced padding */
+        padding: 30px; /** Reduced padding for smaller screens */
     }
 
     .menu-item {
-        width: 90%; /* More flexible width */
+        width: 90%; /** More flexible width for responsiveness */
     }
 
     .menu-text h3 {
-        font-size: 22px; /* Slightly smaller title */
+        font-size: 22px; /** Slightly smaller title */
     }
 
     .menu-text p {
-        font-size: 15px; /* Slightly smaller text */
+        font-size: 15px; /** Slightly smaller text */
     }
 
     header {
-        padding: 12px 0; /* Slightly less padding, matches first and second CSS */
+        padding: 12px 0; /** Slightly less padding for compactness */
     }
 
     footer {
-        padding: 5px 0; /* Reduced padding, matches first and second CSS */
+        padding: 5px 0; /** Reduced padding for smaller screens */
     }
 
     footer p {
-        font-size: 10px; /* Smaller text, matches first and second CSS */
+        font-size: 10px; /** Smaller text for footer */
     }
 }
 
-@media (max-width: 768px) { /* Mobile devices */
+@media (max-width: 768px) { /** Mobile devices */
     header {
-        padding: 12px 0; /* Reduced padding, matches first and second CSS */
+        padding: 12px 0; /** Reduced padding for mobile */
     }
 
     .logo {
-        font-size: 28px; /* Maintain logo size, matches first and second CSS */
+        font-size: 28px; /** Maintains logo visibility */
     }
 
     .language-selector {
-        top: 10px; /* Slightly closer to top, matches first and second CSS */
-        right: 15px; /* Slightly closer to right, matches first and second CSS */
-        padding: 4px 8px; /* Reduced padding for compact layout, matches first and second CSS */
-        font-size: 12px; /* Smaller font for mobile, matches first and second CSS */
+        top: 10px; /** Closer to top for space */
+        right: 15px; /** Closer to right for space */
+        padding: 4px 8px; /** Reduced padding for compactness */
+        font-size: 12px; /** Smaller font for mobile */
     }
 
     #selected-language {
-        margin-right: 3px; /* Reduced spacing for mobile, matches first and second CSS */
+        margin-right: 3px; /** Reduced spacing for compactness */
     }
 
     .dropdown-arrow {
-        font-size: 8px; /* Smaller arrow for mobile, matches first and second CSS */
+        font-size: 8px; /** Smaller arrow for mobile */
     }
 
     .menu {
-        padding: 20px; /* Reduced padding */
+        padding: 20px; /** Reduced padding for mobile */
     }
 
     .menu-item {
-        flex-direction: column; /* Stack image and text vertically */
-        text-align: center; /* Center text */
-        padding: 15px; /* Reduced padding */
+        flex-direction: column; /** Stacks image and text vertically */
+        text-align: center; /** Centers text */
+        padding: 15px; /** Reduced internal padding */
     }
 
     .menu-item img {
-        width: 120px; /* Smaller image */
-        margin: 0 0 15px 0; /* Center image with bottom margin */
+        width: 120px; /** Smaller image for mobile */
+        margin: 0 0 15px 0; /** Centers image with bottom margin */
     }
 
     .menu-text {
-        max-width: 100%; /* Full width for text */
-        text-align: center; /* Center text */
+        max-width: 100%; /** Full width for text */
+        text-align: center; /** Centers text */
     }
 
     .menu-text h3 {
-        font-size: 20px; /* Smaller title */
+        font-size: 20px; /** Smaller title for mobile */
     }
 
     .menu-text p {
-        font-size: 14px; /* Smaller text */
+        font-size: 14px; /** Smaller text for mobile */
     }
 
     .menu-item:nth-child(even) {
-        flex-direction: column; /* Maintain column layout for even items */
+        flex-direction: column; /** Maintains column layout for even items */
     }
 
     .menu-item:nth-child(even) img {
-        margin-left: 0; /* Remove left margin in column layout */
+        margin-left: 0; /** Removes left margin in column layout */
     }
 
     footer {
-        padding: 5px 0; /* Matches first and second CSS */
+        padding: 5px 0; /** Reduced padding */
     }
 
     footer p {
-        font-size: 10px; /* Matches first and second CSS */
+        font-size: 10px; /** Smaller text */
     }
 
     header, footer {
-        margin-left: -15px;
-        margin-right: -15px;
-        padding-left: 15px;
-        padding-right: 15px;
+        margin-left: -15px; /** Offsets body padding */
+        margin-right: -15px; /** Offsets body padding */
+        padding-left: 15px; /** Restores internal padding */
+        padding-right: 15px; /** Restores internal padding */
     }
 }
 
-@media (max-width: 480px) { /* Smaller phones */
+@media (max-width: 480px) { /** Smaller phones */
     .logo {
-        font-size: 24px; /* Smaller logo, matches first and second CSS */
+        font-size: 24px; /** Smaller logo for tiny screens */
     }
 
     .menu {
-        padding: 15px; /* Reduced padding */
+        padding: 15px; /** Reduced padding */
     }
 
     .menu-item {
-        width: 95%; /* Nearly full width */
+        width: 95%; /** Nearly full width */
     }
 
     .menu-item img {
-        width: 100px; /* Smaller image */
+        width: 100px; /** Smaller image */
     }
 
     .menu-text h3 {
-        font-size: 18px; /* Smaller title */
+        font-size: 18px; /** Smaller title */
     }
 
     .menu-text p {
-        font-size: 13px; /* Smaller text */
+        font-size: 13px; /** Smaller text */
     }
 }
 
-@media (max-width: 360px) { /* Very small screens */
+@media (max-width: 360px) { /** Very small screens */
     .logo {
-        font-size: 20px; /* Smallest logo, matches first and second CSS */
+        font-size: 20px; /** Smallest logo size */
     }
 
     .menu-item {
-        padding: 10px; /* Reduced padding */
+        padding: 10px; /** Reduced padding */
     }
 
     .menu-item img {
-        width: 90px; /* Smallest image */
+        width: 90px; /** Smallest image size */
     }
 
     .menu-text h3 {
-        font-size: 16px; /* Smallest title */
+        font-size: 16px; /** Smallest title */
     }
 
     .menu-text p {
-        font-size: 12px; /* Smallest text */
+        font-size: 12px; /** Smallest text */
     }
 }
