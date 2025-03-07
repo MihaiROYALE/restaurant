@@ -1,379 +1,260 @@
-/* General Styles */
+/* Reset and Base Styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
 body.restaurant-theme {
-    font-family: Arial, sans-serif; /* Default font for consistency across the site */
-    margin: 0; /* Remove default browser margin to use full space */
-    padding: 0; /* Remove default browser padding to use full space */
-    background: url('IMG_1193.png') no-repeat center center fixed; /* Desktop background image, fixed for parallax effect */
-    background-size: cover; /* Scales image to cover entire viewport */
-    background-color: #1a1a1a; /* Fallback color if image fails - dark, elegant gray */
-    color: #eee; /* Light text color for contrast against dark background */
-    text-align: center; /* Center-align all text by default for symmetry */
-    min-height: 100vh; /* Ensures body takes full viewport height */
-    position: relative; /* Allows positioning of overlay pseudo-element */
-    overflow-x: hidden; /* Prevents horizontal scrolling issues */
+    font-family: Arial, sans-serif;
+    color: #eee;
+    text-align: center;
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
-/* Optional subtle overlay for readability */
+/* Background Layer */
+.background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('IMG_1193.png') no-repeat center center;
+    background-size: cover;
+    background-color: #1a1a1a; /* Fallback color */
+    z-index: -2;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+/* Overlay Layer */
 body.restaurant-theme::before {
-    content: ''; /* Pseudo-element requires content, even if empty */
-    position: absolute; /* Overlay spans entire body */
-    top: 0; /* Align to top of body */
-    left: 0; /* Align to left of body */
-    width: 100%; /* Full width of viewport */
-    height: 100%; /* Full height of viewport */
-    background: rgba(0, 0, 0, 0.6); /* Dark overlay for better text contrast */
-    z-index: -1; /* Places overlay behind content, not affecting interactivity */
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
 }
 
-/* Mobile-Specific Background */
-@media only screen and (max-width: 768px) { /* Targets screens up to 768px (tablets and phones) */
-    body.restaurant-theme {
-        background: url('IMG_1194.AVIF') no-repeat center center fixed; /* Mobile-specific background image, fixed for parallax effect */
-        background-size: cover; /* Ensures image covers screen fully */
-        padding: 0 15px; /* Side padding to prevent content from touching edges */
-    }
-
-    header, footer { /* Adjust header/footer to match body padding on mobile */
-        margin-left: -15px; /* Offset body padding for full-width effect */
-        margin-right: -15px; /* Offset body padding for full-width effect */
-        padding-left: 15px; /* Restore internal padding inside header/footer */
-        padding-right: 15px; /* Restore internal padding inside header/footer */
-    }
-}
-
-/* Header - Updated to match table but darker */
+/* Header */
 header {
-    background: rgba(34, 34, 34, 0.6); /* Transparent gray background for subtle contrast */
-    padding: 14px 0; /* Vertical padding only, full width horizontally */
-    position: relative; /* For positioning child elements like language selector */
-    backdrop-filter: blur(2px); /* Subtle blur effect for glass-like appearance */
-    z-index: 10; /* Ensures header stays above background and other content */
-    width: 100%; /* Full width of viewport */
+    background: rgba(34, 34, 34, 0.6);
+    padding: 14px 0;
+    position: relative;
+    backdrop-filter: blur(2px);
+    z-index: 10;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Logo */
 .logo {
-    font-size: 28px; /* Large, bold logo text for prominence */
-    font-weight: bold; /* Emphasizes logo for branding */
-    color: #fff; /* White for contrast against dark header */
-    text-transform: uppercase; /* All caps for stylish, professional look */
-    margin: 0; /* Remove default margin to align properly */
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0;
 }
 
 /* Language Selector */
 .language-selector {
-    position: absolute; /* Positioned relative to header */
-    top: 15px; /* Distance from top of header */
-    right: 20px; /* Distance from right of header */
-    display: flex; /* Flex for alignment of text and arrow */
-    align-items: center; /* Vertically center content inside selector */
-    background: rgba(0, 0, 0, 0.513); /* Slightly transparent gray background */
-    padding: 5px 10px; /* Internal spacing for comfort */
-    border-radius: 5px; /* Rounded corners for softness */
-    color: white; /* Text color for readability */
-    font-size: 14px; /* Smaller font for selector to save space */
-    cursor: pointer; /* Hand cursor on hover to indicate interactivity */
-    transition: background 0.3s; /* Smooth background change on hover */
-    backdrop-filter: blur(5px); /* Glass effect for modern look */
-    z-index: 10; /* Above header content to ensure visibility */
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.513);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+    backdrop-filter: blur(5px);
+    z-index: 10;
 }
 
 .language-selector:hover {
-    background: rgba(51, 51, 51, 0.7); /* Lighter gray on hover for feedback */
+    background: rgba(51, 51, 51, 0.7);
 }
 
 #selected-language {
-    margin-right: 5px; /* Space before arrow for readability */
-    font-weight: 500; /* Medium weight for visibility without being too bold */
+    margin-right: 5px;
+    font-weight: 500;
 }
 
 .dropdown-arrow {
-    font-size: 10px; /* Small arrow size to keep it subtle */
-    color: #ccc; /* Light gray arrow for contrast */
+    font-size: 10px;
+    color: #ccc;
 }
 
 .language-selector select {
-    position: absolute; /* Overlaps the visible selector for functionality */
-    top: 0; /* Align to top of parent */
-    left: 0; /* Align to left of parent */
-    width: 100%; /* Full width of parent for clickable area */
-    height: 100%; /* Full height of parent for clickable area */
-    opacity: 0; /* Invisible but clickable to preserve design */
-    cursor: pointer; /* Hand cursor for usability */
-    z-index: 1; /* Above background but below text for layering */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
 }
 
 /* Hero Section */
 .hero {
-    background: url('hero.jpg') no-repeat center center; /* Hero background image */
-    background-size: cover; /* Cover entire section for immersive effect */
-    height: 60vh; /* 60% of viewport height for prominence */
-    display: flex; /* Flexbox for centering content */
-    align-items: center; /* Vertical center for hero content */
-    justify-content: center; /* Horizontal center for hero content */
-    text-align: center; /* Center text within hero */
-    padding: 20px; /* Internal spacing for comfort */
-    position: relative; /* For layering with z-index */
-    z-index: 5; /* Above body background but below header */
+    background: url('hero.jpg') no-repeat center center;
+    background-size: cover;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 5;
 }
 
-/* Hero Content - Blurry & Transparent */
 .hero-content {
-    background: rgba(34, 34, 34, 0.3); /* Semi-transparent gray for subtle contrast */
-    padding: 20px; /* Internal spacing for content breathing room */
-    border-radius: 10px; /* Rounded corners for softness */
-    width: 80%; /* Relative width for responsiveness */
-    max-width: 600px; /* Limit max width for readability */
-    backdrop-filter: blur(2px); /* Strong blur for futuristic effect */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for definition */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Soft shadow for depth */
+    background: rgba(34, 34, 34, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
 }
 
 .hero h1 {
-    font-size: 48px; /* Large heading for impact */
-    text-transform: uppercase; /* All caps for bold statement */
-    color: #fff; /* White text for contrast */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Shadow for readability on background */
+    font-size: 48px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
 }
 
 .hero p {
-    font-size: 20px; /* Paragraph size for legibility */
-    color: #ddd; /* Light gray text for contrast */
+    font-size: 20px;
+    color: #ddd;
+    margin: 10px 0 0;
 }
 
 /* Tables Section */
 .tables {
-    padding: 50px 20px; /* Section padding for spacing */
-    position: relative; /* For layering with z-index */
-    z-index: 5; /* Above body background */
+    padding: 50px 20px;
+    position: relative;
+    z-index: 5;
 }
 
 table {
-    width: 100%; /* Full width of container */
-    max-width: 800px; /* Limit max width to prevent overflow */
-    margin: 0 auto; /* Center table horizontally */
-    border-spacing: 15px; /* Space between cells */
-    display: flex; /* Flexbox for layout control */
-    flex-wrap: wrap; /* Allow wrapping for responsiveness */
-    justify-content: center; /* Center cells horizontally */
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-spacing: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-/* Table Cells - Blurry & Transparent */
 td {
-    background: rgba(34, 34, 34, 0.3); /* Semi-transparent gray for consistency */
-    padding: 15px; /* Internal spacing for content */
-    border-radius: 10px; /* Rounded corners for softness */
-    transition: transform 0.3s; /* Smooth scaling on hover */
-    text-align: center; /* Center text within cells */
-    vertical-align: top; /* Align content to top of cell */
-    box-sizing: border-box; /* Include padding/border in width calculations */
-    backdrop-filter: blur(2px); /* Blur effect for glass look */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for definition */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Shadow for depth */
-    margin: 10px; /* Space around each cell */
-    overflow: hidden; /* Prevent content from spilling out */
-    text-overflow: ellipsis; /* Add ellipsis for overflowing text */
-    white-space: nowrap; /* Keep text on one line to enforce size */
+    background: rgba(34, 34, 34, 0.3);
+    padding: 15px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    text-align: center;
+    vertical-align: top;
+    box-sizing: border-box;
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    margin: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-/* Specific sizes for each table cell */
 td:nth-child(1) { /* About Us */
-    width: 20%; /* Fixed percentage width for desktop */
-    min-width: 150px; /* Minimum width to ensure readability */
-    max-width: 200px; /* Maximum width to cap size and match Contact */
-    overflow: hidden; /* Hide excess content to maintain size */
-    text-overflow: ellipsis; /* Add ellipsis for truncated text */
-    white-space: nowrap; /* Prevent text wrapping to enforce width */
+    width: 20%;
+    min-width: 150px;
+    max-width: 200px;
 }
 
 td:nth-child(2) { /* Menu */
-    width: 40%; /* Larger size to highlight as requested */
-    min-width: 200px; /* Minimum width for readability */
-    max-width: 300px; /* Maximum width to keep it prominent but controlled */
-    overflow: hidden; /* Hide excess content to maintain size */
-    text-overflow: ellipsis; /* Add ellipsis for truncated text */
-    white-space: nowrap; /* Prevent text wrapping to enforce width */
+    width: 40%;
+    min-width: 200px;
+    max-width: 300px;
 }
 
 td:nth-child(3) { /* Contact */
-    width: 20%; /* Same as About Us for consistency */
-    min-width: 150px; /* Minimum width to match About Us */
-    max-width: 200px; /* Maximum width to match About Us */
-    overflow: hidden; /* Hide excess content to maintain size */
-    text-overflow: ellipsis; /* Add ellipsis for truncated text */
-    white-space: nowrap; /* Prevent text wrapping to enforce width */
+    width: 20%;
+    min-width: 150px;
+    max-width: 200px;
 }
 
 td a {
-    text-decoration: none; /* Remove underline from links */
-    color: white; /* White text for contrast */
-    display: block; /* Make link fill cell for clickable area */
-    font-size: 16px; /* Consistent font size for links */
-    overflow: hidden; /* Prevent text overflow */
-    text-overflow: ellipsis; /* Add ellipsis if text is too long */
-    white-space: nowrap; /* Keep text on one line */
+    text-decoration: none;
+    color: white;
+    display: block;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 td .emoji {
-    font-size: 24px; /* Consistent emoji size for visual appeal */
-    display: block; /* Place emoji on its own line */
-    margin-bottom: 10px; /* Space below emoji */
+    font-size: 24px;
+    display: block;
+    margin-bottom: 10px;
 }
 
 td h3 {
-    margin: 0; /* Remove default margin for alignment */
-    font-size: 18px; /* Consistent heading size */
-    overflow: hidden; /* Prevent text overflow */
-    text-overflow: ellipsis; /* Add ellipsis for long titles */
-    white-space: nowrap; /* Keep text on one line */
+    margin: 0;
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 td:hover {
-    transform: scale(1.05); /* Slight scale-up on hover for interactivity */
-    z-index: 1; /* Bring cell forward on hover */
-    background: rgba(51, 51, 51, 0.6); /* Lighter background on hover */
+    transform: scale(1.05);
+    z-index: 1;
+    background: rgba(51, 51, 51, 0.6);
 }
 
 /* Footer */
 footer {
-    padding: 8px 0; /* Vertical padding only */
-    background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
-    margin-top: 20px; /* Space above footer */
-    backdrop-filter: blur(5px); /* Glass effect */
-    z-index: 5; /* Above background */
-    width: 100%; /* Full width */
+    padding: 8px 0;
+    background: rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
+    backdrop-filter: blur(5px);
+    z-index: 5;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 footer p {
-    font-size: 12px; /* Small text */
+    font-size: 12px;
+    margin: 0;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) { /* Tablets and smaller laptops */
-    .about {
-        padding: 40px; /* Reduced padding for smaller screens */
+/* Mobile-Specific Background and Adjustments */
+@media only screen and (max-width: 768px) {
+    .background-layer {
+        background: url('IMG_1194.AVIF') no-repeat center center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
     }
 
-    .about-content {
-        max-width: 90%; /* More flexible width for responsiveness */
-        padding: 25px; /* Reduced padding for compactness */
-    }
-
-    .about-content img {
-        width: 200px; /* Smaller image for smaller screens */
-    }
-
-    .text h2,
-    .team h2 {
-        font-size: 26px; /* Slightly smaller headings for proportion */
-    }
-
-    .text p {
-        font-size: 15px; /* Slightly smaller text for readability */
-    }
-
-    .team {
-        padding: 40px; /* Reduced padding for compactness */
-    }
-
-    td:nth-child(1), td:nth-child(3) { /* About Us and Contact */
-        width: 25%; /* Slightly wider for tablet layout */
-        min-width: 140px; /* Adjusted minimum width */
-        max-width: 180px; /* Adjusted maximum width */
-    }
-
-    td:nth-child(2) { /* Menu */
-        width: 40%; /* Slightly wider to maintain prominence */
-        min-width: 180px; /* Adjusted minimum width */
-        max-width: 280px; /* Adjusted maximum width */
-    }
-
-    header {
-        padding: 12px 0; /* Slightly less padding for compactness */
-    }
-
-    footer {
-        padding: 5px 0; /* Reduced padding for smaller screens */
-    }
-
-    footer p {
-        font-size: 10px; /* Smaller text for mobile footer */
-    }
-}
-
-@media (max-width: 768px) { /* Mobile devices */
-    header {
-        padding: 12px 0; /* Reduced padding for mobile */
-    }
-
-    .logo {
-        font-size: 28px; /* Maintain logo size for visibility */
-    }
-
-    .language-selector {
-        top: 10px; /* Slightly closer to top for space */
-        right: 15px; /* Slightly closer to right for space */
-        padding: 4px 8px; /* Reduced padding for compactness */
-        font-size: 12px; /* Smaller font for mobile */
-    }
-
-    #selected-language {
-        margin-right: 3px; /* Reduced spacing for compactness */
-    }
-
-    .dropdown-arrow {
-        font-size: 8px; /* Smaller arrow for mobile */
-    }
-
-    .hero h1 {
-        font-size: 30px; /* Smaller heading for mobile */
-    }
-
-    .hero p {
-        font-size: 18px; /* Smaller text for mobile */
-    }
-
-    .main-content {
-        min-height: 80vh; /* Adjusted height for mobile layout */
-    }
-
-    table {
-        flex-direction: column; /* Stack vertically on mobile */
-        border-spacing: 0; /* Remove spacing since flex handles it */
-        gap: 500px; /* Increased to 50px for more vertical space between td elements */
-    }
-
-    td:nth-child(1), td:nth-child(3) { /* About Us and Contact */
-        width: 30px; /* Corrected from 10% to 80% for proper mobile width */
-        min-width: 0; /* Allow shrinking if needed */
-        max-width: 200px; /* Cap width for consistency */
-        margin: 0 auto; /* Center cells, no vertical margin since gap handles spacing */
-        overflow: hidden; /* Hide excess content */
-        text-overflow: ellipsis; /* Add ellipsis for overflow */
-        white-space: nowrap; /* Prevent wrapping */
-    }
-
-    td:nth-child(2) { /* Menu */
-        width: 90%; /* Wider to highlight on mobile */
-        min-width: 0; /* Allow shrinking if needed */
-        max-width: 320px; /* Cap width for prominence */
-        margin: 0 auto; /* Center cell, no vertical margin since gap handles spacing */
-        overflow: hidden; /* Hide excess content */
-        text-overflow: ellipsis; /* Add ellipsis for overflow */
-        white-space: nowrap; /* Prevent wrapping */
-    }
-
-    td:hover {
-        transform: none; /* Disable scale on hover for mobile to prevent overlap */
-        background: rgba(51, 51, 51, 0.6); /* Keep background change for feedback */
-    }
-
-    footer {
-        padding: 5px 0; /* Matches first and second CSS */
-    }
-
-    footer p {
-        font-size: 10px; /* Matches first and second CSS */
+    body.restaurant-theme {
+        padding: 0 15px;
     }
 
     header, footer {
@@ -382,16 +263,63 @@ footer p {
         padding-left: 15px;
         padding-right: 15px;
     }
-}
 
-@media (max-width: 480px) { /* Smaller phones */
-    .logo {
-        font-size: 24px; /* Smaller logo for tiny screens */
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    table {
+        flex-direction: column;
+        border-spacing: 0;
+        gap: 20px; /* Adjusted for better spacing */
+    }
+
+    td:nth-child(1), td:nth-child(3) {
+        width: 80%;
+        min-width: 0;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    td:nth-child(2) {
+        width: 90%;
+        min-width: 0;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    td:hover {
+        transform: none; /* Disable scale on mobile */
+    }
+
+    .language-selector {
+        top: 10px;
+        right: 15px;
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    #selected-language {
+        margin-right: 3px;
+    }
+
+    .dropdown-arrow {
+        font-size: 8px;
     }
 }
 
-@media (max-width: 360px) { /* Very small screens */
+@media (max-width: 480px) {
     .logo {
-        font-size: 20px; /* Smallest logo for very small screens */
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 360px) {
+    .logo {
+        font-size: 20px;
     }
 }
