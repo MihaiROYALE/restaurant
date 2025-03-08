@@ -1,50 +1,68 @@
+/** Ensures no horizontal scrolling at the document root level */
+html {
+    overflow-x: hidden;
+}
+
 /* General Styles */
+/** Sets up the base styling for the restaurant theme */
 body.restaurant-theme {
-    font-family: Arial, sans-serif; /** Sets a clean, consistent font across the site */
-    margin: 0; /** Removes default browser margin for full control of layout */
-    padding: 0; /** Removes default padding for full control of layout */
-    background-color: #1a1a1a; /** Dark gray fallback color if background image fails */
-    color: #eee; /** Light text color for contrast against dark background */
-    text-align: center; /** Centers all text by default for a symmetrical look */
-    min-height: 100vh; /** Ensures body takes up full viewport height */
+    font-family: Arial, sans-serif; /** Clean, readable font for consistency */
+    margin: 0; /** Removes default browser margin for full layout control */
+    padding: 0; /** Removes default padding for full layout control */
+    background-color: #1a1a1a; /** Dark gray fallback if background image fails */
+    color: #eee; /** Light text color for contrast on dark background */
+    text-align: center; /** Centers all text by default for symmetry */
+    min-height: 100vh; /** Ensures body spans at least full viewport height */
     position: relative; /** Allows content to scroll over fixed background */
     overflow-x: hidden; /** Prevents horizontal scrolling issues */
 }
 
 /* Fixed Background Container */
+/** Creates a fixed background image that stays in place while content scrolls */
 body.restaurant-theme::after {
     content: ''; /** Required for pseudo-element to render */
-    position: fixed; /** Fixes background in place, works on mobile too */
+    position: fixed; /** Fixes background to viewport, works on desktop */
     top: 0; /** Aligns to top of viewport */
     left: 0; /** Aligns to left of viewport */
-    width: 100%; /** Spans full viewport width */
-    height: 100%; /** Spans full viewport height */
+    width: 100vw; /** Full viewport width for precise sizing */
+    height: 100vh; /** Full viewport height to match screen */
     background: url('IMG_1193.png') no-repeat center center; /** Desktop background, centered, no repeat */
-    background-size: cover; /** Scales image to cover entire area */
+    background-size: cover; /** Scales image to cover area without distortion */
+    background-attachment: fixed; /** Locks background in place during scroll on desktop */
     z-index: -2; /** Places background behind overlay and content */
 }
 
 /* Subtle Overlay for Readability */
+/** Adds a dark overlay to improve text contrast over the background */
 body.restaurant-theme::before {
     content: ''; /** Required for pseudo-element to render */
     position: fixed; /** Fixes overlay in place with background */
     top: 0; /** Aligns to top of viewport */
     left: 0; /** Aligns to left of viewport */
-    width: 100%; /** Spans full viewport width */
-    height: 100%; /** Spans full viewport height */
-    background: rgba(0, 0, 0, 0.6); /** Dark overlay for text contrast */
+    width: 100vw; /** Full viewport width for precise sizing */
+    height: 100vh; /** Full viewport height to match screen */
+    background: rgba(0, 0, 0, 0.6); /** Dark semi-transparent overlay for readability */
     z-index: -1; /** Places overlay behind content, above background */
 }
 
 /* Mobile-Specific Background */
+/** Adjusts background for mobile devices up to 768px (tablets and phones) */
 @media only screen and (max-width: 768px) {
-    body.restaurant-theme {
+    body {
         padding: 0 15px; /** Adds side padding on mobile to keep content from edges */
     }
 
     body.restaurant-theme::after {
         background: url('IMG_1194.AVIF') no-repeat center center; /** Switches to mobile-specific image */
         background-size: cover; /** Ensures image covers screen fully */
+        background-attachment: scroll; /** Uses scroll instead of fixed for mobile compatibility */
+        width: 100vw; /** Ensures full viewport width */
+        height: 100vh; /** Ensures full viewport height */
+    }
+
+    body.restaurant-theme::before {
+        width: 100vw; /** Matches ::after width */
+        height: 100vh; /** Matches ::after height */
     }
 
     header, footer {
@@ -56,16 +74,19 @@ body.restaurant-theme::before {
 }
 
 /* Header */
+/** Styles the header section */
 header {
     background: rgba(34, 34, 34, 0.6); /** Semi-transparent gray for subtle contrast */
     padding: 14px 0; /** Vertical padding only, full width horizontally */
-    position: relative; /** Allows positioning of child elements like language selector */
+    position: relative; /** Allows positioning of child elements (e.g., language selector) */
     backdrop-filter: blur(2px); /** Subtle blur for glass-like effect */
     z-index: 10; /** Keeps header above background and content */
     width: 100%; /** Ensures full viewport width */
+    box-sizing: border-box; /** Prevents padding from causing overflow */
 }
 
 /* Logo */
+/** Styles the logo text in the header */
 .logo {
     font-size: 28px; /** Large, bold text for logo prominence */
     font-weight: bold; /** Emphasizes logo for branding */
@@ -75,6 +96,7 @@ header {
 }
 
 /* Language Selector */
+/** Styles the language dropdown in the header */
 .language-selector {
     position: absolute; /** Positions relative to header */
     top: 15px; /** Distance from top of header */
@@ -118,6 +140,7 @@ header {
 }
 
 /* Hero Section */
+/** Styles the prominent hero section with a background image */
 .hero {
     background: url('hero.jpg') no-repeat center center; /** Hero-specific background image */
     background-size: cover; /** Covers entire section */
@@ -132,6 +155,7 @@ header {
 }
 
 /* Hero Content */
+/** Styles the content box within the hero section */
 .hero-content {
     background: rgba(34, 34, 34, 0.3); /** Semi-transparent gray for contrast */
     padding: 20px; /** Internal spacing for breathing room */
@@ -156,6 +180,7 @@ header {
 }
 
 /* Tables Section */
+/** Styles the section containing the table layout */
 .tables {
     padding: 50px 20px; /** Section padding for spacing */
     position: relative; /** For layering with z-index */
@@ -173,6 +198,7 @@ table {
 }
 
 /* Table Cells */
+/** Styles individual table cells */
 td {
     background: rgba(34, 34, 34, 0.3); /** Semi-transparent gray for consistency */
     padding: 15px; /** Internal spacing for content */
@@ -191,6 +217,7 @@ td {
 }
 
 /* Specific Sizes for Table Cells */
+/** Customizes width for each table cell */
 td:nth-child(1) { /* About Us */
     width: 20%; /** Fixed width for desktop */
     min-width: 150px; /** Minimum width for readability */
@@ -249,6 +276,7 @@ td:hover {
 }
 
 /* Footer */
+/** Styles the footer section */
 footer {
     padding: 8px 0; /** Vertical padding only */
     background: rgba(0, 0, 0, 0.5); /** Dark semi-transparent background */
@@ -256,14 +284,53 @@ footer {
     backdrop-filter: blur(5px); /** Glass effect */
     z-index: 5; /** Above background */
     width: 100%; /** Full width */
+    display: flex; /** Uses flexbox for better control over child elements */
+    flex-direction: column; /** Stacks children vertically on mobile */
+    align-items: center; /** Centers children horizontally */
 }
 
 footer p {
-    font-size: 12px; /** Small text for footer */
+    font-size: 10px; /** Small text for footer */
+    margin: 5px 0; /** Adds minimal spacing around text */
+}
+
+/* Style for social media icons */
+/** Styles social media links in the footer */
+.social-media {
+    display: flex; /** Uses flexbox to control icon spacing */
+    justify-content: center; /** Centers icons horizontally */
+    gap: 10px; /** Adds consistent spacing between icons */
+}
+
+.social-media a {
+    color: rgb(255, 255, 255); /** White icons for visibility */
+    font-size: 34px; /** Large size for prominence on desktop */
+    padding: 10px; /** Reduced padding for better fit */
+    text-decoration: none; /** Removes underline from links */
+    display: inline-flex; /** Ensures consistent sizing and alignment */
+    align-items: center; /** Vertically centers icon */
+}
+
+/* Styles for address links */
+/** Styles address links in the footer */
+.address {
+    display: flex; /** Uses flexbox to control link spacing */
+    justify-content: center; /** Centers links horizontally */
+    gap: 10px; /** Adds consistent spacing between links */
+}
+
+.address a {
+    color: rgb(255, 255, 255); /** White text for visibility */
+    font-size: 16px; /** Readable size for address links on desktop */
+    padding: 10px; /** Reduced padding for better fit */
+    text-decoration: none; /** Removes underline from links */
+    display: inline-flex; /** Ensures consistent sizing and alignment */
+    align-items: center; /** Vertically centers text */
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) { /* Tablets and smaller laptops */
+/** Adjusts styles for tablets and smaller laptops (max-width 1024px) */
+@media (max-width: 1024px) {
     .about {
         padding: 40px; /** Reduced padding for smaller screens */
     }
@@ -313,9 +380,20 @@ footer p {
     footer p {
         font-size: 10px; /** Smaller text for footer */
     }
+
+    .social-media a {
+        font-size: 30px; /** Slightly smaller icons */
+        padding: 8px; /** Reduced padding */
+    }
+
+    .address a {
+        font-size: 14px; /** Slightly smaller text */
+        padding: 8px; /** Reduced padding */
+    }
 }
 
-@media (max-width: 768px) { /* Mobile devices */
+/** Adjusts styles for mobile devices (max-width 768px) */
+@media (max-width: 768px) {
     header {
         padding: 12px 0; /** Reduced padding for mobile */
     }
@@ -358,7 +436,7 @@ footer p {
     }
 
     td:nth-child(1), td:nth-child(3) { /* About Us and Contact */
-        width: 8%; /** Wider for mobile readability */
+        width: 20%; /** Wider for mobile readability */
         min-width: 0; /** Allows shrinking if needed */
         max-width: 200px; /** Caps width for consistency */
         margin: 0 auto; /** Centers cells horizontally */
@@ -396,16 +474,56 @@ footer p {
         padding-left: 15px; /** Restores internal padding */
         padding-right: 15px; /** Restores internal padding */
     }
-}
 
-@media (max-width: 480px) { /* Smaller phones */
-    .logo {
-        font-size: 24px; /** Smaller logo for tiny screens */
+    .social-media {
+        gap: 5px; /** Tighter spacing between icons */
+    }
+
+    .social-media a {
+        font-size: 20px; /** Smaller icons for mobile */
+        padding: 5px; /** Reduced padding */
+    }
+
+    .address {
+        gap: 5px; /** Tighter spacing between links */
+    }
+
+    .address a {
+        font-size: 12px; /** Smaller text for mobile */
+        padding: 5px; /** Reduced padding */
     }
 }
 
-@media (max-width: 360px) { /* Very small screens */
+/** Adjusts styles for smaller phones (max-width 480px) */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 24px; /** Smaller logo for tiny screens */
+    }
+
+    .social-media a {
+        font-size: 18px; /** Even smaller icons */
+        padding: 3px; /** Tighter spacing */
+    }
+
+    .address a {
+        font-size: 10px; /** Smallest readable size */
+        padding: 3px; /** Tighter spacing */
+    }
+}
+
+/** Adjusts styles for very small screens (max-width 360px) */
+@media (max-width: 360px) {
     .logo {
         font-size: 20px; /** Smallest logo size */
+    }
+
+    .social-media a {
+        font-size: 16px; /** Minimal icon size */
+        padding: 2px; /** Minimal padding */
+    }
+
+    .address a {
+        font-size: 9px; /** Minimal readable size */
+        padding: 2px; /** Minimal padding */
     }
 }
