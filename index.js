@@ -1,10 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Redirect to Apple Maps for iOS users
+    // Redirect to platform-specific maps
     document.querySelectorAll('.map-link').forEach(link => {
         link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default navigation
+
+            const appleMapsURL = "https://maps.apple.com/place?address=%20Place%20du%20Casino%0AMonte-Carlo%0A98000%20Monaco&coordinate=43.738968,7.427490&name=H%C3%B4tel%20de%20Paris&place-id=IC894920769998B68&map=h";
+            const googleMapsURL = "https://maps.app.goo.gl/GDUWNtucNFStSLbs8";
+
             if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                event.preventDefault();
-                window.location = 'maps://?q=Place+du+Casino,+Monte-Carlo,+Monaco';
+                window.location.href = appleMapsURL; // iOS: Open Apple Maps
+            } else {
+                window.location.href = googleMapsURL; // Android/Other: Open Google Maps
             }
         });
     });
