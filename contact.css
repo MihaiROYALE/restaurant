@@ -1,497 +1,421 @@
+/** Ensures no horizontal scrolling at the document root level */
+html {
+    height: 100%; /* Ensure html takes full height */
+    overflow-x: hidden;
+}
+
 /* General Styles */
-body {
-    font-family: Arial, sans-serif; /** Sets a consistent, clean font across the site */
-    margin: 0; /** Removes default browser margin for full layout control */
-    padding: 0; /** Removes default padding for full layout control */
-    background-color: #1a1a1a; /** Dark gray fallback color if image fails */
-    color: #eee; /** Light text color for contrast against dark background */
-    text-align: center; /** Centers all text by default for symmetry */
-    min-height: 100vh; /** Ensures body takes full viewport height */
-    position: relative; /** Allows content to scroll over fixed background */
-    overflow-x: hidden; /** Prevents horizontal scrolling issues */
+body.restaurant-theme {
+    font-family: Arial, sans-serif; /** Consistent, clean font */
+    margin: 0; /** Full layout control */
+    padding: 0; /** Full layout control */
+    background-color: #1a1a1a; /** Dark gray fallback */
+    color: #eee; /** Light text for contrast */
+    text-align: center; /** Default centering */
+    min-height: 100vh; /** Full viewport height */
+    position: relative; /** For fixed background */
+    overflow-x: hidden; /** No horizontal scroll */
+    display: flex; /** Use Flexbox for layout */
+    flex-direction: column; /** Stack children vertically */
 }
 
 /* Fixed Background Container */
-body::after {
-    content: ''; /** Required for pseudo-element to render */
-    position: fixed; /** Fixes background in place, works on mobile */
-    top: 0; /** Aligns to top of viewport */
-    left: 0; /** Aligns to left of viewport */
-    width: 100%; /** Spans full viewport width */
-    height: 100%; /** Spans full viewport height */
-    background: url('DBG2.JPG') no-repeat center center; /** Desktop background, centered, no repeat */
-    background-size: cover; /** Scales image to cover entire area */
-    z-index: -2; /** Places background behind overlay and content */
+body.restaurant-theme::after {
+    content: ''; /** Required for pseudo-element */
+    position: fixed; /** Fixed on desktop */
+    top: 0; /** Top-aligned */
+    left: 0; /** Left-aligned */
+    width: 100vw; /** Full viewport width */
+    height: 100vh; /** Full viewport height */
+    background: url('DBG2.JPG') no-repeat center center; /** Restaurant theme desktop image */
+    background-size: cover; /** Covers area */
+    background-attachment: fixed; /** Fixed on desktop */
+    z-index: -2; /** Behind overlay and content */
 }
 
-/* Dark Overlay for Readability */
-body::before {
-    content: ''; /** Required for pseudo-element to render */
-    position: fixed; /** Fixes overlay in place with background */
-    top: 0; /** Aligns to top of viewport */
-    left: 0; /** Aligns to left of viewport */
-    width: 100%; /** Spans full viewport width */
-    height: 100%; /** Spans full viewport height */
-    background: rgba(0, 0, 0, 0.6); /** Semi-transparent black for text contrast */
-    z-index: -1; /** Places overlay behind content, above background */
+/* Subtle Overlay for Readability */
+body.restaurant-theme::before {
+    content: ''; /** Required for pseudo-element */
+    position: fixed; /** Fixed with background */
+    top: 0; /** Top-aligned */
+    left: 0; /** Left-aligned */
+    width: 100vw; /** Full viewport width */
+    height: 100vh; /** Full viewport height */
+    background: rgba(0, 0, 0, 0.6); /** Dark overlay */
+    z-index: -1; /** Behind content */
 }
 
-/* Mobile-Specific Background */
-@media only screen and (max-width: 768px) { /** Targets screens up to 768px (tablets and phones) */
-    body {
-        padding: 0 15px; /** Adds side padding on mobile to keep content from edges */
-    }
-
-    body::after {
-        background: url('MBG2.JPG') no-repeat center center; /** Switches to mobile-specific image */
-        background-size: cover; /** Ensures image covers screen fully */
-    }
-
-    header, footer {
-        margin-left: -15px; /** Offsets body padding for full-width effect */
-        margin-right: -15px; /** Offsets body padding for full-width effect */
-        padding-left: 15px; /** Restores internal padding inside header/footer */
-        padding-right: 15px; /** Restores internal padding inside header/footer */
-    }
+/* Content Wrapper - Takes available space */
+.content-wrapper {
+    flex: 1 0 auto; /** Allows content to grow but not shrink below content height */
 }
 
 /* Header */
 header {
-    background: rgba(34, 34, 34, 0.6); /** Transparent gray for subtle contrast */
-    padding: 14px 0; /** Vertical padding only, full width horizontally */
-    position: relative; /** Allows positioning of child elements like language selector */
-    backdrop-filter: blur(2px); /** Subtle blur for glass-like appearance */
-    z-index: 10; /** Ensures header stays above background and content */
-    width: 100%; /** Full viewport width */
+    background: rgba(34, 34, 34, 0.6); /** Matches restaurant theme */
+    padding: 14px 0; /** Vertical padding */
+    position: relative; /** For child positioning */
+    backdrop-filter: blur(2px); /** Glass effect */
+    z-index: 10; /** Above content */
+    width: 100%; /** Full width */
+    box-sizing: border-box; /** Prevents overflow */
 }
 
 /* Logo */
 .logo {
-    font-size: 28px; /** Large, bold text for logo prominence */
-    font-weight: bold; /** Emphasizes logo for branding */
-    color: #fff; /** White for contrast against dark header */
-    text-transform: uppercase; /** All caps for stylish, professional look */
-    margin: 0; /** Removes default margin for precise alignment */
+    font-size: 28px; /** Prominent logo */
+    font-weight: bold; /** Bold branding */
+    color: #fff; /** White contrast */
+    text-transform: uppercase; /** Stylish look */
+    margin: 0; /** Precise alignment */
 }
 
 /* Language Selector */
 .language-selector {
-    position: absolute; /** Positions relative to header */
-    top: 15px; /** Distance from top of header */
-    right: 20px; /** Distance from right of header */
-    display: flex; /** Aligns text and arrow horizontally */
-    align-items: center; /** Vertically centers content */
-    background: rgba(0, 0, 0, 0.513); /** Slightly transparent gray background */
-    padding: 5px 10px; /** Internal spacing for comfort */
-    border-radius: 5px; /** Rounded corners for softness */
-    color: white; /** Text color for readability */
-    font-size: 14px; /** Smaller font to save space */
-    cursor: pointer; /** Hand cursor to indicate interactivity */
-    transition: background 0.3s; /** Smooth background change on hover */
-    backdrop-filter: blur(5px); /** Glass effect for modern look */
-    z-index: 10; /** Ensures visibility above header content */
+    position: absolute; /** Relative to header */
+    top: 15px; /** Matches restaurant theme */
+    right: 20px; /** Matches restaurant theme */
+    display: flex; /** Horizontal alignment */
+    align-items: center; /** Vertical centering */
+    background: rgba(0, 0, 0, 0.513); /** Matches restaurant theme */
+    padding: 5px 10px; /** Comfortable spacing */
+    border-radius: 5px; /** Rounded corners */
+    color: white; /** Readable text */
+    font-size: 14px; /** Compact font */
+    cursor: pointer; /** Interactive */
+    transition: background 0.3s; /** Smooth hover */
+    backdrop-filter: blur(5px); /** Glass effect */
+    z-index: 10; /** Above header content */
 }
 
 .language-selector:hover {
-    background: rgba(51, 51, 51, 0.7); /** Lighter gray on hover for feedback */
+    background: rgba(51, 51, 51, 0.7); /** Hover feedback */
 }
 
 #selected-language {
-    margin-right: 5px; /** Space before arrow for readability */
-    font-weight: 500; /** Medium weight for visibility */
+    margin-right: 5px; /** Space before arrow */
+    font-weight: 500; /** Medium weight */
 }
 
 .dropdown-arrow {
-    font-size: 10px; /** Small arrow size for subtlety */
-    color: #ccc; /** Light gray for contrast */
+    font-size: 10px; /** Subtle arrow */
+    color: #ccc; /** Light gray */
 }
 
 .language-selector select {
-    position: absolute; /** Overlaps visible selector for functionality */
-    top: 0; /** Aligns to top of parent */
-    left: 0; /** Aligns to left of parent */
-    width: 100%; /** Full width for clickable area */
-    height: 100%; /** Full height for clickable area */
-    opacity: 0; /** Invisible but clickable to preserve design */
-    cursor: pointer; /** Hand cursor for usability */
-    z-index: 1; /** Above background but below text */
+    position: absolute; /** Functional overlap */
+    top: 0; /** Full alignment */
+    left: 0; /** Full alignment */
+    width: 100%; /** Full clickable area */
+    height: 100%; /** Full clickable area */
+    opacity: 0; /** Invisible but functional */
+    cursor: pointer; /** Usability */
+    z-index: 1; /** Below text */
 }
 
 /* Contact Info Section */
 .contact-info {
-    padding: 50px; /** Generous padding around section */
+    padding: 50px 20px; /** Matches .tables padding */
+    position: relative; /** For layering */
+    z-index: 5; /** Above background */
 }
 
 .contact-info h2 {
-    font-size: 28px; /** Heading size for emphasis */
-    color: #ffcc00; /** Gold color for visual appeal */
+    font-size: 28px; /** Emphasis */
+    color: #eab656; /** Matches restaurant theme */
+    text-transform: uppercase; /** Consistent styling */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /** Readability */
 }
 
 .contact-info p {
-    font-size: 18px; /** Paragraph size for legibility */
-    margin-bottom: 20px; /** Space below paragraph */
+    font-size: 18px; /** Legible */
+    color: #ddd; /** Matches restaurant theme */
+    margin-bottom: 20px; /** Space below */
 }
 
 .info {
-    display: flex; /** Flexbox for layout control */
-    justify-content: center; /** Centers info boxes horizontally */
-    gap: 40px; /** Space between info boxes */
-    flex-wrap: wrap; /** Allows wrapping on smaller screens */
+    display: flex; /** Flexbox layout */
+    justify-content: center; /** Centered */
+    gap: 40px; /** Spacing */
+    flex-wrap: wrap; /** Responsive wrapping */
 }
 
 .info-box {
-    background: rgba(34, 34, 34, 0.3); /** Semi-transparent background matching hero */
-    padding: 15px; /** Internal spacing */
-    border-radius: 10px; /** Rounded corners for softness */
-    transition: transform 0.3s; /** Smooth scale on hover */
-    text-align: center; /** Centers text inside */
-    vertical-align: top; /** Aligns content to top */
-    width: 30%; /** Relative width for desktop */
-    min-width: 200px; /** Minimum width for readability */
-    max-width: 250px; /** Limits max width to prevent stretching */
-    box-sizing: border-box; /** Includes padding/border in width */
+    background: rgba(34, 34, 34, 0.3); /** Matches restaurant theme */
+    padding: 15px; /** Matches td padding */
+    border-radius: 10px; /** Rounded corners */
+    transition: transform 0.3s; /** Smooth hover */
+    text-align: center; /** Centered text */
+    width: 30%; /** Desktop width */
+    min-width: 200px; /** Minimum width */
+    max-width: 250px; /** Maximum width */
+    box-sizing: border-box; /** Includes padding/border */
     backdrop-filter: blur(2px); /** Glass effect */
     border: 1px solid rgba(255, 255, 255, 0.1); /** Subtle border */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /** Soft shadow for depth */
-    margin: 10px; /** Space around each box */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /** Depth */
+    margin: 10px; /** Space around */
 }
 
 .info-box h3 {
-    font-size: 20px; /** Heading size for emphasis */
-    color: #ffcc00; /** Gold color for visual appeal */
+    font-size: 20px; /** Emphasis */
+    color: #eab656; /** Matches restaurant theme */
+    text-transform: uppercase; /** Consistent styling */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /** Readability */
 }
 
 .info-box p {
-    font-size: 16px; /** Paragraph size for legibility */
+    font-size: 16px; /** Legible */
+    color: #ddd; /** Matches restaurant theme */
+}
+
+.info-box a {
+    color: white;
 }
 
 .info-box:hover {
-    transform: scale(1.05); /** Slight zoom on hover for interactivity */
-}
-
-/* Contact Form */
-.contact-form {
-    padding: 50px; /** Generous padding around section */
-}
-
-.contact-form h2 {
-    font-size: 28px; /** Heading size for emphasis */
-    color: #ffcc00; /** Gold color for visual appeal */
-}
-
-form {
-    display: flex; /** Flexbox for form layout */
-    flex-direction: column; /** Stacks form elements vertically */
-    align-items: center; /** Centers form elements horizontally */
-    gap: 15px; /** Space between form elements */
-    max-width: 500px; /** Limits form width for readability */
-    margin: 0 auto; /** Centers form horizontally */
-}
-
-input, textarea {
-    width: 100%; /** Full width of container */
-    padding: 10px; /** Internal spacing */
-    border: none; /** Removes default border */
-    border-radius: 5px; /** Rounded corners for softness */
-    font-size: 16px; /** Text size for legibility */
-    padding: 6px 20px; /** Overrides earlier padding for consistency */
-}
-
-textarea {
-    height: 120px; /** Fixed height for textarea */
-}
-
-button {
-    background: #ffcc00; /** Gold background for button */
-    color: #000; /** Black text for contrast */
-    padding: 10px 20px; /** Internal spacing */
-    font-size: 16px; /** Text size for legibility */
-    border: none; /** Removes default border */
-    border-radius: 5px; /** Rounded corners for softness */
-    cursor: pointer; /** Hand cursor for interactivity */
-    transition: 0.3s; /** Smooth transition for hover effect */
-}
-
-button:hover {
-    background: #e6b800; /** Darker gold on hover for feedback */
-}
-
-/* Hero Section */
-.hero {
-    background: url('hero.jpg') no-repeat center center/cover; /** Hero-specific background image */
-    height: 60vh; /** 60% viewport height for prominence */
-    display: flex; /** Flexbox for centering content */
-    align-items: center; /** Vertically centers content */
-    justify-content: center; /** Horizontally centers content */
-    text-align: center; /** Centers text within hero */
-    padding: 20px; /** Internal spacing */
-    position: relative; /** For layering with z-index */
-    z-index: 5; /** Above background */
-}
-
-/* Hero Content - Blurry & Transparent */
-.hero-content {
-    background: rgba(34, 34, 34, 0.3); /** Semi-transparent gray for contrast */
-    padding: 20px; /** Internal spacing */
-    border-radius: 10px; /** Rounded corners for softness */
-    width: 80%; /** Relative width for responsiveness */
-    max-width: 600px; /** Limits width for readability */
-    backdrop-filter: blur(2px); /** Strong blur for futuristic effect */
-    border: 1px solid rgba(255, 255, 255, 0.1); /** Subtle border */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /** Soft shadow for depth */
-}
-
-.hero h1 {
-    font-size: 48px; /** Large heading for impact */
-    text-transform: uppercase; /** All caps for bold statement */
-    color: #fff; /** White text for contrast */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /** Shadow for readability */
-}
-
-.hero p {
-    font-size: 20px; /** Paragraph size for legibility */
-    color: #ddd; /** Light gray for contrast */
-}
-
-/* Tables Section */
-.tables {
-    padding: 28px 20px; /** Padding around section */
-    position: relative; /** For layering with z-index */
-    z-index: 5; /** Above background */
-}
-
-table {
-    width: 100%; /** Full width of container */
-    max-width: 800px; /** Limits width to prevent overflow */
-    margin: 0 auto; /** Centers table horizontally */
-    border-spacing: 15px; /** Space between cells */
-    display: flex; /** Flexbox for layout control */
-    flex-wrap: wrap; /** Allows wrapping for responsiveness */
-    justify-content: center; /** Centers cells horizontally */
-}
-
-/* Table Cells - Blurry & Transparent */
-td {
-    background: rgba(34, 34, 34, 0.3); /** Semi-transparent background */
-    padding: 15px; /** Internal spacing */
-    border-radius: 10px; /** Rounded corners for softness */
-    transition: transform 0.3s; /** Smooth scale on hover */
-    text-align: center; /** Centers text inside */
-    vertical-align: top; /** Aligns content to top */
-    width: 30%; /** Relative width for desktop */
-    min-width: 200px; /** Minimum width for readability */
-    max-width: 250px; /** Limits max width to prevent stretching */
-    box-sizing: border-box; /** Includes padding/border in width */
-    backdrop-filter: blur(2px); /** Glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.1); /** Subtle border */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /** Soft shadow for depth */
-    margin: 10px; /** Space around each cell */
-}
-
-td a {
-    text-decoration: none; /** Removes underline from links */
-    color: white; /** White text for contrast */
-    display: block; /** Makes link fill cell */
-}
-
-td img {
-    width: 100%; /** Full width of container */
-    max-width: 200px; /** Limits image size */
-    border-radius: 10px; /** Rounded corners for images */
-    filter: brightness(90%); /** Slightly dims image for contrast */
-}
-
-td:hover {
-    transform: scale(1.05); /** Slight zoom on hover */
-    z-index: 1; /** Brings cell forward on hover */
-    background: rgba(51, 51, 51, 0.6); /** Lighter background on hover */
+    transform: scale(1.05); /** Matches td hover */
+    background: rgba(51, 51, 51, 0.6); /** Hover feedback */
 }
 
 /* Footer */
 footer {
-    padding: 8px 0; /** Vertical padding only */
-    background: rgba(0, 0, 0, 0.5); /** Dark semi-transparent background */
-    margin-top: 20px; /** Space above footer */
+    padding: 8px 0; /** Matches restaurant theme */
+    background: rgba(0, 0, 0, 0.5); /** Matches restaurant theme */
     backdrop-filter: blur(5px); /** Glass effect */
     z-index: 5; /** Above background */
     width: 100%; /** Full width */
+    display: flex; /** Matches restaurant theme */
+    flex-direction: column; /** Vertical stacking */
+    align-items: center; /** Centered content */
+    flex-shrink: 0; /** Prevents footer from shrinking */
 }
 
 footer p {
-    font-size: 12px; /** Small text for footer */
+    font-size: 10px; /** Matches restaurant theme */
+    margin: 5px 0; /** Minimal spacing */
+}
+
+/* Social Media Icons */
+/** Styles social media links in the footer */
+.social-media {
+    display: flex; /** Uses flexbox to control icon spacing */
+    justify-content: center; /** Centers icons horizontally */
+    gap: 60px; /** Adds consistent spacing between icons, adjust for more/less */
+}
+
+.social-media a {
+    color: rgb(255, 255, 255); /** White icons for visibility */
+    font-size: 18px; /** Large size for prominence on desktop, adjust for size */
+    padding: 1px; /** Reduced padding for better fit, adjust for more/less */
+    text-decoration: none; /** Removes underline from links */
+    display: inline-flex; /** Ensures consistent sizing and alignment */
+    align-items: center; /** Vertically centers icon */
+}
+
+/* Address Links */
+/** Styles address links in the footer */
+.address {
+    display: flex; /** Uses flexbox to control link spacing */
+    justify-content: center; /** Centers links horizontally */
+    gap: 10px; /** Adds consistent spacing between links, adjust for more/less */
+}
+
+.address a {
+    color: rgb(255, 255, 255); /** White text for visibility */
+    font-size: 12px; /** Readable size for address links on desktop, adjust for size */
+    padding: 10px; /** Reduced padding for better fit, adjust for more/less */
+    display: inline-flex; /** Ensures consistent sizing and alignment */
+    align-items: center; /** Vertically centers text */
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) { /** Tablets and smaller laptops */
-    .contact-info {
-        padding: 40px; /** Reduced padding for smaller screens */
+
+/* Mobile-Specific Background */
+@media only screen and (max-width: 768px) {
+    body.restaurant-theme::after {
+        background: url('MBG2.JPG') no-repeat center center; /** Restaurant theme mobile image */
+        background-size: cover; /** Full coverage */
+        background-attachment: scroll; /** Mobile compatibility */
+        width: 100vw; /** Full width */
+        height: 100vh; /** Full height */
     }
 
-    .contact-info h2,
-    .contact-form h2 {
-        font-size: 26px; /** Slightly smaller headings */
-    }
-
-    .contact-info p {
-        font-size: 16px; /** Slightly smaller text */
-    }
-
-    .info-box {
-        width: 220px; /** Adjusted width for tablet layout */
-    }
-
-    .contact-form {
-        padding: 40px; /** Reduced padding for smaller screens */
-    }
-
-    input, textarea {
-        font-size: 15px; /** Slightly smaller text */
-    }
-
-    button {
-        font-size: 15px; /** Slightly smaller text */
+    body.restaurant-theme::before {
+        width: 100vw; /** Matches ::after */
+        height: 100vh; /** Matches ::after */
     }
 
     header {
-        padding: 12px 0; /** Slightly less padding for compactness */
+        padding: 12px 15px; /** Internal padding */
+        width: 100vw; /** Full width */
+        box-sizing: border-box; /** No overflow */
     }
 
     footer {
-        padding: 5px 0; /** Reduced padding for smaller screens */
-    }
-
-    footer p {
-        font-size: 10px; /** Smaller text for footer */
-    }
-}
-
-@media (max-width: 768px) { /** Mobile devices */
-    header {
-        padding: 12px 0; /** Reduced padding for mobile */
+        padding: 5px 15px; /** Internal padding */
+        width: 100vw; /** Full width */
+        box-sizing: border-box; /** No overflow */
     }
 
     .logo {
-        font-size: 28px; /** Maintains logo visibility */
+        font-size: 28px; /** Maintain visibility */
     }
 
     .language-selector {
-        top: 10px; /** Closer to top for space */
-        right: 15px; /** Closer to right for space */
-        padding: 4px 8px; /** Reduced padding for compactness */
-        font-size: 12px; /** Smaller font for mobile */
+        top: 10px; /** Space adjustment */
+        right: 15px; /** Space adjustment */
+        padding: 4px 8px; /** Compact */
+        font-size: 12px; /** Smaller font */
     }
 
     #selected-language {
-        margin-right: 3px; /** Reduced spacing for compactness */
+        margin-right: 3px; /** Compact spacing */
     }
 
     .dropdown-arrow {
-        font-size: 8px; /** Smaller arrow for mobile */
+        font-size: 8px; /** Smaller arrow */
     }
 
-    .hero h1 {
-        font-size: 30px; /** Smaller heading for mobile */
+    .contact-info h2 {
+        font-size: 24px; /** Smaller heading */
     }
 
-    .hero p {
-        font-size: 18px; /** Smaller text for mobile */
-    }
-
-    .contact-info {
-        padding: 30px; /** Reduced padding for mobile */
+    .contact-info p {
+        font-size: 16px; /** Smaller text */
     }
 
     .info {
-        gap: 20px; /** Smaller gap between info boxes */
+        gap: 20px; /** Tighter spacing */
     }
 
     .info-box {
-        width: 100%; /** More flexible width for mobile */
-        max-width: 300px; /** Limits max width */
+        width: 100%; /** Full width */
+        max-width: 300px; /** Limit size */
     }
 
-    .contact-form {
-        padding: 30px; /** Reduced padding for mobile */
+    .info-box:hover {
+        transform: none; /** Disable scale on mobile */
+        background: rgba(51, 51, 51, 0.6); /** Hover feedback */
     }
 
-    form {
-        max-width: 90%; /** More flexible width for mobile */
+    .social-media {
+        gap: 50px; /** Tighter spacing between icons, adjust for more/less */
     }
 
-    input, textarea {
-        padding: 8px; /** Reduced padding for compactness */
-        font-size: 14px; /** Smaller text for mobile */
+    .social-media a {
+        font-size: 20px; /** Smaller icons for mobile, adjust for size */
+        padding: 5px; /** Reduced padding */
     }
 
-    button {
-        font-size: 14px; /** Smaller text for mobile */
-        padding: 8px 16px; /** Adjusted padding */
+    .address {
+        gap: 5px; /** Tighter spacing between links, adjust for more/less */
+    }
+
+    .address a {
+        font-size: 12px; /** Smaller text for mobile, adjust for size */
+        padding: 5px; /** Reduced padding */
+    }
+}
+
+/* Tablets and Smaller Laptops */
+@media (max-width: 1024px) {
+    .contact-info {
+        padding: 40px 20px; /** Reduced padding */
+    }
+
+    .contact-info h2 {
+        font-size: 26px; /** Slightly smaller */
+    }
+
+    .contact-info p {
+        font-size: 16px; /** Slightly smaller */
+    }
+
+    .info-box {
+        width: 220px; /** Adjusted width */
+    }
+
+    header {
+        padding: 12px 0; /** Compact */
     }
 
     footer {
-        padding: 5px 0; /** Reduced padding */
+        padding: 5px 0; /** Compact */
     }
 
-    footer p {
-        font-size: 10px; /** Smaller text */
+    .social-media a {
+        font-size: 30px; /** Slightly smaller icons */
+        padding: 8px; /** Reduced padding */
     }
 
-    header, footer {
-        margin-left: -15px; /** Offsets body padding */
-        margin-right: -15px; /** Offsets body padding */
-        padding-left: 15px; /** Restores internal padding */
-        padding-right: 15px; /** Restores internal padding */
+    .address a {
+        font-size: 14px; /** Slightly smaller text */
+        padding: 8px; /** Reduced padding */
     }
 }
 
-@media (max-width: 480px) { /** Smaller phones */
+/* Smaller Phones */
+@media (max-width: 480px) {
     .logo {
-        font-size: 24px; /** Smaller logo for tiny screens */
+        font-size: 24px; /** Smaller logo */
     }
 
     .contact-info {
-        padding: 20px; /** Reduced padding */
+        padding: 20px; /** Minimal padding */
     }
 
-    .contact-info h2,
-    .contact-form h2 {
-        font-size: 22px; /** Smaller headings */
+    .contact-info h2 {
+        font-size: 22px; /** Smaller heading */
     }
 
-    .info-box {
-        width: 95%; /** Nearly full width */
+    .contact-info p {
+        font-size: 14px; /** Smaller text */
     }
 
-    .contact-form {
-        padding: 20px; /** Reduced padding */
+    .info-box h3 {
+        font-size: 18px; /** Smaller heading */
     }
 
-    input, textarea {
-        font-size: 13px; /** Smaller text */
+    .info-box p {
+        font-size: 14px; /** Smaller text */
     }
 
-    button {
-        font-size: 13px; /** Smaller text */
-        padding: 8px 14px; /** Adjusted padding */
+    .social-media a {
+        font-size: 18px; /** Smaller icons */
+        padding: 5px; /** Tighter spacing */
+    }
+
+    .address a {
+        font-size: 10px; /** Smallest readable size */
+        padding: 3px; /** Tighter spacing */
     }
 }
 
-@media (max-width: 360px) { /** Very small screens */
+/* Very Small Screens */
+@media (max-width: 360px) {
     .logo {
-        font-size: 20px; /** Smallest logo size */
+        font-size: 20px; /** Smallest logo */
     }
 
-    .contact-info h2,
-    .contact-form h2 {
-        font-size: 20px; /** Smallest headings */
+    .contact-info h2 {
+        font-size: 20px; /** Smallest heading */
     }
 
-    input, textarea {
-        font-size: 12px; /** Smallest text */
+    .info-box h3 {
+        font-size: 16px; /** Smallest heading */
     }
 
-    button {
-        font-size: 12px; /** Smallest text */
-        padding: 7px 12px; /** Adjusted padding */
+    .info-box p {
+        font-size: 13px; /** Smallest text */
+    }
+
+    .social-media a {
+        font-size: 16px; /** Minimal icon size */
+        padding: 2px; /** Minimal padding */
+    }
+
+    .address a {
+        font-size: 9px; /** Minimal readable size */
+        padding: 2px; /** Minimal padding */
     }
 }
