@@ -1,312 +1,386 @@
+/** Ensures no horizontal scrolling at the document root level */
+html {
+    overflow-x: hidden;
+}
+
 /* General Styles */
-body {
-    font-family: Arial, sans-serif; /** Sets a consistent, clean font across the site */
-    margin: 0; /** Removes default browser margin for full layout control */
-    padding: 0; /** Removes default padding for full layout control */
-    background-color: #1a1a1a; /** Dark gray fallback color if image fails */
-    color: #eee; /** Light text color for contrast against dark background */
-    text-align: center; /** Centers all text by default for symmetry */
-    min-height: 100vh; /** Ensures body takes full viewport height */
-    position: relative; /** Allows content to scroll over fixed background */
-    overflow-x: hidden; /** Prevents horizontal scrolling issues */
+body.restaurant-theme {
+    font-family: Arial, sans-serif; /** Consistent, clean font */
+    margin: 0; /** Full layout control */
+    padding: 0; /** Full layout control */
+    background-color: #1a1a1a; /** Dark gray fallback */
+    color: #eee; /** Light text for contrast */
+    text-align: center; /** Default centering */
+    min-height: 100vh; /** Full viewport height */
+    position: relative; /** For fixed background */
+    overflow-x: hidden; /** No horizontal scroll */
 }
 
 /* Fixed Background Container */
-body::after {
-    content: ''; /** Required for pseudo-element to render */
-    position: fixed; /** Fixes background in place, works on mobile */
-    top: 0; /** Aligns to top of viewport */
-    left: 0; /** Aligns to left of viewport */
-    width: 100%; /** Spans full viewport width */
-    height: 100%; /** Spans full viewport height */
-    background: url('DBG1.JPG') no-repeat center center; /** Desktop background, centered, no repeat */
-    background-size: cover; /** Scales image to cover entire area */
-    z-index: -2; /** Places background behind overlay and content */
+body.restaurant-theme::after {
+    content: ''; /** Required for pseudo-element */
+    position: fixed; /** Fixed on desktop */
+    top: 0; /** Top-aligned */
+    left: 0; /** Left-aligned */
+    width: 100vw; /** Full viewport width */
+    height: 100vh; /** Full viewport height */
+    background: url('DBG3.AVIF') no-repeat center center; /** Restaurant theme desktop image */
+    background-size: cover; /** Covers area */
+    background-attachment: fixed; /** Fixed on desktop */
+    z-index: -2; /** Behind overlay and content */
 }
 
-/* Dark Overlay for Readability */
-body::before {
-    content: ''; /** Required for pseudo-element to render */
-    position: fixed; /** Fixes overlay in place with background */
-    top: 0; /** Aligns to top of viewport */
-    left: 0; /** Aligns to left of viewport */
-    width: 100%; /** Spans full viewport width */
-    height: 100%; /** Spans full viewport height */
-    background: rgba(0, 0, 0, 0.6); /** Dark overlay for better text contrast */
-    z-index: -1; /** Places overlay behind content, above background */
-}
-
-/* Mobile-Specific Background */
-@media only screen and (max-width: 768px) { /** Targets screens up to 768px (tablets and phones) */
-    body {
-        padding: 0 15px; /** Adds side padding on mobile to keep content from edges */
-    }
-
-    body::after {
-        background: url('MBG1.AVIF') no-repeat center center; /** Switches to mobile-specific image */
-        background-size: cover; /** Ensures image covers screen fully */
-    }
-
-    header, footer {
-        margin-left: -15px; /** Offsets body padding for full-width effect */
-        margin-right: -15px; /** Offsets body padding for full-width effect */
-        padding-left: 15px; /** Restores internal padding inside header/footer */
-        padding-right: 15px; /** Restores internal padding inside header/footer */
-    }
+/* Subtle Overlay for Readability */
+body.restaurant-theme::before {
+    content: ''; /** Required for pseudo-element */
+    position: fixed; /** Fixed with background */
+    top: 0; /** Top-aligned */
+    left: 0; /** Left-aligned */
+    width: 100vw; /** Full viewport width */
+    height: 100vh; /** Full viewport height */
+    background: rgba(0, 0, 0, 0.6); /** Dark overlay */
+    z-index: -1; /** Behind content */
 }
 
 /* Header */
 header {
-    background: rgba(34, 34, 34, 0.6); /** Semi-transparent gray for subtle contrast */
-    padding: 14px 0; /** Vertical padding only, full width horizontally */
-    position: relative; /** Allows positioning of child elements like language selector */
-    backdrop-filter: blur(2px); /** Subtle blur for glass-like appearance */
-    z-index: 10; /** Ensures header stays above background and content */
-    width: 100%; /** Full viewport width */
+    background: rgba(34, 34, 34, 0.6); /** Matches restaurant theme */
+    padding: 14px 0; /** Vertical padding */
+    position: relative; /** For child positioning */
+    backdrop-filter: blur(2px); /** Glass effect */
+    z-index: 10; /** Above content */
+    width: 100%; /** Full width */
+    box-sizing: border-box; /** Prevents overflow */
 }
 
 /* Logo */
 .logo {
-    font-size: 28px; /** Large, bold text for logo prominence */
-    font-weight: bold; /** Emphasizes logo for branding */
-    color: #fff; /** White for contrast against dark header */
-    text-transform: uppercase; /** All caps for stylish, professional look */
-    margin: 0; /** Removes default margin for precise alignment */
+    font-size: 28px; /** Prominent logo */
+    font-weight: bold; /** Bold branding */
+    color: #fff; /** White contrast */
+    text-transform: uppercase; /** Stylish look */
+    margin: 0; /** Precise alignment */
 }
 
 /* Language Selector */
 .language-selector {
-    position: absolute; /** Positions relative to header */
-    top: 15px; /** Distance from top of header */
-    right: 20px; /** Distance from right of header */
-    display: flex; /** Aligns text and arrow horizontally */
-    align-items: center; /** Vertically centers content */
-    background: rgba(0, 0, 0, 0.513); /** Slightly transparent gray background */
-    padding: 5px 10px; /** Internal spacing for comfort */
-    border-radius: 5px; /** Rounded corners for softness */
-    color: white; /** Text color for readability */
-    font-size: 14px; /** Smaller font to save space */
-    cursor: pointer; /** Hand cursor to indicate interactivity */
-    transition: background 0.3s; /** Smooth background change on hover */
-    backdrop-filter: blur(5px); /** Glass effect for modern look */
-    z-index: 10; /** Ensures visibility above header content */
+    position: absolute; /** Relative to header */
+    top: 15px; /** Matches restaurant theme */
+    right: 20px; /** Matches restaurant theme */
+    display: flex; /** Horizontal alignment */
+    align-items: center; /** Vertical centering */
+    background: rgba(0, 0, 0, 0.513); /** Matches restaurant theme */
+    padding: 5px 10px; /** Comfortable spacing */
+    border-radius: 5px; /** Rounded corners */
+    color: white; /** Readable text */
+    font-size: 14px; /** Compact font */
+    cursor: pointer; /** Interactive */
+    transition: background 0.3s; /** Smooth hover */
+    backdrop-filter: blur(5px); /** Glass effect */
+    z-index: 10; /** Above header content */
 }
 
 .language-selector:hover {
-    background: rgba(51, 51, 51, 0.7); /** Lighter gray on hover for feedback */
+    background: rgba(51, 51, 51, 0.7); /** Hover feedback */
 }
 
 #selected-language {
-    margin-right: 5px; /** Space before arrow for readability */
-    font-weight: 500; /** Medium weight for visibility */
+    margin-right: 5px; /** Space before arrow */
+    font-weight: 500; /** Medium weight */
 }
 
 .dropdown-arrow {
-    font-size: 10px; /** Small arrow size for subtlety */
-    color: #ccc; /** Light gray for contrast */
+    font-size: 10px; /** Subtle arrow */
+    color: #ccc; /** Light gray */
 }
 
 .language-selector select {
-    position: absolute; /** Overlaps visible selector for functionality */
-    top: 0; /** Aligns to top of parent */
-    left: 0; /** Aligns to left of parent */
-    width: 100%; /** Full width for clickable area */
-    height: 100%; /** Full height for clickable area */
-    opacity: 0; /** Invisible but clickable to preserve design */
-    cursor: pointer; /** Hand cursor for usability */
-    z-index: 1; /** Above background but below text */
+    position: absolute; /** Functional overlap */
+    top: 0; /** Full alignment */
+    left: 0; /** Full alignment */
+    width: 100%; /** Full clickable area */
+    height: 100%; /** Full clickable area */
+    opacity: 0; /** Invisible but functional */
+    cursor: pointer; /** Usability */
+    z-index: 1; /** Below text */
 }
 
 /* Menu Section */
 .menu {
-    display: flex; /** Flexbox for layout control */
-    flex-direction: column; /** Stacks items vertically */
-    align-items: center; /** Centers items horizontally */
-    padding: 40px; /** Generous padding around section */
+    display: flex; /** Flexbox layout */
+    flex-direction: column; /** Vertical stacking */
+    align-items: center; /** Centered items */
+    padding: 50px 20px; /** Matches .tables padding */
+    position: relative; /** For layering */
+    z-index: 5; /** Above background */
 }
 
 .menu-item {
-    display: flex; /** Flexbox for image and text alignment */
-    align-items: center; /** Vertically aligns items */
-    background: rgba(34, 34, 34, 0.3); /** Semi-transparent background */
-    margin: 20px 0; /** Vertical spacing between items */
+    display: flex; /** Flexbox for alignment */
+    align-items: center; /** Vertical alignment */
+    background: rgba(34, 34, 34, 0.3); /** Matches restaurant theme */
+    margin: 20px 0; /** Vertical spacing */
     padding: 20px; /** Internal spacing */
-    border-radius: 10px; /** Rounded corners for softness */
-    width: 80%; /** Relative width for responsiveness */
-    max-width: 800px; /** Limits max width for readability */
-    transition: transform 0.3s; /** Smooth scale on hover */
+    border-radius: 10px; /** Rounded corners */
+    width: 80%; /** Responsive width */
+    max-width: 800px; /** Matches table max-width */
+    transition: transform 0.3s; /** Smooth hover */
     backdrop-filter: blur(2px); /** Glass effect */
     border: 1px solid rgba(255, 255, 255, 0.1); /** Subtle border */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /** Soft shadow for depth */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /** Depth */
 }
 
 .menu-item img {
-    width: 150px; /** Fixed image width */
-    border-radius: 10px; /** Rounded corners for images */
-    margin-right: 20px; /** Space between image and text */
+    width: 150px; /** Fixed image size */
+    border-radius: 10px; /** Rounded corners */
+    margin-right: 20px; /** Space to text */
+    filter: brightness(90%); /** Subtle dim */
 }
 
 .menu-text {
-    text-align: left; /** Left-aligns text for readability */
-    max-width: 400px; /** Limits text width for clean layout */
+    text-align: left; /** Left-aligned text */
+    max-width: 400px; /** Limits text width */
 }
 
 .menu-text h3 {
-    font-size: 24px; /** Title size for emphasis */
-    color: #ffcc00; /** Gold color for visual appeal */
+    font-size: 24px; /** Emphasis */
+    color: #eab656; /** Matches restaurant theme */
+    text-transform: uppercase; /** Consistent styling */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /** Readability */
+    margin: 0; /** Precise alignment */
 }
 
 .menu-text p {
-    font-size: 16px; /** Description size for legibility */
+    font-size: 16px; /** Legible */
+    color: #ddd; /** Matches restaurant theme */
 }
 
 /* Alternate Layout for Even Items */
 .menu-item:nth-child(even) {
-    flex-direction: row-reverse; /** Reverses layout for even items */
+    flex-direction: row-reverse; /** Reverses layout */
 }
 
 .menu-item:nth-child(even) img {
-    margin-right: 0; /** Removes right margin in reversed layout */
-    margin-left: 20px; /** Adds left margin for reversed layout */
+    margin-right: 0; /** No right margin */
+    margin-left: 20px; /** Left margin for reverse */
 }
 
 /* Hover Effect */
 .menu-item:hover {
-    transform: scale(1.05); /** Slight zoom on hover for interactivity */
+    transform: scale(1.05); /** Matches td hover */
+    background: rgba(51, 51, 51, 0.6); /** Hover feedback */
 }
 
 /* Footer */
 footer {
-    padding: 8px 0; /** Vertical padding only */
-    background: rgba(0, 0, 0, 0.5); /** Dark semi-transparent background */
-    margin-top: 20px; /** Space above footer */
+    padding: 8px 0; /** Matches restaurant theme */
+    background: rgba(0, 0, 0, 0.5); /** Matches restaurant theme */
+    margin-top: 20px; /** Space above */
     backdrop-filter: blur(5px); /** Glass effect */
     z-index: 5; /** Above background */
     width: 100%; /** Full width */
+    display: flex; /** Matches restaurant theme */
+    flex-direction: column; /** Vertical stacking */
+    align-items: center; /** Centered content */
 }
 
 footer p {
-    font-size: 12px; /** Small text for footer */
+    font-size: 10px; /** Matches restaurant theme */
+    margin: 5px 0; /** Minimal spacing */
+}
+
+/* Social Media Icons */
+/** Styles social media links in the footer */
+.social-media {
+    display: flex; /** Uses flexbox to control icon spacing */
+    justify-content: center; /** Centers icons horizontally */
+    gap: 60px; /** Adds consistent spacing between icons, adjust for more/less */
+}
+
+.social-media a {
+    color: rgb(255, 255, 255); /** White icons for visibility */
+    font-size: 18px; /** Large size for prominence on desktop, adjust for size */
+    padding: 1px; /** Reduced padding for better fit, adjust for more/less */
+    text-decoration: none; /** Removes underline from links */
+    display: inline-flex; /** Ensures consistent sizing and alignment */
+    align-items: center; /** Vertically centers icon */
+}
+
+/* Address Links */
+/** Styles address links in the footer */
+.address {
+    display: flex; /** Uses flexbox to control link spacing */
+    justify-content: center; /** Centers links horizontally */
+    gap: 10px; /** Adds consistent spacing between links, adjust for more/less */
+}
+
+.address a {
+    color: rgb(255, 255, 255); /** White text for visibility */
+    font-size: 12px; /** Readable size for address links on desktop, adjust for size */
+    padding: 10px; /** Reduced padding for better fit, adjust for more/less */
+    display: inline-flex; /** Ensures consistent sizing and alignment */
+    align-items: center; /** Vertically centers text */
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) { /** Tablets and smaller laptops */
-    .menu {
-        padding: 30px; /** Reduced padding for smaller screens */
+
+/* Mobile-Specific Background */
+@media only screen and (max-width: 768px) {
+    body.restaurant-theme::after {
+        background: url('MBG3.AVIF') no-repeat center center; /** Restaurant theme mobile image */
+        background-size: cover; /** Full coverage */
+        background-attachment: scroll; /** Mobile compatibility */
+        width: 100vw; /** Full width */
+        height: 100vh; /** Full height */
     }
 
-    .menu-item {
-        width: 90%; /** More flexible width for responsiveness */
-    }
-
-    .menu-text h3 {
-        font-size: 22px; /** Slightly smaller title */
-    }
-
-    .menu-text p {
-        font-size: 15px; /** Slightly smaller text */
+    body.restaurant-theme::before {
+        width: 100vw; /** Matches ::after */
+        height: 100vh; /** Matches ::after */
     }
 
     header {
-        padding: 12px 0; /** Slightly less padding for compactness */
+        padding: 12px 15px; /** Internal padding */
+        width: 100vw; /** Full width */
+        box-sizing: border-box; /** No overflow */
     }
 
     footer {
-        padding: 5px 0; /** Reduced padding for smaller screens */
-    }
-
-    footer p {
-        font-size: 10px; /** Smaller text for footer */
-    }
-}
-
-@media (max-width: 768px) { /** Mobile devices */
-    header {
-        padding: 12px 0; /** Reduced padding for mobile */
+        padding: 5px 15px; /** Internal padding */
+        width: 100vw; /** Full width */
+        box-sizing: border-box; /** No overflow */
     }
 
     .logo {
-        font-size: 28px; /** Maintains logo visibility */
+        font-size: 28px; /** Maintain visibility */
     }
 
     .language-selector {
-        top: 10px; /** Closer to top for space */
-        right: 15px; /** Closer to right for space */
-        padding: 4px 8px; /** Reduced padding for compactness */
-        font-size: 12px; /** Smaller font for mobile */
+        top: 10px; /** Space adjustment */
+        right: 15px; /** Space adjustment */
+        padding: 4px 8px; /** Compact */
+        font-size: 12px; /** Smaller font */
     }
 
     #selected-language {
-        margin-right: 3px; /** Reduced spacing for compactness */
+        margin-right: 3px; /** Compact spacing */
     }
 
     .dropdown-arrow {
-        font-size: 8px; /** Smaller arrow for mobile */
+        font-size: 8px; /** Smaller arrow */
     }
 
     .menu {
-        padding: 20px; /** Reduced padding for mobile */
+        padding: 30px 20px; /** Reduced padding */
     }
 
     .menu-item {
-        flex-direction: column; /** Stacks image and text vertically */
-        text-align: center; /** Centers text */
-        padding: 15px; /** Reduced internal padding */
+        flex-direction: column; /** Stack vertically */
+        text-align: center; /** Centered text */
+        padding: 15px; /** Reduced padding */
+        width: 90%; /** Responsive width */
     }
 
     .menu-item img {
-        width: 120px; /** Smaller image for mobile */
-        margin: 0 0 15px 0; /** Centers image with bottom margin */
+        width: 120px; /** Smaller image */
+        margin: 0 0 15px 0; /** Centered with bottom margin */
     }
 
     .menu-text {
-        max-width: 100%; /** Full width for text */
-        text-align: center; /** Centers text */
+        max-width: 100%; /** Full width */
+        text-align: center; /** Centered text */
     }
 
     .menu-text h3 {
-        font-size: 20px; /** Smaller title for mobile */
+        font-size: 20px; /** Smaller heading */
     }
 
     .menu-text p {
-        font-size: 14px; /** Smaller text for mobile */
+        font-size: 14px; /** Smaller text */
     }
 
     .menu-item:nth-child(even) {
-        flex-direction: column; /** Maintains column layout for even items */
+        flex-direction: column; /** Consistent stacking */
     }
 
     .menu-item:nth-child(even) img {
-        margin-left: 0; /** Removes left margin in column layout */
+        margin-left: 0; /** No left margin */
     }
 
-    footer {
-        padding: 5px 0; /** Reduced padding */
+    .menu-item:hover {
+        transform: none; /** Disable scale on mobile */
+        background: rgba(51, 51, 51, 0.6); /** Hover feedback */
     }
 
-    footer p {
-        font-size: 10px; /** Smaller text */
+    .social-media {
+        gap: 50px; /** Tighter spacing between icons, adjust for more/less */
     }
 
-    header, footer {
-        margin-left: -15px; /** Offsets body padding */
-        margin-right: -15px; /** Offsets body padding */
-        padding-left: 15px; /** Restores internal padding */
-        padding-right: 15px; /** Restores internal padding */
+    .social-media a {
+        font-size: 20px; /** Smaller icons for mobile, adjust for size */
+        padding: 5px; /** Reduced padding */
+    }
+
+    .address {
+        gap: 5px; /** Tighter spacing between links, adjust for more/less */
+    }
+
+    .address a {
+        font-size: 12px; /** Smaller text for mobile, adjust for size */
+        padding: 5px; /** Reduced padding */
     }
 }
 
-@media (max-width: 480px) { /** Smaller phones */
+/* Tablets and Smaller Laptops */
+@media (max-width: 1024px) {
+    .menu {
+        padding: 40px 20px; /** Reduced padding */
+    }
+
+    .menu-item {
+        width: 90%; /** Responsive width */
+    }
+
+    .menu-text h3 {
+        font-size: 22px; /** Slightly smaller */
+    }
+
+    .menu-text p {
+        font-size: 15px; /** Slightly smaller */
+    }
+
+    header {
+        padding: 12px 0; /** Compact */
+    }
+
+    footer {
+        padding: 5px 0; /** Compact */
+    }
+
+    .social-media a {
+        font-size: 30px; /** Slightly smaller icons */
+        padding: 8px; /** Reduced padding */
+    }
+
+    .address a {
+        font-size: 14px; /** Slightly smaller text */
+        padding: 8px; /** Reduced padding */
+    }
+}
+
+/* Smaller Phones */
+@media (max-width: 480px) {
     .logo {
-        font-size: 24px; /** Smaller logo for tiny screens */
+        font-size: 24px; /** Smaller logo */
     }
 
     .menu {
-        padding: 15px; /** Reduced padding */
+        padding: 20px; /** Minimal padding */
     }
 
     .menu-item {
         width: 95%; /** Nearly full width */
+        padding: 10px; /** Reduced padding */
     }
 
     .menu-item img {
@@ -314,32 +388,53 @@ footer p {
     }
 
     .menu-text h3 {
-        font-size: 18px; /** Smaller title */
+        font-size: 18px; /** Smaller heading */
     }
 
     .menu-text p {
         font-size: 13px; /** Smaller text */
     }
+
+    .social-media a {
+        font-size: 18px; /** Smaller icons */
+        padding: 5px; /** Tighter spacing */
+    }
+
+    .address a {
+        font-size: 10px; /** Smallest readable size */
+        padding: 3px; /** Tighter spacing */
+    }
 }
 
-@media (max-width: 360px) { /** Very small screens */
+/* Very Small Screens */
+@media (max-width: 360px) {
     .logo {
-        font-size: 20px; /** Smallest logo size */
+        font-size: 20px; /** Smallest logo */
     }
 
     .menu-item {
-        padding: 10px; /** Reduced padding */
+        padding: 10px; /** Minimal padding */
     }
 
     .menu-item img {
-        width: 90px; /** Smallest image size */
+        width: 90px; /** Smallest image */
     }
 
     .menu-text h3 {
-        font-size: 16px; /** Smallest title */
+        font-size: 16px; /** Smallest heading */
     }
 
     .menu-text p {
         font-size: 12px; /** Smallest text */
+    }
+
+    .social-media a {
+        font-size: 16px; /** Minimal icon size */
+        padding: 2px; /** Minimal padding */
+    }
+
+    .address a {
+        font-size: 9px; /** Minimal readable size */
+        padding: 2px; /** Minimal padding */
     }
 }
