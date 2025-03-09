@@ -45,34 +45,6 @@ body.restaurant-theme::before {
     z-index: -1; /** Places overlay behind content, above background */
 }
 
-/* Mobile-Specific Background */
-/** Adjusts background for mobile devices up to 768px (tablets and phones) */
-@media only screen and (max-width: 768px) {
-    body {
-        padding: 0 15px; /** Adds side padding on mobile to keep content from edges */
-    }
-
-    body.restaurant-theme::after {
-        background: url('IMG_1194.AVIF') no-repeat center center; /** Switches to mobile-specific image */
-        background-size: cover; /** Ensures image covers screen fully */
-        background-attachment: scroll; /** Uses scroll instead of fixed for mobile compatibility */
-        width: 100vw; /** Ensures full viewport width */
-        height: 100vh; /** Ensures full viewport height */
-    }
-
-    body.restaurant-theme::before {
-        width: 100vw; /** Matches ::after width */
-        height: 100vh; /** Matches ::after height */
-    }
-
-    header, footer {
-        margin-left: -15px; /** Offsets body padding for full-width effect */
-        margin-right: -15px; /** Offsets body padding for full-width effect */
-        padding-left: 15px; /** Restores internal padding inside header/footer */
-        padding-right: 15px; /** Restores internal padding inside header/footer */
-    }
-}
-
 /* Header */
 /** Styles the header section */
 header {
@@ -142,8 +114,6 @@ header {
 /* Hero Section */
 /** Styles the prominent hero section with a background image */
 .hero {
-    background: url('hero.jpg') no-repeat center center; /** Hero-specific background image */
-    background-size: cover; /** Covers entire section */
     height: 60vh; /** 60% viewport height for prominence */
     display: flex; /** Centers content with flexbox */
     align-items: center; /** Vertically centers content */
@@ -201,7 +171,7 @@ table {
 /** Styles individual table cells */
 td {
     background: rgba(34, 34, 34, 0.3); /** Semi-transparent gray for consistency */
-    padding: 15px; /** Internal spacing for content */
+    padding: 15px; /** Internal spacing for content, adjust for more/less space */
     border-radius: 10px; /** Rounded corners for softness */
     transition: transform 0.3s; /** Smooth scaling on hover */
     text-align: center; /** Centers text within cells */
@@ -210,77 +180,62 @@ td {
     backdrop-filter: blur(2px); /** Blur for glass look */
     border: 1px solid rgba(255, 255, 255, 0.1); /** Subtle border for definition */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /** Shadow for depth */
-    margin: 10px; /** Space around each cell */
-    overflow: hidden; /** Prevents content spillover */
-    text-overflow: ellipsis; /** Adds ellipsis for overflowing text */
-    white-space: nowrap; /** Keeps text on one line */
-}
-
-/* Specific Sizes for Table Cells */
-/** Customizes width for each table cell */
-td:nth-child(1) { /* About Us */
-    width: 20%; /** Fixed width for desktop */
-    min-width: 150px; /** Minimum width for readability */
-    max-width: 200px; /** Maximum width to match Contact */
-    overflow: hidden; /** Hides excess content */
-    text-overflow: ellipsis; /** Adds ellipsis for truncated text */
-    white-space: nowrap; /** Prevents text wrapping */
-}
-
-td:nth-child(2) { /* Menu */
-    width: 40%; /** Larger to highlight as requested */
-    min-width: 200px; /** Minimum width for readability */
-    max-width: 300px; /** Maximum width for prominence */
-    overflow: hidden; /** Hides excess content */
-    text-overflow: ellipsis; /** Adds ellipsis for truncated text */
-    white-space: nowrap; /** Prevents text wrapping */
-}
-
-td:nth-child(3) { /* Contact */
-    width: 20%; /** Matches About Us for consistency */
-    min-width: 150px; /** Minimum width to match About Us */
-    max-width: 200px; /** Maximum width to match About Us */
-    overflow: hidden; /** Hides excess content */
-    text-overflow: ellipsis; /** Adds ellipsis for truncated text */
-    white-space: nowrap; /** Prevents text wrapping */
+    margin: 10px; /** Space around each cell, adjust for more/less spacing */
+    white-space: normal; /** Allows text to wrap naturally instead of truncating */
 }
 
 td a {
     text-decoration: none; /** Removes underline from links */
     color: white; /** White text for contrast */
     display: block; /** Makes link fill cell */
-    font-size: 16px; /** Consistent link size */
-    overflow: hidden; /** Prevents text overflow */
-    text-overflow: ellipsis; /** Adds ellipsis for long text */
-    white-space: nowrap; /** Keeps text on one line */
+    font-size: 16px; /** Consistent link size, adjust for larger/smaller text */
 }
 
 td .emoji {
-    font-size: 24px; /** Consistent emoji size */
+    font-size: 24px; /** Consistent emoji size, adjust for larger/smaller icons */
     display: block; /** Places emoji on its own line */
-    margin-bottom: 10px; /** Space below emoji */
+    margin-bottom: 10px; /** Space below emoji, adjust for more/less gap */
 }
 
 td h3 {
     margin: 0; /** Removes default margin for alignment */
-    font-size: 18px; /** Consistent heading size */
-    overflow: hidden; /** Prevents text overflow */
-    text-overflow: ellipsis; /** Adds ellipsis for long titles */
-    white-space: nowrap; /** Keeps text on one line */
+    font-size: 18px; /** Consistent heading size, adjust for larger/smaller text */
+    white-space: normal; /** Allows text to wrap naturally instead of truncating */
+    line-height: 1.2; /** Adds spacing between wrapped lines for readability */
 }
 
 td:hover {
-    transform: scale(1.05); /** Slight scale-up on hover */
+    transform: scale(1.05); /** Slight scale-up on hover for interaction feedback */
     z-index: 1; /** Brings cell forward on hover */
     background: rgba(51, 51, 51, 0.6); /** Lighter background on hover */
+}
+
+/* Specific Sizes for Table Cells (Desktop) */
+/** Customizes width for each table cell on desktop */
+td:nth-child(1) { /* About Us */
+    width: 20%; /** Fixed width for desktop */
+    min-width: 185px; /** Minimum width for readability */
+    max-width: 200px; /** Increased to allow space for longer text like "À propos de nous" */
+}
+
+td:nth-child(2) { /* Menu */
+    width: 50%; /** Larger to highlight menu prominence */
+    min-width: 250px; /** Minimum width for readability */
+    max-width: 300px; /** Maximum width for prominence */
+}
+
+td:nth-child(3) { /* Contact */
+    width: 20%; /** Matches About Us for consistency */
+    min-width: 185px; /** Minimum width to match About Us */
+    max-width: 200px; /** Maximum width to match About Us */
 }
 
 /* Footer */
 /** Styles the footer section */
 footer {
-    padding: 8px 0; /** Vertical padding only */
+    padding: 8px 0; /** Vertical padding only, adjust for more/less space */
     background: rgba(0, 0, 0, 0.5); /** Dark semi-transparent background */
-    margin-top: 20px; /** Space above footer */
+    margin-top: 20px; /** Space above footer, adjust for more/less gap */
     backdrop-filter: blur(5px); /** Glass effect */
     z-index: 5; /** Above background */
     width: 100%; /** Full width */
@@ -290,83 +245,176 @@ footer {
 }
 
 footer p {
-    font-size: 10px; /** Small text for footer */
-    margin: 5px 0; /** Adds minimal spacing around text */
+    font-size: 10px; /** Small text for footer, adjust for larger/smaller text */
+    margin: 5px 0; /** Adds minimal spacing around text, adjust for more/less */
 }
 
-/* Style for social media icons */
+/* Social Media Icons */
 /** Styles social media links in the footer */
 .social-media {
     display: flex; /** Uses flexbox to control icon spacing */
     justify-content: center; /** Centers icons horizontally */
-    gap: 10px; /** Adds consistent spacing between icons */
+    gap: 60px; /** Adds consistent spacing between icons, adjust for more/less */
 }
 
 .social-media a {
     color: rgb(255, 255, 255); /** White icons for visibility */
-    font-size: 34px; /** Large size for prominence on desktop */
-    padding: 10px; /** Reduced padding for better fit */
+    font-size: 18px; /** Large size for prominence on desktop, adjust for size */
+    padding: 1px; /** Reduced padding for better fit, adjust for more/less */
     text-decoration: none; /** Removes underline from links */
     display: inline-flex; /** Ensures consistent sizing and alignment */
     align-items: center; /** Vertically centers icon */
 }
 
-/* Styles for address links */
+/* Address Links */
 /** Styles address links in the footer */
 .address {
     display: flex; /** Uses flexbox to control link spacing */
     justify-content: center; /** Centers links horizontally */
-    gap: 10px; /** Adds consistent spacing between links */
+    gap: 10px; /** Adds consistent spacing between links, adjust for more/less */
 }
 
 .address a {
     color: rgb(255, 255, 255); /** White text for visibility */
-    font-size: 16px; /** Readable size for address links on desktop */
-    padding: 10px; /** Reduced padding for better fit */
-    text-decoration: none; /** Removes underline from links */
+    font-size: 12px; /** Readable size for address links on desktop, adjust for size */
+    padding: 10px; /** Reduced padding for better fit, adjust for more/less */
     display: inline-flex; /** Ensures consistent sizing and alignment */
     align-items: center; /** Vertically centers text */
 }
 
 /* Responsive Design */
-/** Adjusts styles for tablets and smaller laptops (max-width 1024px) */
-@media (max-width: 1024px) {
-    .about {
-        padding: 40px; /** Reduced padding for smaller screens */
+
+/* Mobile-Specific Background */
+/** Adjusts background and layout for mobile devices up to 768px (tablets and phones) */
+@media only screen and (max-width: 768px) {
+    body {
+        padding: 0; /** Remove padding from body to allow full-width elements */
     }
 
-    .about-content {
-        max-width: 90%; /** More flexible width */
-        padding: 25px; /** Reduced padding for compactness */
+    body.restaurant-theme::after {
+        background: url('IMG_1194.AVIF') no-repeat center center; /** Switches to mobile-specific image */
+        background-size: cover; /** Ensures image covers screen fully */
+        background-attachment: scroll; /** Uses scroll instead of fixed for mobile compatibility */
+        width: 100vw; /** Ensures full viewport width */
+        height: 100vh; /** Ensures full viewport height */
     }
 
-    .about-content img {
-        width: 200px; /** Smaller image for smaller screens */
+    body.restaurant-theme::before {
+        width: 100vw; /** Matches ::after width */
+        height: 100vh; /** Matches ::after height */
     }
 
-    .text h2,
-    .team h2 {
-        font-size: 26px; /** Slightly smaller headings */
+    /* Header Adjustments */
+    header {
+        padding: 12px 15px; /** Add internal padding instead of relying on body padding */
+        width: 100vw; /** Ensure full viewport width */
+        margin-left: 0; /** Remove negative margin */
+        margin-right: 0; /** Remove negative margin */
+        box-sizing: border-box; /** Ensure padding doesn't exceed width */
     }
 
-    .text p {
-        font-size: 15px; /** Slightly smaller text */
+    /* Footer Adjustments */
+    footer {
+        padding: 5px 15px; /** Add internal padding instead of relying on body padding */
+        width: 100vw; /** Ensure full viewport width */
+        margin-left: 0; /** Remove negative margin */
+        margin-right: 0; /** Remove negative margin */
+        box-sizing: border-box; /** Ensure padding doesn't exceed width */
     }
 
-    .team {
-        padding: 40px; /** Reduced padding for compactness */
+    /* Other existing mobile adjustments */
+    .logo {
+        font-size: 28px; /** Maintains logo visibility, adjust for size */
+    }
+
+    .language-selector {
+        top: 10px; /** Closer to top for space */
+        right: 15px; /** Closer to right for space */
+        padding: 4px 8px; /** Reduced padding */
+        font-size: 12px; /** Smaller font for mobile, adjust for size */
+    }
+
+    #selected-language {
+        margin-right: 3px; /** Reduced spacing */
+    }
+
+    .dropdown-arrow {
+        font-size: 8px; /** Smaller arrow, adjust for size */
+    }
+
+    /* Hero Adjustments */
+    .hero h1 {
+        font-size: 30px; /** Smaller heading for mobile, adjust for size */
+    }
+
+    .hero p {
+        font-size: 18px; /** Smaller text for mobile, adjust for size */
+    }
+
+    /* Table Adjustments */
+    table {
+        flex-direction: column; /** Stacks cells vertically */
+        border-spacing: 5px; /** Removes spacing, flex gap handles it */
     }
 
     td:nth-child(1), td:nth-child(3) { /* About Us and Contact */
+        width: 25%; /** Full width for better readability on mobile */
+        min-width: 20px; /** Minimum width for readability */
+        max-width: 80px; /** Increased to accommodate longer text */
+    }
+
+    td:nth-child(2) { /* Menu */
+        width: 40%; /** Full width for consistency */
+        min-width: 30px; /** Minimum width for readability */
+        max-width: 100px; /** Maximum width for prominence */
+        margin: 0 auto; /** Centers cell horizontally */
+    }
+
+    td h3 {
+        font-size: 16px; /** Slightly smaller for mobile readability, adjust for size */
+    }
+
+    td:hover {
+        transform: none; /** Disables scale on mobile to avoid overlap */
+        background: rgba(51, 51, 51, 0.6); /** Keeps hover feedback */
+    }
+
+    /* Footer Adjustments */
+    footer p {
+        font-size: 10px; /** Smaller text, adjust for size */
+    }
+
+    .social-media {
+        gap: 50px; /** Tighter spacing between icons, adjust for more/less */
+    }
+
+    .social-media a {
+        font-size: 20px; /** Smaller icons for mobile, adjust for size */
+        padding: 5px; /** Reduced padding */
+    }
+
+    .address {
+        gap: 5px; /** Tighter spacing between links, adjust for more/less */
+    }
+
+    .address a {
+        font-size: 12px; /** Smaller text for mobile, adjust for size */
+        padding: 5px; /** Reduced padding */
+    }
+}
+
+/* Tablets and Smaller Laptops (max-width: 1024px) */
+@media (max-width: 1024px) {
+    td:nth-child(1), td:nth-child(3) { /* About Us and Contact */
         width: 25%; /** Slightly wider for tablet */
-        min-width: 140px; /** Adjusted minimum width */
-        max-width: 180px; /** Adjusted maximum width */
+        min-width: 20px; /** Adjusted minimum width */
+        max-width: 800px; /** Adjusted maximum width */
     }
 
     td:nth-child(2) { /* Menu */
         width: 40%; /** Maintains prominence */
-        min-width: 180px; /** Adjusted minimum width */
-        max-width: 280px; /** Adjusted maximum width */
+        min-width: 30px; /** Adjusted minimum width */
+        max-width: 100px; /** Adjusted maximum width */
     }
 
     header {
@@ -377,153 +425,47 @@ footer p {
         padding: 5px 0; /** Reduced padding */
     }
 
-    footer p {
-        font-size: 10px; /** Smaller text for footer */
-    }
-
     .social-media a {
-        font-size: 30px; /** Slightly smaller icons */
+        font-size: 30px; /** Slightly smaller icons, adjust for size */
         padding: 8px; /** Reduced padding */
     }
 
     .address a {
-        font-size: 14px; /** Slightly smaller text */
+        font-size: 14px; /** Slightly smaller text, adjust for size */
         padding: 8px; /** Reduced padding */
     }
 }
 
-/** Adjusts styles for mobile devices (max-width 768px) */
-@media (max-width: 768px) {
-    header {
-        padding: 12px 0; /** Reduced padding for mobile */
-    }
-
-    .logo {
-        font-size: 28px; /** Maintains logo visibility */
-    }
-
-    .language-selector {
-        top: 10px; /** Closer to top for space */
-        right: 15px; /** Closer to right for space */
-        padding: 4px 8px; /** Reduced padding */
-        font-size: 12px; /** Smaller font for mobile */
-    }
-
-    #selected-language {
-        margin-right: 3px; /** Reduced spacing */
-    }
-
-    .dropdown-arrow {
-        font-size: 8px; /** Smaller arrow */
-    }
-
-    .hero h1 {
-        font-size: 30px; /** Smaller heading for mobile */
-    }
-
-    .hero p {
-        font-size: 18px; /** Smaller text for mobile */
-    }
-
-    .main-content {
-        min-height: 80vh; /** Adjusted height for mobile */
-    }
-
-    table {
-        flex-direction: column; /** Stacks cells vertically */
-        border-spacing: 0; /** Removes spacing, flex gap handles it */
-        gap: 50px; /** Adds vertical space between cells */
-    }
-
-    td:nth-child(1), td:nth-child(3) { /* About Us and Contact */
-        width: 20%; /** Wider for mobile readability */
-        min-width: 0; /** Allows shrinking if needed */
-        max-width: 200px; /** Caps width for consistency */
-        margin: 0 auto; /** Centers cells horizontally */
-        overflow: hidden; /** Hides excess content */
-        text-overflow: ellipsis; /** Adds ellipsis for overflow */
-        white-space: nowrap; /** Prevents wrapping */
-    }
-
-    td:nth-child(2) { /* Menu */
-        width: 90%; /** Wider to highlight on mobile */
-        min-width: 0; /** Allows shrinking if needed */
-        max-width: 320px; /** Caps width for prominence */
-        margin: 0 auto; /** Centers cell horizontally */
-        overflow: hidden; /** Hides excess content */
-        text-overflow: ellipsis; /** Adds ellipsis for overflow */
-        white-space: nowrap; /** Prevents wrapping */
-    }
-
-    td:hover {
-        transform: none; /** Disables scale on mobile to avoid overlap */
-        background: rgba(51, 51, 51, 0.6); /** Keeps hover feedback */
-    }
-
-    footer {
-        padding: 5px 0; /** Reduced padding */
-    }
-
-    footer p {
-        font-size: 10px; /** Smaller text */
-    }
-
-    header, footer {
-        margin-left: -15px; /** Offsets body padding */
-        margin-right: -15px; /** Offsets body padding */
-        padding-left: 15px; /** Restores internal padding */
-        padding-right: 15px; /** Restores internal padding */
-    }
-
-    .social-media {
-        gap: 5px; /** Tighter spacing between icons */
-    }
-
-    .social-media a {
-        font-size: 20px; /** Smaller icons for mobile */
-        padding: 5px; /** Reduced padding */
-    }
-
-    .address {
-        gap: 5px; /** Tighter spacing between links */
-    }
-
-    .address a {
-        font-size: 12px; /** Smaller text for mobile */
-        padding: 5px; /** Reduced padding */
-    }
-}
-
-/** Adjusts styles for smaller phones (max-width 480px) */
+/* Smaller Phones (max-width: 480px) */
 @media (max-width: 480px) {
     .logo {
-        font-size: 24px; /** Smaller logo for tiny screens */
+        font-size: 24px; /** Smaller logo for tiny screens, adjust for size */
     }
 
     .social-media a {
-        font-size: 18px; /** Even smaller icons */
-        padding: 3px; /** Tighter spacing */
+        font-size: 18px; /** Even smaller icons, adjust for size */
+        padding: 5px; /** Tighter spacing */
     }
 
     .address a {
-        font-size: 10px; /** Smallest readable size */
+        font-size: 10px; /** Smallest readable size, adjust for size */
         padding: 3px; /** Tighter spacing */
     }
 }
 
-/** Adjusts styles for very small screens (max-width 360px) */
+/* Very Small Screens (max-width: 360px) */
 @media (max-width: 360px) {
     .logo {
-        font-size: 20px; /** Smallest logo size */
+        font-size: 20px; /** Smallest logo size, adjust for size */
     }
 
     .social-media a {
-        font-size: 16px; /** Minimal icon size */
+        font-size: 16px; /** Minimal icon size, adjust for size */
         padding: 2px; /** Minimal padding */
     }
 
     .address a {
-        font-size: 9px; /** Minimal readable size */
+        font-size: 9px; /** Minimal readable size, adjust for size */
         padding: 2px; /** Minimal padding */
     }
 }
