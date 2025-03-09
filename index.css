@@ -3,6 +3,64 @@ html {
     overflow-x: hidden;
 }
 
+/* Hamburger Menu and Sidebar */
+/** Styles the container for the hamburger menu icon */
+.hamburger-menu {
+    position: absolute; /** Positions relative to header */
+    top: 15px; /* Aligns with the top of the language selector */
+    left: 20px; /* Distance from the left of the viewport */
+    z-index: 1001; /* Above the sidebar (z-index: 1000) */
+    cursor: pointer; /* Indicates clickability */
+}
+
+/** Styles the hamburger icon itself */
+.hamburger-icon {
+    font-size: 30px; /* Large size for visibility */
+    color: #fff; /* White color to match theme */
+    transition: transform 0.3s; /* Smooth transition for icon change */
+    /* Remove position: fixed and z-index: 1100; inherit from .hamburger-menu */
+}
+
+/** Styles the sidebar navigation panel */
+.sidebar {
+    height: 100%; /* Full height of the viewport */
+    width: 0; /* Starts hidden */
+    position: fixed; /* Fixes the sidebar to the viewport */
+    top: 0; /* Aligns to the top */
+    left: 0; /* Aligns to the left */
+    background-color: rgba(0, 0, 0, 0.9); /* Dark semi-transparent background */
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    transition: 0.5s; /* Smooth width transition */
+    padding-top: 60px; /* Space to avoid overlap with hamburger icon */
+    z-index: 1000; /* Below the hamburger menu */
+}
+
+/** Ensures the sidebar content doesn’t overlap the hamburger icon */
+.sidebar[style*="width: 250px"] {
+    z-index: 999; /* Slightly lower when open to keep icon clickable */
+}
+
+/** Styles the unordered list inside the sidebar */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/** Styles each list item link in the sidebar */
+.sidebar ul li a {
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+/** Hover effect for sidebar links */
+.sidebar ul li a:hover {
+    background-color: #555;
+}
+
 /* General Styles */
 /** Sets up the base styling for the restaurant theme */
 body.restaurant-theme {
@@ -340,6 +398,12 @@ footer p {
 
     .dropdown-arrow {
         font-size: 8px; /** Smaller arrow, adjust for size */
+    }
+
+    /* Hamburger Menu Adjustments */
+    .hamburger-menu {
+        top: 10px; /** Adjusted for mobile header padding */
+        left: 15px; /** Adjusted for mobile layout */
     }
 
     /* Hero Adjustments */
