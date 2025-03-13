@@ -58,7 +58,33 @@ html {
 
 /** Hover effect for sidebar links */
 .sidebar ul li a:hover {
+    color: #f0c14b; /* Change to a highlight color, adjust as needed */
     background-color: #555;
+}
+
+/* Style the nested social media list */
+.social-media-sidebar {
+    list-style: none;
+    padding-left: 20px; /* Indent the icons slightly under Contact */
+    margin: 2px 0 0 0; /* Spacing */
+}
+
+/* Style each social media item */
+.social-media-sidebar li {
+    display: inline-block; /* Display icons horizontally */
+    margin-right: 0.1px; /* Space between icons */
+}
+
+/* Style the icons */
+.social-media-sidebar ion-icon {
+    font-size: 20px; /* Adjust size as needed */
+    color: #fff; /* Default color, adjust to match your theme */
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for icons */
+.social-media-sidebar ion-icon:hover {
+    color: #f0c14b; /* Change to a highlight color, adjust as needed */
 }
 
 /* General Styles */
@@ -84,7 +110,7 @@ body.restaurant-theme::after {
     left: 0; /** Aligns to left of viewport */
     width: 100vw; /** Full viewport width for precise sizing */
     height: 100vh; /** Full viewport height to match screen */
-    background: url('IMG_1193.png') no-repeat center center; /** Desktop background, centered, no repeat */
+    background: url('DBG3.jpeg') no-repeat center center; /** Desktop background, centered, no repeat */
     background-size: cover; /** Scales image to cover area without distortion */
     background-attachment: fixed; /** Locks background in place during scroll on desktop */
     z-index: -2; /** Places background behind overlay and content */
@@ -99,7 +125,7 @@ body.restaurant-theme::before {
     left: 0; /** Aligns to left of viewport */
     width: 100vw; /** Full viewport width for precise sizing */
     height: 100vh; /** Full viewport height to match screen */
-    background: rgba(0, 0, 0, 0.6); /** Dark semi-transparent overlay for readability */
+    background: rgba(0, 0, 0, 0.7); /** Dark semi-transparent overlay for readability */
     z-index: -1; /** Places overlay behind content, above background */
 }
 
@@ -113,6 +139,11 @@ header {
     z-index: 10; /** Keeps header above background and content */
     width: 100%; /** Ensures full viewport width */
     box-sizing: border-box; /** Prevents padding from causing overflow */
+    text-decoration: none;
+}
+
+header a {
+    text-decoration: none;
 }
 
 /* Logo */
@@ -169,6 +200,11 @@ header {
     z-index: 1; /** Above background but below text */
 }
 
+.opening-hours {
+    font-size: 12px;
+    margin-top: 6px;
+    color:  #f0c14b; /* Adjust color to match your theme */
+}
 /* Hero Section */
 /** Styles the prominent hero section with a background image */
 .hero {
@@ -205,6 +241,7 @@ header {
 .hero p {
     font-size: 20px; /** Legible paragraph size */
     color: #ddd; /** Light gray for contrast */
+    color:  #f0c14b;
 }
 
 /* Tables Section */
@@ -350,7 +387,7 @@ footer p {
     }
 
     body.restaurant-theme::after {
-        background: url('IMG_1194.AVIF') no-repeat center center; /** Switches to mobile-specific image */
+        background: url('MBG3.jpeg') no-repeat center center; /** Switches to mobile-specific image */
         background-size: cover; /** Ensures image covers screen fully */
         background-attachment: scroll; /** Uses scroll instead of fixed for mobile compatibility */
         width: 100vw; /** Ensures full viewport width */
