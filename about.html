@@ -20,43 +20,67 @@
                   data-ru="Главная" 
                   data-ro="Acasă" 
                   data-it="Casa" 
-                  data-es="Inicio">Home</a></li>
+                  data-es="Inicio"></a></li>
             <li><a href="about.html" class="nav-link" 
                   data-en="About Us" 
                   data-fr="À propos de nous" 
                   data-ru="О нас" 
                   data-ro="Despre noi" 
                   data-it="Chi siamo" 
-                  data-es="Sobre nosotros">About Us</a></li>
+                  data-es="Sobre nosotros"></a></li>
             <li><a href="menu.html" class="nav-link" 
                   data-en="Menu" 
                   data-fr="Menu" 
                   data-ru="Меню" 
                   data-ro="Meniu" 
                   data-it="Menù" 
-                  data-es="Menú">Menu</a></li>
-            <li><a href="contact.html" class="nav-link" 
+                  data-es="Menú"></a></li>
+            <li>
+                <a href="contact.html" class="nav-link" 
                   data-en="Contact" 
                   data-fr="Contact" 
                   data-ru="Контакты" 
                   data-ro="Contact" 
                   data-it="Contatto" 
-                  data-es="Contacto">Contact</a></li>
+                  data-es="Contacto"></a>
+                <!-- Social Media Links under Contact -->
+                <ul class="social-media-sidebar">
+                    <li>
+                        <a href="https://www.tiktok.com" target="_blank" title="TikTok">
+                            <ion-icon name="logo-tiktok"></ion-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/c.mihai16" target="_blank" title="Facebook">
+                            <ion-icon name="logo-facebook"></ion-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/c.mihai16" target="_blank" title="Instagram">
+                            <ion-icon name="logo-instagram"></ion-icon>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 
     <header>
         <nav>
-            <div class="logo" 
-                data-en="ABOUT US" 
-                data-fr="À PROPOS DE NOUS" 
-                data-ru="О НАС" 
-                data-ro="DESPRE NOI"
-                data-it="CHI SIAMO"
-                data-es="SOBRE NOSOTROS">
-            </div>
+
+            <a href="about.html">
+                <div class="logo" 
+                    data-en="ABOUT US" 
+                    data-fr="À PROPOS DE NOUS" 
+                    data-ru="О НАС" 
+                    data-ro="DESPRE NOI"
+                    data-it="CHI SIAMO"
+                    data-es="SOBRE NOSOTROS">
+                </div>
+            </a>
+
             <div class="language-selector">
-                <span id="selected-language">English</span>
+                <span id="selected-language"></span>
                 <span class="dropdown-arrow">▼</span>
                 <select id="language-select" onchange="changeLanguage()">
                     <option value="en">English</option>
@@ -98,6 +122,14 @@
                     data-it="La nostra passione per il cibo è pari solo alla nostra dedizione al servizio eccezionale. Che tu sia qui per un pasto informale o per un'occasione speciale, vogliamo rendere ogni visita indimenticabile."
                     data-es="Nuestra pasión por la comida solo se iguala a nuestra dedicación a un servicio excepcional. Ya sea para una comida informal o una ocasión especial, nuestro objetivo es hacer que cada visita sea inolvidable.">
                 </p>
+                <h4
+                    data-en="We are open 7 days a week from 9:00 AM to 5:00 PM to serve you." 
+                    data-fr="Nous sommes ouverts 7 jours sur 7 de 9h00 à 17h00 pour vous servir."
+                    data-ru="Мы открыты 7 дней в неделю с 9:00 до 17:00, чтобы обслуживать вас."
+                    data-ro="Suntem deschiși 7 zile pe săptămână de la 9:00 la 17:00 pentru a vă servi."
+                    data-it="Siamo aperti 7 giorni su 7 dalle 9:00 alle 17:00 per servirvi."
+                    data-es="Estamos abiertos 7 días a la semana de 9:00 a 17:00 para servirle.">
+                </h4>
             </div>
         </div>
     </section>
@@ -142,7 +174,7 @@
     <footer>
         <div class="social-media">
             <a href="https://www.tiktok.com" target="_blank" title="Open TikTok"><ion-icon name="logo-tiktok"></ion-icon></a>
-            <a href="https://www.youtube.com/@CortacMihai" target="_blank" title="Open YouTube"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://www.facebook.com/c.mihai16" target="_blank" title="Open YouTube"><ion-icon name="logo-facebook"></ion-icon></a>
             <a href="https://www.instagram.com/c.mihai16" target="_blank" title="Open Instagram"><ion-icon name="logo-instagram"></ion-icon></a>
         </div>
         
@@ -159,7 +191,6 @@
             data-ro="© 2025 Restaurantul lui Mihai. Toate drepturile rezervate."
             data-it="© 2025 Il ristorante di Mihai. Tutti i diritti riservati."
             data-es="© 2025 El restaurante de Mihai. Todos los derechos reservados.">
-            © 2025 Mihai's Restaurant. All rights reserved.
         </p>
     </footer>
 
