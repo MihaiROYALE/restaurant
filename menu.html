@@ -6,11 +6,10 @@
     <title>Menu - Mihai's Restaurant</title>
     <link rel="stylesheet" href="menu.css">
 </head>
-<body class="restaurant-theme">
+<body class="restaurant-theme menu-page">
     <div class="hamburger-menu">
         <div class="hamburger-icon">☰</div>
     </div>
-
     <!-- Sidebar Navigation -->
     <div class="sidebar">
         <ul>
@@ -20,43 +19,66 @@
                   data-ru="Главная" 
                   data-ro="Acasă" 
                   data-it="Casa" 
-                  data-es="Inicio">Home</a></li>
+                  data-es="Inicio"></a></li>
             <li><a href="about.html" class="nav-link" 
                   data-en="About Us" 
                   data-fr="À propos de nous" 
                   data-ru="О нас" 
                   data-ro="Despre noi" 
                   data-it="Chi siamo" 
-                  data-es="Sobre nosotros">About Us</a></li>
+                  data-es="Sobre nosotros"></a></li>
             <li><a href="menu.html" class="nav-link" 
                   data-en="Menu" 
                   data-fr="Menu" 
                   data-ru="Меню" 
                   data-ro="Meniu" 
                   data-it="Menù" 
-                  data-es="Menú">Menu</a></li>
-            <li><a href="contact.html" class="nav-link" 
+                  data-es="Menú"></a></li>
+            <li>
+                <a href="contact.html" class="nav-link" 
                   data-en="Contact" 
                   data-fr="Contact" 
                   data-ru="Контакты" 
                   data-ro="Contact" 
                   data-it="Contatto" 
-                  data-es="Contacto">Contact</a></li>
+                  data-es="Contacto"></a>
+                <!-- Social Media Links under Contact -->
+                <ul class="social-media-sidebar">
+                    <li>
+                        <a href="https://www.tiktok.com" target="_blank" title="TikTok">
+                            <ion-icon name="logo-tiktok"></ion-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/c.mihai16" target="_blank" title="Facebook">
+                            <ion-icon name="logo-facebook"></ion-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/c.mihai16" target="_blank" title="Instagram">
+                            <ion-icon name="logo-instagram"></ion-icon>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 
     <header>
         <nav>
-            <div class="logo" 
-                data-en="MENU" 
-                data-fr="MENU" 
-                data-ru="МЕНЮ" 
-                data-ro="Meniu"
-                data-it="MENÙ"
-                data-es="MENÚ">
-            </div>
+            <a href="menu.html">
+                <div class="logo" 
+                    data-en="MENU" 
+                    data-fr="MENU" 
+                    data-ru="МЕНЮ" 
+                    data-ro="Meniu"
+                    data-it="MENÙ"
+                    data-es="MENÚ">
+                </div>
+            </a>
+
             <div class="language-selector">
-                <span id="selected-language">English</span>
+                <span id="selected-language"></span>
                 <span class="dropdown-arrow">▼</span>
                 <select id="language-select" onchange="changeLanguage()">
                     <option value="en">English</option>
@@ -70,122 +92,42 @@
         </nav>
     </header>
 
-    <section class="menu">
-        <div class="menu-item">
-            <img src="FBG1.png" alt="Dish 1">
-            <div class="menu-text">
-                <h3 
-                    data-en="Dish 1" 
-                    data-fr="Plat 1" 
-                    data-ru="Блюдо 1" 
-                    data-ro="Mâncarea 1"
-                    data-it="Piatto 1"
-                    data-es="Plato 1">
-                </h3>
-                <p 
-                    data-en="A delicious start to your meal with fresh ingredients and unique flavors." 
-                    data-fr="Un délicieux début de votre repas avec des ingrédients frais et des saveurs uniques." 
-                    data-ru="Вкусное начало вашего блюда с свежими ингредиентами и уникальными вкусами." 
-                    data-ro="Un început delicios la masa ta cu ingrediente proaspete și arome unice."
-                    data-it="Un inizio delizioso al tuo pasto con ingredienti freschi e sapori unici."
-                    data-es="Un delicioso comienzo para tu comida con ingredientes frescos y sabores únicos.">
-                </p>
-            </div>
-        </div>
+    <section class="menu-categories">
+        <a href="lunch-dinner.html" class="category-box" 
+           data-en="Lunch & Dinner" 
+           data-fr="Déjeuner & Dîner" 
+           data-ru="Обед и Ужин" 
+           data-ro="Prânz și Cină" 
+           data-it="Pranzo e Cena" 
+           data-es="Almuerzo y Cena">
+            <h2></h2> <!-- Text filled by JS based on language -->
+        </a>
 
-        <div class="menu-item">
-            <img src="FBG1.png" alt="Dish 2">
-            <div class="menu-text">
-                <h3 
-                    data-en="Dish 2" 
-                    data-fr="Plat 2" 
-                    data-ru="Блюдо 2" 
-                    data-ro="Mâncarea 2"
-                    data-it="Piatto 2"
-                    data-es="Plato 2">
-                </h3>
-                <p 
-                    data-en="An enticing beginning to your dining experience, featuring vibrant ingredients and bold flavors." 
-                    data-fr="Un début alléchant de votre expérience culinaire, avec des ingrédients vibrants et des saveurs audacieuses." 
-                    data-ru="Заманчивое начало вашего обеда с яркими ингредиентами и смелыми вкусами." 
-                    data-ro="Un început tentant pentru experiența ta culinară, cu ingrediente vibrante și arome îndrăznețe."
-                    data-it="Un inizio intrigante per la tua esperienza culinaria, con ingredienti vivaci e sapori audaci."
-                    data-es="Un comienzo tentador para tu experiencia gastronómica, con ingredientes vibrantes y sabores audaces.">
-                </p>
-            </div>
-        </div>
+        <a href="cold-drinks.html" class="category-box" 
+           data-en="Cold Drinks" 
+           data-fr="Boissons Froides" 
+           data-ru="Холодные Напитки" 
+           data-ro="Băuturi Reci" 
+           data-it="Bevande Fredde" 
+           data-es="Bebidas Frías">
+            <h2></h2>
+        </a>
 
-        <div class="menu-item">
-            <img src="FBG1.png" alt="Dish 3">
-            <div class="menu-text">
-                <h3 
-                    data-en="Dish 3" 
-                    data-fr="Plat 3" 
-                    data-ru="Блюдо 3" 
-                    data-ro="Mâncarea 3"
-                    data-it="Piatto 3"
-                    data-es="Plato 3">
-                </h3>
-                <p 
-                    data-en="A mouthwatering introduction to your meal, crafted with fresh produce and exceptional seasonings." 
-                    data-fr="Une introduction alléchante à votre repas, préparée avec des produits frais et des assaisonnements exceptionnels." 
-                    data-ru="Увлажняющее введение в ваше блюдо, приготовленное из свежих продуктов и исключительных приправ." 
-                    data-ro="O introducere delicioasă la masa ta, pregătită cu produse proaspete și condimente excepționale."
-                    data-it="Un'introduzione succulenta al tuo pasto, preparata con prodotti freschi e condimenti eccezionali."
-                    data-es="Una introducción deliciosa a tu comida, elaborada con productos frescos y condimentos excepcionales.">
-                </p>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <img src="FBG1.png" alt="Dish 4">
-            <div class="menu-text">
-                <h3 
-                    data-en="Dish 4" 
-                    data-fr="Plat 4" 
-                    data-ru="Блюдо 4" 
-                    data-ro="Mâncarea 4"
-                    data-it="Piatto 4"
-                    data-es="Plato 4">
-                </h3>
-                <p 
-                    data-en="A flavorful kickoff to your meal, blending quality ingredients with creative flair." 
-                    data-fr="Un lancement savoureux de votre repas, mélangeant des ingrédients de qualité avec une touche créative." 
-                    data-ru="Вкусный старт вашего блюда, сочетая качественные ингредиенты с креативным подходом." 
-                    data-ro="Un început gustos pentru masa ta, combinând ingrediente de calitate cu un flair creativ."
-                    data-it="Un inizio saporito per il tuo pasto, mescolando ingredienti di qualità con un tocco creativo."
-                    data-es="Un comienzo sabroso para tu comida, mezclando ingredientes de calidad con un toque creativo.">
-                </p>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <img src="FBG1.png" alt="Dish 5">
-            <div class="menu-text">
-                <h3 
-                    data-en="Dish 5" 
-                    data-fr="Plat 5" 
-                    data-ru="Блюдо 5" 
-                    data-ro="Mâncarea 5"
-                    data-it="Piatto 5"
-                    data-es="Plato 5">
-                </h3>
-                <p 
-                    data-en="A savory opening to your meal, combining fresh elements and distinctive tastes." 
-                    data-fr="Un début savoureux pour votre repas, combinant des éléments frais et des saveurs distinctives." 
-                    data-ru="Сытное начало вашего блюда, сочетая свежие ингредиенты и отличительные вкусы." 
-                    data-ro="Un început savuros pentru masa ta, combinând elemente proaspete și gusturi distinctive."
-                    data-it="Un inizio saporito per il tuo pasto, combinando ingredienti freschi e sapori distintivi."
-                    data-es="Una apertura sabrosa para tu comida, combinando elementos frescos y sabores distintivos.">
-                </p>
-            </div>
-        </div>
+        <a href="hot-drinks.html" class="category-box" 
+           data-en="Hot Drinks" 
+           data-fr="Boissons Chaudes" 
+           data-ru="Горячие Напитки" 
+           data-ro="Băuturi Calde" 
+           data-it="Bevande Calde" 
+           data-es="Bebidas Calientes">
+            <h2></h2>
+        </a>
     </section>
 
     <footer>
         <div class="social-media">
             <a href="https://www.tiktok.com" target="_blank" title="Open TikTok"><ion-icon name="logo-tiktok"></ion-icon></a>
-            <a href="https://www.youtube.com/@CortacMihai" target="_blank" title="Open YouTube"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://www.facebook.com/c.mihai16" target="_blank" title="Open Facebook"><ion-icon name="logo-facebook"></ion-icon></a>
             <a href="https://www.instagram.com/c.mihai16" target="_blank" title="Open Instagram"><ion-icon name="logo-instagram"></ion-icon></a>
         </div>
         
@@ -202,7 +144,6 @@
             data-ro="© 2025 Restaurantul lui Mihai. Toate drepturile rezervate."
             data-it="© 2025 Il ristorante di Mihai. Tutti i diritti riservati."
             data-es="© 2025 El restaurante de Mihai. Todos los derechos reservados.">
-            © 2025 Mihai's Restaurant. All rights reserved.
         </p>
     </footer>
 
