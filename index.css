@@ -30,7 +30,7 @@ html {
     left: 0; /* Aligns to the left */
     background-color: rgba(0, 0, 0, 0.9); /* Dark semi-transparent background */
     overflow-x: hidden; /* Prevents horizontal scrolling */
-    transition: 0.5s; /* Smooth width transition */
+    transition: width 0.3s ease; /* Smooth width transition */;
     padding-top: 60px; /* Space to avoid overlap with hamburger icon */
     z-index: 1000; /* Below the hamburger menu */
 }
