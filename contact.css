@@ -24,14 +24,14 @@ html {
 
 /** Styles the sidebar navigation panel */
 .sidebar {
-    height: 100%; /* Full height of the viewport */
+    height: 100vh; /* Full height of the viewport */
     width: 0; /* Starts hidden */
-    position: fixed; /* Fixes the sidebar to the viewport */
+    position: absolute; /* Fixes the sidebar to the viewport */
     top: 0; /* Aligns to the top */
     left: 0; /* Aligns to the left */
     background-color: rgba(0, 0, 0, 0.9); /* Dark semi-transparent background */
     overflow-x: hidden; /* Prevents horizontal scrolling */
-    transition: 0.5s; /* Smooth width transition */
+    transition: width 0.3s ease; /* Smooth width transition */;
     padding-top: 60px; /* Space to avoid overlap with hamburger icon */
     z-index: 1000; /* Below the hamburger menu */
 }
@@ -59,8 +59,35 @@ html {
 
 /** Hover effect for sidebar links */
 .sidebar ul li a:hover {
+    color: #f0c14b; /* Change to a highlight color, adjust as needed */
     background-color: #555;
 }
+
+/* Style the nested social media list */
+.social-media-sidebar {
+    list-style: none;
+    padding-left: 20px; /* Indent the icons slightly under Contact */
+    margin: 2px 0 0 0; /* Spacing */
+}
+
+/* Style each social media item */
+.social-media-sidebar li {
+    display: inline-block; /* Display icons horizontally */
+    margin-right: 0.1px; /* Space between icons */
+}
+
+/* Style the icons */
+.social-media-sidebar ion-icon {
+    font-size: 20px; /* Adjust size as needed */
+    color: #fff; /* Default color, adjust to match your theme */
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for icons */
+.social-media-sidebar ion-icon:hover {
+    color: #f0c14b; /* Change to a highlight color, adjust as needed */
+}
+
 
 /* General Styles */
 body.restaurant-theme {
@@ -85,7 +112,7 @@ body.restaurant-theme::after {
     left: 0; /** Left-aligned */
     width: 100vw; /** Full viewport width */
     height: 100vh; /** Full viewport height */
-    background: url('DBG2.JPG') no-repeat center center; /** Restaurant theme desktop image */
+    background: url('DBG2.jpeg') no-repeat center center; /** Restaurant theme desktop image */
     background-size: cover; /** Covers area */
     background-attachment: fixed; /** Fixed on desktop */
     z-index: -2; /** Behind overlay and content */
@@ -99,7 +126,7 @@ body.restaurant-theme::before {
     left: 0; /** Left-aligned */
     width: 100vw; /** Full viewport width */
     height: 100vh; /** Full viewport height */
-    background: rgba(0, 0, 0, 0.6); /** Dark overlay */
+    background: rgba(0, 0, 0, 0.7); /** Dark overlay */
     z-index: -1; /** Behind content */
 }
 
@@ -117,6 +144,10 @@ header {
     z-index: 10; /** Above content */
     width: 100%; /** Full width */
     box-sizing: border-box; /** Prevents overflow */
+}
+
+header a {
+    text-decoration: none;
 }
 
 /* Logo */
@@ -291,7 +322,7 @@ footer p {
 /* Mobile-Specific Background */
 @media only screen and (max-width: 768px) {
     body.restaurant-theme::after {
-        background: url('MBG2.JPG') no-repeat center center; /** Restaurant theme mobile image */
+        background: url('MBG2.jpeg') no-repeat center center; /** Restaurant theme mobile image */
         background-size: cover; /** Full coverage */
         background-attachment: scroll; /** Mobile compatibility */
         width: 100vw; /** Full width */
