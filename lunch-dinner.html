@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brunch - Mihai's Restaurant</title>
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body class="restaurant-theme lunch-dinner-page">
+    <div class="hamburger-menu" aria-label="Toggle navigation menu">
+        <div class="hamburger-icon">☰</div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="index.html" class="nav-link" 
+                  data-en="Home" 
+                  data-fr="Accueil" 
+                  data-ru="Главная" 
+                  data-ro="Acasă" 
+                  data-it="Casa" 
+                  data-es="Inicio"></a></li>
+            <li><a href="about.html" class="nav-link" 
+                  data-en="About Us" 
+                  data-fr="À propos de nous" 
+                  data-ru="О нас" 
+                  data-ro="Despre noi" 
+                  data-it="Chi siamo" 
+                  data-es="Sobre nosotros"></a></li>
+            <li><a href="menu.html" class="nav-link" 
+                  data-en="Menu" 
+                  data-fr="Menu" 
+                  data-ru="Меню" 
+                  data-ro="Meniu" 
+                  data-it="Menù" 
+                  data-es="Menú"></a></li>
+            <li>
+                <a href="contact.html" class="nav-link" 
+                  data-en="Contact" 
+                  data-fr="Contact" 
+                  data-ru="Контакты" 
+                  data-ro="Contact" 
+                  data-it="Contatto" 
+                  data-es="Contacto"></a>
+                <!-- Social Media Links under Contact -->
+                <ul class="social-media-sidebar">
+                    <li>
+                        <a href="https://www.tiktok.com" target="_blank" title="TikTok">
+                            <ion-icon name="logo-tiktok"></ion-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/c.mihai16" target="_blank" title="Facebook">
+                            <ion-icon name="logo-facebook"></ion-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/c.mihai16" target="_blank" title="Instagram">
+                            <ion-icon name="logo-instagram"></ion-icon>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <header>
+        <nav>
+
+            <a href="menu.html">
+                <div class="logo"
+                    data-en="LUNCH & DINNER" 
+                    data-fr="DÉJEUNER ET DÎNER"
+                    data-ru="ОБЕД И УЖИН"
+                    data-ro="PRANZ & CINA"
+                    data-it="PRANZO E CENA"
+                    data-es="ALMUERZO Y CENA">
+                </div>
+            </a>
+
+            <div class="language-selector" aria-label="Select language">
+                <span id="selected-language"></span>
+                <span class="dropdown-arrow">▼</span>
+                <select id="language-select" onchange="changeLanguage()">
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="ru">Русский</option>
+                    <option value="ro">Română</option>
+                    <option value="it">Italiano</option>
+                    <option value="es">Español</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <section class="menu">
+        <!-- Savory Category -->
+        <h2 class="category-title"
+            data-en="Savory Dishes"
+            data-fr="Plats Salés"
+            data-ru="Соленые Блюда"
+            data-ro="Feluri Sărare"
+            data-it="Piatti Salati"
+            data-es="Platos Salados">Savory Dishes</h2>
+        <div class="menu-category">
+            <!-- Smoked Salmon Eggs Benedict -->
+            <div class="menu-item">
+                <div class="menu-text">
+                    <h3
+                        data-en="Smoked Salmon Eggs Benedict"
+                        data-fr="Œufs Bénédicte au Saumon Fumé"
+                        data-ru="Яйца Бенедикт с Копченым Лососем"
+                        data-ro="Ouă Benedict cu Somon Afumat"
+                        data-it="Uova Benedict con Salmone Affumicato"
+                        data-es="Huevos Benedict con Salmón Ahumado">Smoked Salmon Eggs Benedict</h3>
+                    <div class="description-price">
+                        <p
+                            data-en="Poached eggs on English muffins with smoked salmon, topped with hollandaise sauce."
+                            data-fr="Œufs pochés sur des muffins anglais avec du saumon fumé, nappés de sauce hollandaise."
+                            data-ru="Яйца пашот на английских маффинах с копченым лососем и соусом голландез."
+                            data-ro="Ouă poșate pe muffins englezești cu somon afumat, acoperite cu sos olandez."
+                            data-it="Uova in camicia su muffin inglesi con salmone affumicato e salsa olandese."
+                            data-es="Huevos escalfados sobre muffins ingleses con salmón ahumado y salsa hollandaise.">Poached eggs on English muffins with smoked salmon, topped with hollandaise sauce.</p>
+                        <span class="price">€12.99</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Avocado Toast -->
+            <div class="menu-item">
+                <div class="menu-text">
+                    <h3
+                        data-en="Avocado Toast"
+                        data-fr="Toast à l'Avocat"
+                        data-ru="Тост с Авокадо"
+                        data-ro="Toast cu Avocado"
+                        data-it="Toast con Avocado"
+                        data-es="Tostada de Aguacate">Avocado Toast</h3>
+                    <div class="description-price">
+                        <p
+                            data-en="Sourdough toast topped with mashed avocado, cherry tomatoes, and a sprinkle of feta."
+                            data-fr="Toast au levain garni d'avocat écrasé, de tomates cerises et d'une touche de feta."
+                            data-ru="Тост на закваске с пюре из авокадо, помидорами черри и посыпкой из феты."
+                            data-ro="Toast cu aluat acru, avocado zdrobit, roșii cherry și puțină feta."
+                            data-it="Toast di lievito madre con avocado schiacciato, pomodorini e una spolverata di feta."
+                            data-es="Tostada de masa madre con aguacate triturado, tomates cherry y un toque de feta.">Sourdough toast topped with mashed avocado, cherry tomatoes, and a sprinkle of feta.</p>
+                        <span class="price">€12.99</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Sweet Category -->
+        <h2 class="category-title"
+            data-en="Sweet Dishes"
+            data-fr="Plats Sucrés"
+            data-ru="Сладкие Блюда"
+            data-ro="Feluri Dulci"
+            data-it="Piatti Dolci"
+            data-es="Platos Dulces">Sweet Dishes</h2>
+        <div class="menu-category">
+            <!-- French Toast -->
+            <div class="menu-item">
+                <div class="menu-text">
+                    <h3
+                        data-en="French Toast"
+                        data-fr="Pain Perdu"
+                        data-ru="Французский Тост"
+                        data-ro="Frigănele"
+                        data-it="Toast Francese"
+                        data-es="Tostada Francesa">French Toast</h3>
+                    <div class="description-price">
+                        <p
+                            data-en="Thick-cut brioche soaked in cinnamon custard, served with maple syrup and berries."
+                            data-fr="Brioche épaisse trempée dans une crème à la cannelle, servie avec du sirop d'érable et des baies."
+                            data-ru="Толстый ломтик бриоши, пропитанный коричным кремом, с кленовым сиропом и ягодами."
+                            data-ro="Brioche groasă înmuiată în cremă de scorțișoară, servită cu sirop de arțar și fructe de pădure."
+                            data-it="Brioche spessa inzuppata in crema alla cannella, servita con sciroppo d'acero e frutti di bosco."
+                            data-es="Brioche grueso remojado en crema de canela, servido con sirop de arce y bayas.">Thick-cut brioche soaked in cinnamon custard, served with maple syrup and berries.</p>
+                        <span class="price">€12.99</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Pancakes -->
+            <div class="menu-item">
+                <div class="menu-text">
+                    <h3
+                        data-en="Pancakes"
+                        data-fr="Crêpes"
+                        data-ru="Блины"
+                        data-ro="Clătite"
+                        data-it="Pancake"
+                        data-es="Panqueques">Pancakes</h3>
+                    <div class="description-price">
+                        <p
+                            data-en="Fluffy pancakes with a choice of chocolate sauce or fresh fruit compote."
+                            data-fr="Crêpes moelleuses avec un choix de sauce au chocolat ou de compote de fruits frais."
+                            data-ru="Пышные блины с шоколадным соусом или компотом из свежих фруктов на выбор."
+                            data-ro="Clătite pufoase cu sos de ciocolată sau compot de fructe proaspete la alegere."
+                            data-it="Pancake soffici con scelta di salsa al cioccolato o composta di frutta fresca."
+                            data-es="Panqueques esponjosos con salsa de chocolate o compota de frutas frescas a elegir.">Fluffy pancakes with a choice of chocolate sauce or fresh fruit compote.</p>
+                        <span class="price">€12.99</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-media">
+            <a href="https://www.tiktok.com" target="_blank" title="Open TikTok"><ion-icon name="logo-tiktok"></ion-icon></a>
+            <a href="https://www.facebook.com/c.mihai16" target="_blank" title="Open Facebook"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="https://www.instagram.com/c.mihai16" target="_blank" title="Open Instagram"><ion-icon name="logo-instagram"></ion-icon></a>
+        </div>
+        
+        <p class="address">
+            <a href="https://maps.google.com/?q=Place+du+Casino,+Monte-Carlo,+Monaco" target="_blank" class="map-link">
+                Place du Casino, Monte-Carlo, Monaco
+            </a>
+        </p>
+    
+        <p 
+            data-en="© 2025 Mihai's Restaurant. All rights reserved." 
+            data-fr="© 2025 Restaurant de Mihai. Tous droits réservés."
+            data-ru="© 2025 Ресторан Михаила. Все права защищены."
+            data-ro="© 2025 Restaurantul lui Mihai. Toate drepturile rezervate."
+            data-it="© 2025 Il ristorante di Mihai. Tutti i diritti riservati."
+            data-es="© 2025 El restaurante de Mihai. Todos los derechos reservados.">
+        </p>
+    </footer>
+
+    <script src="index.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

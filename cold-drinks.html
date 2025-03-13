@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brunch - Mihai's Restaurant</title>
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body class="restaurant-theme cold-drinks-page">
+    <div class="hamburger-menu" aria-label="Toggle navigation menu">
+        <div class="hamburger-icon">☰</div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="index.html" class="nav-link" 
+                  data-en="Home" 
+                  data-fr="Accueil" 
+                  data-ru="Главная" 
+                  data-ro="Acasă" 
+                  data-it="Casa" 
+                  data-es="Inicio"></a></li>
+            <li><a href="about.html" class="nav-link" 
+                  data-en="About Us" 
+                  data-fr="À propos de nous" 
+                  data-ru="О нас" 
+                  data-ro="Despre noi" 
+                  data-it="Chi siamo" 
+                  data-es="Sobre nosotros"></a></li>
+            <li><a href="menu.html" class="nav-link" 
+                  data-en="Menu" 
+                  data-fr="Menu" 
+                  data-ru="Меню" 
+                  data-ro="Meniu" 
+                  data-it="Menù" 
+                  data-es="Menú"></a></li>
+            <li>
+                <a href="contact.html" class="nav-link" 
+                  data-en="Contact" 
+                  data-fr="Contact" 
+                  data-ru="Контакты" 
+                  data-ro="Contact" 
+                  data-it="Contatto" 
+                  data-es="Contacto"></a>
+                <!-- Social Media Links under Contact -->
+                <ul class="social-media-sidebar">
+                    <li>
+                        <a href="https://www.tiktok.com" target="_blank" title="TikTok">
+                            <ion-icon name="logo-tiktok"></ion-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/c.mihai16" target="_blank" title="Facebook">
+                            <ion-icon name="logo-facebook"></ion-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/c.mihai16" target="_blank" title="Instagram">
+                            <ion-icon name="logo-instagram"></ion-icon>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <header>
+        <nav>
+
+            <a href="menu.html">
+                <div class="logo"
+                    data-en="COLD DRINKS" 
+                    data-fr="BOISSONS FRAÎCHES"
+                    data-ru="ХОЛОДНЫЕ НАПИТКИ"
+                    data-ro="BĂUTURI RECI"
+                    data-it="BEVANDE FREDDE"
+                    data-es="BEBIDAS FRÍAS">
+                </div>
+            </a>
+
+            <div class="language-selector" aria-label="Select language">
+                <span id="selected-language"></span>
+                <span class="dropdown-arrow">▼</span>
+                <select id="language-select" onchange="changeLanguage()">
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="ru">Русский</option>
+                    <option value="ro">Română</option>
+                    <option value="it">Italiano</option>
+                    <option value="es">Español</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <section class="menu">
+        <!-- Drinks Category -->
+        <h2 class="category-title"
+            data-en="DRINKS"
+            data-fr="BOISSONS"
+            data-ru="НАПИТКИ"
+            data-ro="BĂUTURI"
+            data-it="BEVANDE"
+            data-es="BEBIDAS">DRINKS</h2>
+        <div class="menu-category">
+            <!-- Water -->
+            <div class="menu-item">
+                <div class="menu-text">
+                    <h3
+                        data-en="WATER"
+                        data-fr="EAU"
+                        data-ru="ВОДА"
+                        data-ro="APĂ"
+                        data-it="ACQUA"
+                        data-es="AGUA">WATER</h3>
+                    <div class="description-price">
+                    <p
+                        data-en=""
+                        data-fr=""
+                        data-ru=""
+                        data-ro=""
+                        data-it=""
+                        data-es="">
+                    </p>
+                        <span class="price">€12.99</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Coca-Cola -->
+            <div class="menu-item">
+                <div class="menu-text">
+                    <h3
+                        data-en="COCA-COLA"
+                        data-fr="COCA-COLA"
+                        data-ru="КОКА-КОЛА"
+                        data-ro="COCA-COLA"
+                        data-it="COCA-COLA"
+                        data-es="COCA-COLA">COCA-COLA</h3>
+                    <div class="description-price">
+                        <p
+                        data-en=""
+                        data-fr=""
+                        data-ru=""
+                        data-ro=""
+                        data-it=""
+                        data-es="">
+                    </p>
+                        <span class="price">€12.99</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Sweet Category -->
+        <h2 class="category-title"
+            data-en="SMOOTHIES"
+            data-fr="SMOOTHIES"
+            data-ru="СМУЗИ"
+            data-ro="SMOOTHIE-URI"
+            data-it="FRULLATI"
+            data-es="BATIDOS">SMOOTHIES</h2>
+        <div class="menu-category">
+            <!-- Berry Blast -->
+            <div class="menu-item">
+                <div class="menu-text">
+                    <h3
+                        data-en="BERRY BLAST"
+                        data-fr="EXPLOSION DE BAIES"
+                        data-ru="ЯГОДНЫЙ ВЗРЫВ"
+                        data-ro="EXPLOZIE DE FRUCTE"
+                        data-it="ESPLOSIONE DI BACCHE"
+                        data-es="EXPLOSIÓN DE BAYAS">BERRY BLAST</h3>
+                    <div class="description-price">
+                        <p
+                            data-en="Made with strawberries, blueberries, raspberries, and yogurt"
+                            data-fr="Fait avec des fraises, des myrtilles, des framboises et du yaourt"
+                            data-ru="Сделано из клубники, голубики, малины и йогурта"
+                            data-ro="Făcut cu căpșuni, afine, zmeură și iaurt"
+                            data-it="Fatto con fragole, mirtilli, lamponi e yogurt"
+                            data-es="Hecho con fresas, arándanos, frambuesas y yogur">
+                            Made with strawberries, blueberries, raspberries, and yogurt
+                        </p>
+                        <span class="price">€12.99</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Tropical Mix -->
+            <div class="menu-item">
+                <div class="menu-text">
+                    <h3
+                        data-en="TROPICAL MIX"
+                        data-fr="MIX TROPICAL"
+                        data-ru="ТРОПИЧЕСКИЙ МИКС"
+                        data-ro="MIX TROPICAL"
+                        data-it="MIX TROPICALE"
+                        data-es="MEZCLA TROPICAL">TROPICAL MIX</h3>
+                    <div class="description-price">
+                        <p
+                            data-en="Made with mango, pineapple, banana, and coconut milk"
+                            data-fr="Fait avec de la mangue, de l'ananas, de la banane et du lait de coco"
+                            data-ru="Сделано из манго, ананаса, банана и кокосового молока"
+                            data-ro="Făcut cu mango, ananas, banană și lapte de cocos"
+                            data-it="Fatto con mango, ananas, banana e latte di cocco"
+                            data-es="Hecho con mango, piña, plátano y leche de coco">
+                            Made with mango, pineapple, banana, and coconut milk
+                        </p>
+                        <span class="price">€12.99</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-media">
+            <a href="https://www.tiktok.com" target="_blank" title="Open TikTok"><ion-icon name="logo-tiktok"></ion-icon></a>
+            <a href="https://www.facebook.com/c.mihai16" target="_blank" title="Open Facebook"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="https://www.instagram.com/c.mihai16" target="_blank" title="Open Instagram"><ion-icon name="logo-instagram"></ion-icon></a>
+        </div>
+        
+        <p class="address">
+            <a href="https://maps.google.com/?q=Place+du+Casino,+Monte-Carlo,+Monaco" target="_blank" class="map-link">
+                Place du Casino, Monte-Carlo, Monaco
+            </a>
+        </p>
+    
+        <p 
+            data-en="© 2025 Mihai's Restaurant. All rights reserved." 
+            data-fr="© 2025 Restaurant de Mihai. Tous droits réservés."
+            data-ru="© 2025 Ресторан Михаила. Все права защищены."
+            data-ro="© 2025 Restaurantul lui Mihai. Toate drepturile rezervate."
+            data-it="© 2025 Il ristorante di Mihai. Tutti i diritti riservati."
+            data-es="© 2025 El restaurante de Mihai. Todos los derechos reservados.">
+        </p>
+    </footer>
+
+    <script src="index.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
