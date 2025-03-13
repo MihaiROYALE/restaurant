@@ -23,9 +23,9 @@ html {
 
 /** Styles the sidebar navigation panel */
 .sidebar {
-    height: 100%; /* Full height of the viewport */
+    height: 100vh; /* Full height of the viewport */
     width: 0; /* Starts hidden */
-    position: fixed; /* Fixes the sidebar to the viewport */
+    position: absolute; /* Fixes the sidebar to the viewport */
     top: 0; /* Aligns to the top */
     left: 0; /* Aligns to the left */
     background-color: rgba(0, 0, 0, 0.9); /* Dark semi-transparent background */
