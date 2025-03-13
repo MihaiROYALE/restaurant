@@ -1,504 +1,766 @@
-/** Ensures no horizontal scrolling at the document root level */
 html {
-    overflow-x: hidden;
+    overflow-x: hidden; /* Ensures no horizontal scrolling at the document root level by hiding any overflow content on the x-axis */
 }
 
 /* Hamburger Menu and Sidebar */
-/** Styles the container for the hamburger menu icon */
+
 .hamburger-menu {
-    position: absolute; /** Positions relative to header */
-    top: 15px; /* Aligns with the top of the language selector */
-    left: 20px; /* Distance from the left of the viewport */
-    z-index: 1001; /* Above the sidebar (z-index: 1000) */
-    cursor: pointer; /* Indicates clickability */
+    position: absolute; /* Positions relative to the nearest positioned ancestor (header in this case) */
+    top: 15px; /* Distance from the top of the header */
+    left: 20px; /* Distance from the left edge */
+    z-index: 1001; /* Ensures the hamburger menu stays above the sidebar when both are visible */
+    cursor: pointer; /* Changes cursor to a pointer to indicate it’s clickable */
 }
 
-/** Styles the hamburger icon itself */
 .hamburger-icon {
-    font-size: 30px; /* Large size for visibility */
-    color: #fff; /* White color to match theme */
-    transition: transform 0.3s; /* Smooth transition for icon change */
-    /* Remove position: fixed and z-index: 1100; inherit from .hamburger-menu */
+    font-size: 30px; /* Sets a large font size for visibility */
+    color: #fff; /* Uses white color to match the theme */
+    transition: transform 0.3s; /* Adds a smooth animation for transform changes (e.g., turning into an X when clicked) */
 }
 
-/** Styles the sidebar navigation panel */
 .sidebar {
-    height: 100%; /* Full height of the viewport */
+    height: 100vh; /* Full height of the viewport */
     width: 0; /* Starts hidden */
-    position: fixed; /* Fixes the sidebar to the viewport */
-    top: 0; /* Aligns to the top */
-    left: 0; /* Aligns to the left */
-    background-color: rgba(0, 0, 0, 0.9); /* Dark semi-transparent background */
-    overflow-x: hidden; /* Prevents horizontal scrolling */
-    transition: 0.5s; /* Smooth width transition */
-    padding-top: 60px; /* Space to avoid overlap with hamburger icon */
-    z-index: 1000; /* Below the hamburger menu */
+    position: absolute; /* Fixes the sidebar to the viewport */
+    top: 0; /* Aligns to the top of the viewport */
+    left: 0; /* Aligns to the left edge of the viewport */
+    background-color: rgba(0, 0, 0, 0.9); /* Dark semi-transparent background for a sleek look */
+    overflow-x: hidden; /* Prevents horizontal scrolling within the sidebar */
+    transition: width 0.3s ease; /* Smooth width transition */
+    padding-top: 60px; /* Adds padding at the top to avoid overlap with the hamburger icon */
+    z-index: 1000; /* Places the sidebar below the hamburger menu but above main content */
 }
 
-/** Ensures the sidebar content doesn’t overlap the hamburger icon */
 .sidebar[style*="width: 250px"] {
-    z-index: 999; /* Slightly lower when open to keep icon clickable */
+    z-index: 999; /* Slightly lowers the z-index when open to ensure hamburger menu remains on top */
 }
 
-/** Styles the unordered list inside the sidebar */
 .sidebar ul {
-    list-style-type: none;
-    padding: 0;
+    list-style-type: none; /* Removes default bullet points from the list */
+    padding: 0; /* Removes padding for a tight layout */
 }
 
-/** Styles each list item link in the sidebar */
 .sidebar ul li a {
-    padding: 15px 20px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #fff;
-    display: block;
-    transition: 0.3s;
+    padding: 15px 20px; /* Adds comfortable padding around each link */
+    text-decoration: none; /* Removes the default underline from links */
+    font-size: 18px; /* Sets a readable font size */
+    color: #fff; /* Uses white text for contrast against the dark background */
+    display: block; /* Makes the link a block element for a full-width clickable area */
+    transition: 0.3s; /* Smoothly transitions background color on hover */
 }
 
-/** Hover effect for sidebar links */
 .sidebar ul li a:hover {
-    background-color: #555;
+    color: #f0c14b; /* Change to a highlight color, adjust as needed */
+    background-color: #555; /* Changes background to a darker gray on hover for visual feedback */
+}
+
+.social-media-sidebar {
+    list-style: none; /* Removes default list styling */
+    padding-left: 20px; /* Indent the icons slightly under Contact */
+    margin: 2px 0 0 0; /* Spacing */
+}
+
+.social-media-sidebar li {
+    display: inline-block; /* Display icons horizontally */
+    margin-right: 0.1px; /* Space between icons */
+}
+
+.social-media-sidebar ion-icon {
+    font-size: 20px; /* Adjust size as needed */
+    color: #fff; /* Default color, adjust to match your theme */
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.social-media-sidebar ion-icon:hover {
+    color: #f0c14b; /* Change to a highlight color, adjust as needed */
 }
 
 /* General Styles */
+
 body.restaurant-theme {
-    font-family: Arial, sans-serif; /** Consistent, clean font */
-    margin: 0; /** Full layout control */
-    padding: 0; /** Full layout control */
-    background-color: #1a1a1a; /** Dark gray fallback */
-    color: #eee; /** Light text for contrast */
-    text-align: center; /** Default centering */
-    min-height: 100vh; /** Full viewport height */
-    position: relative; /** For fixed background */
-    overflow-x: hidden; /** No horizontal scroll */
+    font-family: Arial, sans-serif; /* Uses a clean, readable font family */
+    margin: 0; /* Removes default margins around the body */
+    padding: 0; /* Removes default padding around the body */
+    background-color: #1a1a1a; /* Sets a dark gray background as a fallback */
+    color: #eee; /* Uses light text color for contrast against the dark background */
+    text-align: center; /* Centers all content by default */
+    min-height: 100vh; /* Ensures the body takes up at least the full viewport height */
+    position: relative; /* Allows positioning of pseudo-elements relative to the body */
+    overflow-x: hidden; /* Prevents horizontal scrolling on the body */
+    display: flex; /* Uses flexbox to structure the layout */
+    flex-direction: column; /* Stacks children (header, main, footer) vertically */
 }
 
-/* Fixed Background Container */
 body.restaurant-theme::after {
-    content: ''; /** Required for pseudo-element */
-    position: fixed; /** Fixed on desktop */
-    top: 0; /** Top-aligned */
-    left: 0; /** Left-aligned */
-    width: 100vw; /** Full viewport width */
-    height: 100vh; /** Full viewport height */
-    background: url('DBG3.AVIF') no-repeat center center; /** Restaurant theme desktop image */
-    background-size: cover; /** Covers area */
-    background-attachment: fixed; /** Fixed on desktop */
-    z-index: -2; /** Behind overlay and content */
+    content: ''; /* Required for pseudo-elements to render */
+    position: fixed; /* Fixes the background to the viewport, unaffected by scrolling */
+    top: 0; /* Aligns to the top of the viewport */
+    left: 0; /* Aligns to the left of the viewport */
+    width: 100vw; /* Spans the full viewport width */
+    height: 100vh; /* Spans the full viewport height */
+    background-size: cover; /* Ensures the background covers the entire area */
+    background-repeat: no-repeat; /* Prevents the background from repeating */
+    background-position: center center; /* Centers the background image */
+    background-attachment: fixed; /* Keeps the background fixed on desktop */
+    z-index: -2; /* Places the background behind all content */
 }
 
-/* Subtle Overlay for Readability */
+/* Desktop Backgrounds for Each Page */
+body.restaurant-theme.menu-page::after {
+    background-image: url('DBG4.jpeg'); /* Background for menu.html on desktop */
+}
+
+body.restaurant-theme.lunch-dinner-page::after {
+    background-image: url('DBG5.jpeg'); /* Background for lunch-dinner.html on desktop */
+}
+
+body.restaurant-theme.hot-drinks-page::after {
+    background-image: url('DBG6.jpeg'); /* Background for hot-drinks.html on desktop */
+}
+
+body.restaurant-theme.cold-drinks-page::after {
+    background-image: url('DBG7.jpeg'); /* Background for cold-drinks.html on desktop */
+}
+
 body.restaurant-theme::before {
-    content: ''; /** Required for pseudo-element */
-    position: fixed; /** Fixed with background */
-    top: 0; /** Top-aligned */
-    left: 0; /** Left-aligned */
-    width: 100vw; /** Full viewport width */
-    height: 100vh; /** Full viewport height */
-    background: rgba(0, 0, 0, 0.6); /** Dark overlay */
-    z-index: -1; /** Behind content */
+    content: ''; /* Required for pseudo-elements to render */
+    position: fixed; /* Fixes the overlay to the viewport, matching the background */
+    top: 0; /* Aligns to the top of the viewport */
+    left: 0; /* Aligns to the left of the viewport */
+    width: 100vw; /* Spans the full viewport width */
+    height: 100vh; /* Spans the full viewport height */
+    background: rgba(0, 0, 0, 0.7); /* Adds a semi-transparent dark overlay for text readability */
+    z-index: -1; /* Places the overlay above the background but below content */
 }
 
 /* Header */
+
 header {
-    background: rgba(34, 34, 34, 0.6); /** Matches restaurant theme */
-    padding: 14px 0; /** Vertical padding */
-    position: relative; /** For child positioning */
-    backdrop-filter: blur(2px); /** Glass effect */
-    z-index: 10; /** Above content */
-    width: 100%; /** Full width */
-    box-sizing: border-box; /** Prevents overflow */
+    background: rgba(34, 34, 34, 0.6); /* Semi-transparent dark gray background */
+    padding: 14px 0; /* Adds vertical padding for spacing */
+    position: relative; /* Allows positioning of child elements (e.g., logo, language selector) */
+    backdrop-filter: blur(2px); /* Applies a subtle blur effect for a glass look */
+    z-index: 10; /* Places the header above main content */
+    width: 100%; /* Ensures the header spans the full width */
+    box-sizing: border-box; /* Includes padding in the width calculation */
 }
 
 /* Logo */
+
 .logo {
-    font-size: 28px; /** Prominent logo */
-    font-weight: bold; /** Bold branding */
-    color: #fff; /** White contrast */
-    text-transform: uppercase; /** Stylish look */
-    margin: 0; /** Precise alignment */
+    font-size: 28px; /* Sets a large font size for prominence */
+    font-weight: bold; /* Makes the text bold for branding emphasis */
+    color: #fff; /* Uses white color for contrast */
+    text-transform: uppercase; /* Converts text to uppercase for a stylish look */
+    margin: 0; /* Removes extra spacing around the logo */
+}
+
+header a {
+    text-decoration: none; /* Removes underline from links */
 }
 
 /* Language Selector */
+
 .language-selector {
-    position: absolute; /** Relative to header */
-    top: 15px; /** Matches restaurant theme */
-    right: 20px; /** Matches restaurant theme */
-    display: flex; /** Horizontal alignment */
-    align-items: center; /** Vertical centering */
-    background: rgba(0, 0, 0, 0.513); /** Matches restaurant theme */
-    padding: 5px 10px; /** Comfortable spacing */
-    border-radius: 5px; /** Rounded corners */
-    color: white; /** Readable text */
-    font-size: 14px; /** Compact font */
-    cursor: pointer; /** Interactive */
-    transition: background 0.3s; /** Smooth hover */
-    backdrop-filter: blur(5px); /** Glass effect */
-    z-index: 10; /** Above header content */
+    position: absolute; /* Positions it relative to the header */
+    top: 15px; /* Aligns it vertically with the hamburger menu */
+    right: 20px; /* Distance from the right edge of the header */
+    display: flex; /* Uses flexbox to align children (text and arrow) horizontally */
+    align-items: center; /* Centers items vertically */
+    background: rgba(0, 0, 0, 0.513); /* Dark semi-transparent background for consistency */
+    padding: 5px 10px; /* Adds padding for a comfortable size */
+    border-radius: 5px; /* Rounds the corners for a modern look */
+    color: white; /* White text for readability */
+    font-size: 14px; /* Compact font size for the dropdown */
+    cursor: pointer; /* Indicates interactivity with a pointer cursor */
+    transition: background 0.3s; /* Smoothly transitions background color on hover */
+    backdrop-filter: blur(5px); /* Applies a glass effect */
+    z-index: 10; /* Ensures it stays above other header content */
 }
 
 .language-selector:hover {
-    background: rgba(51, 51, 51, 0.7); /** Hover feedback */
+    background: rgba(51, 51, 51, 0.7); /* Darkens the background slightly on hover */
 }
 
 #selected-language {
-    margin-right: 5px; /** Space before arrow */
-    font-weight: 500; /** Medium weight */
+    margin-right: 5px; /* Adds a small margin to separate it from the arrow */
+    font-weight: 500; /* Uses a medium weight for readability */
 }
 
 .dropdown-arrow {
-    font-size: 10px; /** Subtle arrow */
-    color: #ccc; /** Light gray */
+    font-size: 10px; /* Small size for the arrow */
+    color: #ccc; /* Light gray color for subtle contrast */
 }
 
 .language-selector select {
-    position: absolute; /** Functional overlap */
-    top: 0; /** Full alignment */
-    left: 0; /** Full alignment */
-    width: 100%; /** Full clickable area */
-    height: 100%; /** Full clickable area */
-    opacity: 0; /** Invisible but functional */
-    cursor: pointer; /** Usability */
-    z-index: 1; /** Below text */
+    position: absolute; /* Overlaps the parent container fully */
+    top: 0; /* Aligns to the top of the parent */
+    left: 0; /* Aligns to the left of the parent */
+    width: 100%; /* Covers the full width of the parent */
+    height: 100%; /* Covers the full height of the parent */
+    opacity: 0; /* Makes the select invisible but still functional */
+    cursor: pointer; /* Indicates it’s clickable */
+    z-index: 1; /* Ensures it’s clickable despite being behind text */
 }
 
-/* Menu Section */
+/* Menu Categories Section (for menu.html) */
+
+.menu-categories {
+    display: flex; /* Uses flexbox for a horizontal layout */
+    justify-content: center; /* Centers the category boxes horizontally */
+    align-items: center; /* Aligns items vertically in the center */
+    flex-wrap: wrap; /* Allows boxes to wrap to the next line on smaller screens */
+    padding: 20px; /* Adds padding to match the .menu section */
+    position: relative; /* Allows layering with z-index */
+    z-index: 5; /* Places it above the background */
+    gap: 30px; /* Adds space between category boxes */
+    flex-grow: 1; /* Allows the container to grow and fill available space */
+    min-height: calc(100vh - 150px); /* Ensures a minimum height accounting for header/footer */
+}
+
+.category-box {
+    display: flex; /* Uses flexbox for internal layout */
+    flex-direction: column; /* Stacks image and text vertically */
+    align-items: center; /* Centers content horizontally */
+    background: rgba(34, 34, 34, 0.3); /* Matches the semi-transparent background of menu items */
+    padding: 30px; /* Adds internal spacing */
+    border-radius: 10px; /* Rounds corners for a modern look */
+    width: 350px; /* Sets a fixed width for consistency */
+    max-width: 90%; /* Caps the maximum width for responsiveness */
+    text-decoration: none; /* Removes underline from the link */
+    color: #eee; /* Light text for contrast */
+    transition: transform 0.3s, background 0.3s; /* Smoothly animates scaling and background changes on hover */
+    backdrop-filter: blur(2px); /* Applies a glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Adds a subtle border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Adds depth with a shadow */
+}
+
+.category-box h2 {
+    font-size: 24px; /* Matches the font size of menu item titles */
+    color: #eab656; /* Uses a gold accent color for emphasis */
+    text-transform: uppercase; /* Converts text to uppercase for consistency */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Adds a shadow for readability against the background */
+    margin: 0; /* Removes extra spacing */
+}
+
+.category-box:hover {
+    color: #f0c14b; /* Change to a highlight color, adjust as needed */
+    transform: scale(1.05); /* Slightly enlarges the box on hover */
+    background: rgba(51, 51, 51, 0.6); /* Darkens the background for visual feedback */
+}
+
+/* Menu Section (for food.html, cold-drinks.html, hot-drinks.html) */
+
 .menu {
-    display: flex; /** Flexbox layout */
-    flex-direction: column; /** Vertical stacking */
-    align-items: center; /** Centered items */
-    padding: 50px 20px; /** Matches .tables padding */
-    position: relative; /** For layering */
-    z-index: 5; /** Above background */
+    display: flex; /* Uses flexbox for vertical stacking */
+    flex-direction: column; /* Stacks categories and items vertically */
+    align-items: flex-start; /* Aligns items to the left */
+    justify-content: flex-start; /* Aligns content to the top */
+    padding: 50px 20px; /* Adds generous padding for spacing */
+    position: relative; /* Allows layering with z-index */
+    z-index: 5; /* Places it above the background */
+}
+
+.category-title {
+    display: flex; /* Uses flexbox to align title and lines */
+    align-items: center; /* Centers the title and lines vertically */
+    justify-content: center; /* Centers the entire title block horizontally */
+    width: 100%; /* Spans the full width of the parent */
+    margin: 40px 0 20px; /* Adds spacing above and below the title */
+    font-size: 2em; /* Sets a prominent font size */
+    color: white; /* Uses white for consistency */
+    text-transform: uppercase; /* Converts text to uppercase for style */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Adds a shadow for readability */
+    font-weight: bold; /* Makes the title bold */
+}
+
+.category-title::before,
+.category-title::after {
+    content: ''; /* Required for pseudo-elements to render */
+    flex: 1; /* Allows the lines to grow equally to fill space */
+    height: 2px; /* Sets the thickness of the lines */
+    background-color: #eab6564e; /* Uses a light gray with transparency for contrast */
+    margin: 0 20px; /* Adds space between the line and the title */
+}
+
+.menu-category {
+    width: 100%; /* Spans the full width of the parent */
+    display: flex; /* Uses flexbox for layout */
+    flex-direction: column; /* Stacks items vertically */
+    align-items: center; /* Centers items horizontally */
 }
 
 .menu-item {
-    display: flex; /** Flexbox for alignment */
-    align-items: center; /** Vertical alignment */
-    background: rgba(34, 34, 34, 0.3); /** Matches restaurant theme */
-    margin: 20px 0; /** Vertical spacing */
-    padding: 20px; /** Internal spacing */
-    border-radius: 10px; /** Rounded corners */
-    width: 80%; /** Responsive width */
-    max-width: 800px; /** Matches table max-width */
-    transition: transform 0.3s; /** Smooth hover */
-    backdrop-filter: blur(2px); /** Glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.1); /** Subtle border */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /** Depth */
-}
-
-.menu-item img {
-    width: 150px; /** Fixed image size */
-    border-radius: 10px; /** Rounded corners */
-    margin-right: 20px; /** Space to text */
-    filter: brightness(90%); /** Subtle dim */
+    display: flex; /* Uses flexbox for image and text layout */
+    background: rgba(34, 34, 34, 0.3); /* Semi-transparent background for the glass effect */
+    margin: 20px 0; /* Adds vertical spacing between items */
+    padding: 20px; /* Adds internal padding */
+    border-radius: 10px; /* Rounds corners for a modern look */
+    width: 90%; /* Increases the width to make the box longer */
+    max-width: 1000px; /* Increases the maximum width for larger screens */
+    transition: transform 0.3s; /* Smoothly animates scaling on hover */
+    backdrop-filter: blur(2px); /* Applies a glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Adds a subtle border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Adds depth with a shadow */
 }
 
 .menu-text {
-    text-align: left; /** Left-aligned text */
-    max-width: 400px; /** Limits text width */
+    display: flex; /* Uses flexbox to layout the text content */
+    flex-direction: column; /* Stacks title and description/price vertically */
+    flex: 1; /* Allows the text container to take up remaining space */
+    text-align: left; /* Aligns text to the left */
 }
 
 .menu-text h3 {
-    font-size: 24px; /** Emphasis */
-    color: #eab656; /** Matches restaurant theme */
-    text-transform: uppercase; /** Consistent styling */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /** Readability */
-    margin: 0; /** Precise alignment */
+    font-size: 24px; /* Sets a prominent font size */
+    color: #eab656; /* Uses gold accent color for emphasis */
+    text-transform: uppercase; /* Converts text to uppercase for consistency */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Adds a shadow for readability */
+    margin: 0 0 10px 0; /* Adds spacing below the title */
 }
 
 .menu-text p {
-    font-size: 16px; /** Legible */
-    color: #ddd; /** Matches restaurant theme */
+    font-size: 16px; /* Sets a readable font size */
+    color: #ddd; /* Uses light gray text for contrast */
+    margin: 0; /* Removes margins to avoid extra spacing */
 }
 
-/* Alternate Layout for Even Items */
+.menu-text .price {
+    font-size: 18px; /* Sets a slightly larger font size for visibility */
+    color: #eab656; /* Matches the gold color of the title */
+    font-weight: bold; /* Makes the price bold for emphasis */
+}
+
+.description-price {
+    display: flex; /* Uses flexbox to layout description and price */
+    flex-direction: row; /* Aligns items in a row */
+    justify-content: space-between; /* Pushes description to the left and price to the right */
+    align-items: center; /* Aligns items vertically centered */
+}
+
 .menu-item:nth-child(even) {
-    flex-direction: row-reverse; /** Reverses layout */
+    flex-direction: row-reverse; /* Switches the flex direction to place the image on the right */
 }
 
-.menu-item:nth-child(even) img {
-    margin-right: 0; /** No right margin */
-    margin-left: 20px; /** Left margin for reverse */
-}
-
-/* Hover Effect */
 .menu-item:hover {
-    transform: scale(1.05); /** Matches td hover */
-    background: rgba(51, 51, 51, 0.6); /** Hover feedback */
+    transform: scale(1.05); /* Slightly enlarges the item on hover */
+    background: rgba(51, 51, 51, 0.6); /* Darkens the background for visual feedback */
 }
 
 /* Footer */
+
 footer {
-    padding: 8px 0; /** Matches restaurant theme */
-    background: rgba(0, 0, 0, 0.5); /** Matches restaurant theme */
-    margin-top: 20px; /** Space above */
-    backdrop-filter: blur(5px); /** Glass effect */
-    z-index: 5; /** Above background */
-    width: 100%; /** Full width */
-    display: flex; /** Matches restaurant theme */
-    flex-direction: column; /** Vertical stacking */
-    align-items: center; /** Centered content */
+    padding: 8px 0; /* Adds vertical padding */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for consistency */
+    margin-top: auto; /* Pushes the footer to the bottom of the flex container (body) */
+    backdrop-filter: blur(5px); /* Applies a glass effect */
+    z-index: 5; /* Places it above the background */
+    width: 100%; /* Spans the full width */
+    display: flex; /* Uses flexbox for internal layout */
+    flex-direction: column; /* Stacks children vertically */
+    align-items: center; /* Centers content horizontally */
 }
 
 footer p {
-    font-size: 10px; /** Matches restaurant theme */
-    margin: 5px 0; /** Minimal spacing */
+    font-size: 10px; /* Sets a small font size for compact text */
+    margin: 5px 0; /* Adds minimal spacing between paragraphs */
 }
 
 /* Social Media Icons */
-/** Styles social media links in the footer */
+
 .social-media {
-    display: flex; /** Uses flexbox to control icon spacing */
-    justify-content: center; /** Centers icons horizontally */
-    gap: 60px; /** Adds consistent spacing between icons, adjust for more/less */
+    display: flex; /* Uses flexbox for a horizontal layout */
+    justify-content: center; /* Centers the icons horizontally */
+    gap: 60px; /* Adds space between icons */
 }
 
 .social-media a {
-    color: rgb(255, 255, 255); /** White icons for visibility */
-    font-size: 18px; /** Large size for prominence on desktop, adjust for size */
-    padding: 1px; /** Reduced padding for better fit, adjust for more/less */
-    text-decoration: none; /** Removes underline from links */
-    display: inline-flex; /** Ensures consistent sizing and alignment */
-    align-items: center; /** Vertically centers icon */
+    color: rgb(255, 255, 255); /* Uses white color for the icons */
+    font-size: 18px; /* Sets a readable size for the icons */
+    padding: 1px; /* Adds minimal padding */
+    text-decoration: none; /* Removes underline from links */
+    display: inline-flex; /* Ensures consistent alignment */
+    align-items: center; /* Centers the icon vertically */
 }
 
 /* Address Links */
-/** Styles address links in the footer */
+
 .address {
-    display: flex; /** Uses flexbox to control link spacing */
-    justify-content: center; /** Centers links horizontally */
-    gap: 10px; /** Adds consistent spacing between links, adjust for more/less */
+    display: flex; /* Uses flexbox for a horizontal layout */
+    justify-content: center; /* Centers the links horizontally */
+    gap: 10px; /* Adds space between links */
 }
 
 .address a {
-    color: rgb(255, 255, 255); /** White text for visibility */
-    font-size: 12px; /** Readable size for address links on desktop, adjust for size */
-    padding: 10px; /** Reduced padding for better fit, adjust for more/less */
-    display: inline-flex; /** Ensures consistent sizing and alignment */
-    align-items: center; /** Vertically centers text */
+    color: rgb(255, 255, 255); /* Uses white text for contrast */
+    font-size: 12px; /* Sets a readable font size */
+    padding: 10px; /* Adds comfortable padding */
+    display: inline-flex; /* Ensures consistent alignment */
+    align-items: center; /* Centers the text vertically */
 }
 
 /* Responsive Design */
 
-/* Mobile-Specific Background */
+/* Mobile-Specific Backgrounds and Adjustments */
 @media only screen and (max-width: 768px) {
     body.restaurant-theme::after {
-        background: url('MBG3.AVIF') no-repeat center center; /** Restaurant theme mobile image */
-        background-size: cover; /** Full coverage */
-        background-attachment: scroll; /** Mobile compatibility */
-        width: 100vw; /** Full width */
-        height: 100vh; /** Full height */
+        background-attachment: scroll; /* Allows the background to scroll on mobile */
+        width: 100vw; /* Spans the full viewport width */
+        height: 100vh; /* Spans the full viewport height */
+    }
+
+    body.restaurant-theme.menu-page::after {
+        background-image: url('MBG4.jpeg'); /* Background for menu.html on mobile */
+    }
+
+    body.restaurant-theme.lunch-dinner-page::after {
+        background-image: url('MBG5.jpeg'); /* Background for lunch-dinner.html on mobile */
+    }
+
+    body.restaurant-theme.hot-drinks-page::after {
+        background-image: url('MBG6.webp'); /* Background for hot-drinks.html on mobile */
+    }
+
+    body.restaurant-theme.cold-drinks-page::after {
+        background-image: url('MBG7.jpeg'); /* Background for cold-drinks.html on mobile */
     }
 
     body.restaurant-theme::before {
-        width: 100vw; /** Matches ::after */
-        height: 100vh; /** Matches ::after */
+        width: 100vw; /* Matches the width of the background */
+        height: 100vh; /* Matches the height of the background */
     }
 
     header {
-        padding: 12px 15px; /** Internal padding */
-        width: 100vw; /** Full width */
-        box-sizing: border-box; /** No overflow */
+        padding: 12px 15px; /* Reduces padding in the header for a compact look */
+        width: 100vw; /* Ensures full width on mobile */
+        box-sizing: border-box; /* Includes padding in the width */
     }
 
     footer {
-        padding: 5px 15px; /** Internal padding */
-        width: 100vw; /** Full width */
-        box-sizing: border-box; /** No overflow */
+        padding: 5px 15px; /* Reduces padding in the footer for a compact look */
+        width: 100vw; /* Ensures full width on mobile */
+        box-sizing: border-box; /* Includes padding in the width */
     }
 
     .logo {
-        font-size: 28px; /** Maintain visibility */
+        font-size: 28px; /* Maintains the logo size for readability */
     }
 
     .language-selector {
-        top: 10px; /** Space adjustment */
-        right: 15px; /** Space adjustment */
-        padding: 4px 8px; /** Compact */
-        font-size: 12px; /** Smaller font */
+        top: 10px; /* Adjusts the top position */
+        right: 15px; /* Adjusts the right position */
+        padding: 4px 8px; /* Reduces padding */
+        font-size: 12px; /* Reduces font size */
     }
 
     #selected-language {
-        margin-right: 3px; /** Compact spacing */
+        margin-right: 3px; /* Reduces space between language text and arrow */
     }
 
     .dropdown-arrow {
-        font-size: 8px; /** Smaller arrow */
+        font-size: 8px; /* Reduces the size of the dropdown arrow */
     }
 
-        /* Hamburger Menu Adjustments */
-        .hamburger-menu {
-            top: 10px; /** Adjusted for mobile header padding */
-            left: 15px; /** Adjusted for mobile layout */
-        }
+    .hamburger-menu {
+        top: 10px; /* Adjusts the hamburger menu position for mobile */
+        left: 15px; /* Adjusts the left position */
+    }
+
+    .menu-categories {
+        padding: 30px 20px; /* Reduces padding for the category container */
+        flex-direction: column; /* Stacks categories vertically */
+        gap: 20px; /* Reduces gap between items */
+    }
+
+    .category-box {
+        width: 90%; /* Widens category boxes for mobile */
+        padding: 15px; /* Reduces internal padding */
+    }
+
+    .category-box h2 {
+        font-size: 20px; /* Reduces category title size */
+    }
+
+    .category-box:hover {
+        transform: none; /* Disables hover effect on mobile for better usability */
+        background: rgba(51, 51, 51, 0.6); /* Maintains background change */
+    }
 
     .menu {
-        padding: 30px 20px; /** Reduced padding */
+        padding: 30px 20px; /* Reduces padding for the menu items container */
+    }
+
+    .category-title {
+        font-size: 1.5em; /* Reduces category title size for mobile */
+        margin: 30px 0 15px; /* Adjusts margins */
+    }
+
+    .category-title::before,
+    .category-title::after {
+        margin: 0 10px; /* Reduces spacing for the horizontal lines */
     }
 
     .menu-item {
-        flex-direction: column; /** Stack vertically */
-        text-align: center; /** Centered text */
-        padding: 15px; /** Reduced padding */
-        width: 90%; /** Responsive width */
-    }
-
-    .menu-item img {
-        width: 120px; /** Smaller image */
-        margin: 0 0 15px 0; /** Centered with bottom margin */
+        flex-direction: column; /* Stacks menu items vertically for mobile */
+        text-align: left; /* Aligns text to the left */
+        padding: 15px; /* Reduces padding */
+        width: 95%; /* Keeps the wider width for mobile */
+        max-width: 100%; /* Adjusts max-width for mobile */
     }
 
     .menu-text {
-        max-width: 100%; /** Full width */
-        text-align: center; /** Centered text */
+        max-width: 100%; /* Ensures text takes full width */
+        display: flex; /* Maintains flexbox layout */
+        flex-direction: column; /* Stacks text vertically */
+        text-align: left; /* Aligns text to the left */
     }
 
     .menu-text h3 {
-        font-size: 20px; /** Smaller heading */
+        font-size: 20px; /* Reduces title size */
     }
 
     .menu-text p {
-        font-size: 14px; /** Smaller text */
+        font-size: 14px; /* Reduces description size */
+    }
+
+    .menu-text .price {
+        font-size: 16px; /* Reduces price size */
+    }
+
+    .description-price {
+        display: flex; /* Ensures description and price align correctly */
+        flex-direction: row; /* Aligns horizontally */
+        justify-content: space-between; /* Pushes description and price apart */
+        align-items: center; /* Centers vertically */
     }
 
     .menu-item:nth-child(even) {
-        flex-direction: column; /** Consistent stacking */
-    }
-
-    .menu-item:nth-child(even) img {
-        margin-left: 0; /** No left margin */
+        flex-direction: column; /* Ensures even items stack vertically */
     }
 
     .menu-item:hover {
-        transform: none; /** Disable scale on mobile */
-        background: rgba(51, 51, 51, 0.6); /** Hover feedback */
+        transform: none; /* Disables hover effect on mobile */
+        background: rgba(51, 51, 51, 0.6); /* Maintains background change */
     }
 
     .social-media {
-        gap: 50px; /** Tighter spacing between icons, adjust for more/less */
+        gap: 50px; /* Reduces gap between social media icons */
     }
 
     .social-media a {
-        font-size: 20px; /** Smaller icons for mobile, adjust for size */
-        padding: 5px; /** Reduced padding */
+        font-size: 20px; /* Adjusts social media icon size */
+        padding: 5px; /* Adjusts padding */
     }
 
     .address {
-        gap: 5px; /** Tighter spacing between links, adjust for more/less */
+        gap: 5px; /* Reduces gap between address links */
     }
 
     .address a {
-        font-size: 12px; /** Smaller text for mobile, adjust for size */
-        padding: 5px; /** Reduced padding */
+        font-size: 12px; /* Adjusts address link size */
+        padding: 5px; /* Reduces padding */
     }
 }
 
 /* Tablets and Smaller Laptops */
 @media (max-width: 1024px) {
+    .menu-categories {
+        padding: 40px 20px; /* Reduces padding for the category container */
+        gap: 25px; /* Reduces gap between items */
+    }
+
+    .category-box {
+        width: 80%; /* Slightly widens category boxes */
+    }
+
+    .category-box h2 {
+        font-size: 22px; /* Slightly reduces category title size */
+    }
+
     .menu {
-        padding: 40px 20px; /** Reduced padding */
+        padding: 40px 20px; /* Reduces padding for the menu items container */
+    }
+
+    .category-title {
+        font-size: 1.75em; /* Slightly reduces category title size */
     }
 
     .menu-item {
-        width: 90%; /** Responsive width */
+        width: 95%; /* Widens menu items */
+        max-width: 900px; /* Adjusts max-width */
     }
 
     .menu-text h3 {
-        font-size: 22px; /** Slightly smaller */
+        font-size: 22px; /* Slightly reduces title size */
     }
 
     .menu-text p {
-        font-size: 15px; /** Slightly smaller */
+        font-size: 15px; /* Slightly reduces description size */
+    }
+
+    .menu-text .price {
+        font-size: 17px; /* Slightly reduces price size */
+    }
+
+    .description-price {
+        display: flex; /* Ensures description and price align correctly */
+        flex-direction: row; /* Aligns horizontally */
+        justify-content: space-between; /* Pushes description and price apart */
+        align-items: center; /* Centers vertically */
     }
 
     header {
-        padding: 12px 0; /** Compact */
+        padding: 12px 0; /* Compacts the header */
     }
 
     footer {
-        padding: 5px 0; /** Compact */
+        padding: 5px 0; /* Compacts the footer */
     }
 
     .social-media a {
-        font-size: 30px; /** Slightly smaller icons */
-        padding: 8px; /** Reduced padding */
+        font-size: 30px; /* Adjusts social media icon size */
+        padding: 8px; /* Adjusts padding */
     }
 
     .address a {
-        font-size: 14px; /** Slightly smaller text */
-        padding: 8px; /** Reduced padding */
+        font-size: 14px; /* Adjusts address link size */
+        padding: 8px; /* Adjusts padding */
     }
 }
 
 /* Smaller Phones */
 @media (max-width: 480px) {
     .logo {
-        font-size: 24px; /** Smaller logo */
+        font-size: 24px; /* Reduces logo size */
+    }
+
+    .menu-categories {
+        padding: 20px; /* Reduces padding for the category container */
+    }
+
+    .category-box {
+        width: 95%; /* Nearly full-width category boxes */
+        padding: 20px; /* Reduces padding */
+    }
+
+    .category-box h2 {
+        font-size: 18px; /* Reduces category title size */
     }
 
     .menu {
-        padding: 20px; /** Minimal padding */
+        padding: 20px; /* Reduces padding for the menu items container */
+    }
+
+    .category-title {
+        font-size: 1.25em; /* Reduces category title size */
+        margin: 20px 0 10px; /* Adjusts margins */
+    }
+
+    .category-title::before,
+    .category-title::after {
+        margin: 0 8px; /* Reduces spacing for the horizontal lines */
     }
 
     .menu-item {
-        width: 95%; /** Nearly full width */
-        padding: 10px; /** Reduced padding */
-    }
-
-    .menu-item img {
-        width: 100px; /** Smaller image */
+        width: 98%; /* Nearly full-width menu items */
+        max-width: 100%; /* Adjusts max-width */
+        padding: 10px; /* Reduces padding */
     }
 
     .menu-text h3 {
-        font-size: 18px; /** Smaller heading */
+        font-size: 18px; /* Reduces title size */
     }
 
     .menu-text p {
-        font-size: 13px; /** Smaller text */
+        font-size: 13px; /* Reduces description size */
+    }
+
+    .menu-text .price {
+        font-size: 14px; /* Reduces price size */
+    }
+
+    .description-price {
+        display: flex; /* Ensures description and price align correctly */
+        flex-direction: row; /* Aligns horizontally */
+        justify-content: space-between; /* Pushes description and price apart */
+        align-items: center; /* Centers vertically */
     }
 
     .social-media a {
-        font-size: 18px; /** Smaller icons */
-        padding: 5px; /** Tighter spacing */
+        font-size: 18px; /* Reduces social media icon size */
+        padding: 5px; /* Adjusts padding */
     }
 
     .address a {
-        font-size: 10px; /** Smallest readable size */
-        padding: 3px; /** Tighter spacing */
+        font-size: 10px; /* Reduces address link size */
+        padding: 3px; /* Reduces padding */
     }
 }
 
 /* Very Small Screens */
 @media (max-width: 360px) {
     .logo {
-        font-size: 20px; /** Smallest logo */
+        font-size: 20px; /* Further reduces logo size */
+    }
+
+    .menu-categories {
+        padding: 15px; /* Minimal padding for the category container */
+    }
+
+    .category-box {
+        padding: 8px; /* Minimal padding for category boxes */
+    }
+
+    .category-box h2 {
+        font-size: 16px; /* Smallest category title size */
+    }
+
+    .menu {
+        padding: 15px; /* Minimal padding for the menu items container */
+    }
+
+    .category-title {
+        font-size: 1em; /* Smallest category title size */
+        margin: 15px 0 8px; /* Adjusts margins */
+    }
+
+    .category-title::before,
+    .category-title::after {
+        margin: 0 5px; /* Minimal spacing for the horizontal lines */
     }
 
     .menu-item {
-        padding: 10px; /** Minimal padding */
-    }
-
-    .menu-item img {
-        width: 90px; /** Smallest image */
+        width: 100%; /* Full-width menu items */
+        max-width: 100%; /* Adjusts max-width */
+        padding: 10px; /* Minimal padding */
     }
 
     .menu-text h3 {
-        font-size: 16px; /** Smallest heading */
+        font-size: 16px; /* Smallest title size */
     }
 
     .menu-text p {
-        font-size: 12px; /** Smallest text */
+        font-size: 12px; /* Smallest description size */
+    }
+
+    .menu-text .price {
+        font-size: 13px; /* Smallest price size */
+    }
+
+    .description-price {
+        display: flex; /* Ensures description and price align correctly */
+        flex-direction: row; /* Aligns horizontally */
+        justify-content: space-between; /* Pushes description and price apart */
+        align-items: center; /* Centers vertically */
     }
 
     .social-media a {
-        font-size: 16px; /** Minimal icon size */
-        padding: 2px; /** Minimal padding */
+        font-size: 16px; /* Smallest social media icon size */
+        padding: 2px; /* Minimal padding */
     }
 
     .address a {
-        font-size: 9px; /** Minimal readable size */
-        padding: 2px; /** Minimal padding */
+        font-size: 9px; /* Smallest address link size */
+        padding: 2px; /* Minimal padding */
     }
 }
