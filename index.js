@@ -35,6 +35,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Close sidebar on scroll when it's open
+        document.addEventListener('wheel', function(e) {
+            if (sidebar.style.width === '250px') {
+                closeSidebar();
+            }
+        });
+
+        // Also handle touch scrolling for mobile
+        document.addEventListener('touchmove', function(e) {
+            if (sidebar.style.width === '250px') {
+                closeSidebar();
+            }
+        });
+
         // Click outside to close
         document.addEventListener('click', function(e) {
             // Check if sidebar is open and click is outside sidebar and hamburger
