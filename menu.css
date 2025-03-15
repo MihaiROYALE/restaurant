@@ -320,13 +320,13 @@ header a {
 }
 
 .menu-text p {
-    font-size: 16px; /* Sets a readable font size */
+    font-size: 13px; /* Sets a readable font size */
     color: #ddd; /* Uses light gray text for contrast */
     margin: 0; /* Removes margins to avoid extra spacing */
 }
 
 .menu-text .price {
-    font-size: 18px; /* Sets a slightly larger font size for visibility */
+    font-size: 16px; /* Sets a slightly larger font size for visibility */
     color: #eab656; /* Matches the gold color of the title */
     font-weight: bold; /* Makes the price bold for emphasis */
 }
