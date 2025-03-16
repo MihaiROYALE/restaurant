@@ -153,7 +153,7 @@ header a {
     font-weight: bold; /** Emphasizes logo for branding */
     color: #fff; /** White for contrast against dark header */
     text-transform: uppercase; /** All caps for a stylish, professional look */
-    margin: 0; /** Removes default margin for precise alignment */
+    margin: 0; /** Removes default margin for precise alignment */ 
 }
 
 /* Language Selector */
@@ -222,7 +222,7 @@ header a {
 /** Styles the content box within the hero section */
 .hero-content {
     background: rgba(34, 34, 34, 0.3); /** Semi-transparent gray for contrast */
-    padding: 20px; /** Internal spacing for breathing room */
+    padding: 30px; /** Internal spacing for breathing room */
     border-radius: 10px; /** Rounded corners for softness */
     width: 80%; /** Relative width for responsiveness */
     max-width: 600px; /** Limits width for readability */
@@ -232,97 +232,89 @@ header a {
 }
 
 .hero h1 {
-    font-size: 48px; /** Large heading for impact */
+    font-size: 38px; /** Large heading for impact */
     text-transform: uppercase; /** All caps for bold statement */
     color: #fff; /** White text for contrast */
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /** Shadow for readability */
+    padding: 15px 0;
 }
 
 .hero p {
-    font-size: 20px; /** Legible paragraph size */
+    font-size: 18px; /** Legible paragraph size */
     color: #ddd; /** Light gray for contrast */
     color:  #f0c14b;
+    letter-spacing: 1px;
 }
 
-/* Tables Section */
-/** Styles the section containing the table layout */
-.tables {
-    padding: 50px 20px; /** Section padding for spacing */
-    position: relative; /** For layering with z-index */
-    z-index: 5; /** Above body background */
+/* Reset default margins for section elements */
+.hero, .menu-categories {
+    margin: 0; /* Remove default margins */
+    padding: 0; /* Remove default padding */
 }
 
-table {
-    width: 100%; /** Full width of container */
-    max-width: 800px; /** Limits width to prevent overflow */
-    margin: 0 auto; /** Centers table horizontally */
-    border-spacing: 15px; /** Space between cells */
-    display: flex; /** Flexbox for layout control */
-    flex-wrap: wrap; /** Allows wrapping for responsiveness */
-    justify-content: center; /** Centers cells horizontally */
+/* Hero Content */
+.hero-content {
+    background: rgba(34, 34, 34, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    margin: 0 auto; /* Center horizontally */
+    margin-bottom: 10px; /* Control the space below hero content */
 }
 
-/* Table Cells */
-/** Styles individual table cells */
-td {
-    background: rgba(34, 34, 34, 0.3); /** Semi-transparent gray for consistency */
-    padding: 15px; /** Internal spacing for content, adjust for more/less space */
-    border-radius: 10px; /** Rounded corners for softness */
-    transition: transform 0.3s; /** Smooth scaling on hover */
-    text-align: center; /** Centers text within cells */
-    vertical-align: top; /** Aligns content to top */
-    box-sizing: border-box; /** Includes padding/border in width */
-    backdrop-filter: blur(2px); /** Blur for glass look */
-    border: 1px solid rgba(255, 255, 255, 0.1); /** Subtle border for definition */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /** Shadow for depth */
-    margin: 10px; /** Space around each cell, adjust for more/less spacing */
-    white-space: normal; /** Allows text to wrap naturally instead of truncating */
+.hero h1, .hero p {
+    margin: 15px; /* Remove default margins on h1 and p inside hero */
 }
 
-td a {
-    text-decoration: none; /** Removes underline from links */
-    color: white; /** White text for contrast */
-    display: block; /** Makes link fill cell */
-    font-size: 16px; /** Consistent link size, adjust for larger/smaller text */
+/* Menu Categories */
+.menu-categories {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items at the top instead of center */
+    flex-wrap: wrap;
+    padding: 10px 20px; /* Reduce top padding, keep side padding */
+    position: relative;
+    z-index: 5;
+    gap: 30px;
+    flex-grow: 1;
+    min-height: auto; /* Remove min-height to avoid pushing content down */
 }
 
-td .emoji {
-    font-size: 24px; /** Consistent emoji size, adjust for larger/smaller icons */
-    display: block; /** Places emoji on its own line */
-    margin-bottom: 10px; /** Space below emoji, adjust for more/less gap */
+/* Category Box */
+.category-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(34, 34, 34, 0.3);
+    padding: 30px;
+    border-radius: 10px;
+    width: 250px;
+    max-width: 90%;
+    text-decoration: none;
+    color: #eee;
+    transition: transform 0.3s, background 0.3s;
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    margin: 0; /* Ensure no extra margins */
 }
 
-td h3 {
-    margin: 0; /** Removes default margin for alignment */
-    font-size: 18px; /** Consistent heading size, adjust for larger/smaller text */
-    white-space: normal; /** Allows text to wrap naturally instead of truncating */
-    line-height: 1.2; /** Adds spacing between wrapped lines for readability */
+.category-box h2 {
+    font-size: 24px;
+    color: #eab656;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
 }
 
-td:hover {
-    transform: scale(1.05); /** Slight scale-up on hover for interaction feedback */
-    z-index: 1; /** Brings cell forward on hover */
-    background: rgba(51, 51, 51, 0.6); /** Lighter background on hover */
-}
-
-/* Specific Sizes for Table Cells (Desktop) */
-/** Customizes width for each table cell on desktop */
-td:nth-child(1) { /* About Us */
-    width: 20%; /** Fixed width for desktop */
-    min-width: 185px; /** Minimum width for readability */
-    max-width: 200px; /** Increased to allow space for longer text like "À propos de nous" */
-}
-
-td:nth-child(2) { /* Menu */
-    width: 50%; /** Larger to highlight menu prominence */
-    min-width: 250px; /** Minimum width for readability */
-    max-width: 300px; /** Maximum width for prominence */
-}
-
-td:nth-child(3) { /* Contact */
-    width: 20%; /** Matches About Us for consistency */
-    min-width: 185px; /** Minimum width to match About Us */
-    max-width: 200px; /** Maximum width to match About Us */
+.category-box:hover {
+    color: #f0c14b;
+    transform: scale(1.05);
+    background: rgba(51, 51, 51, 0.6);
 }
 
 /* Footer */
@@ -458,28 +450,6 @@ footer p {
         border-spacing: 5px; /** Removes spacing, flex gap handles it */
     }
 
-    td:nth-child(1), td:nth-child(3) { /* About Us and Contact */
-        width: 25%; /** Full width for better readability on mobile */
-        min-width: 20px; /** Minimum width for readability */
-        max-width: 80px; /** Increased to accommodate longer text */
-    }
-
-    td:nth-child(2) { /* Menu */
-        width: 40%; /** Full width for consistency */
-        min-width: 30px; /** Minimum width for readability */
-        max-width: 100px; /** Maximum width for prominence */
-        margin: 0 auto; /** Centers cell horizontally */
-    }
-
-    td h3 {
-        font-size: 16px; /** Slightly smaller for mobile readability, adjust for size */
-    }
-
-    td:hover {
-        transform: none; /** Disables scale on mobile to avoid overlap */
-        background: rgba(51, 51, 51, 0.6); /** Keeps hover feedback */
-    }
-
     /* Footer Adjustments */
     footer p {
         font-size: 10px; /** Smaller text, adjust for size */
@@ -502,21 +472,25 @@ footer p {
         font-size: 12px; /** Smaller text for mobile, adjust for size */
         padding: 5px; /** Reduced padding */
     }
+
+    .category-box {
+        width: 90%; /* Widens category boxes for mobile */
+        padding: 15px; /* Reduces internal padding */
+    }
+
+    .category-box h2 {
+        font-size: 20px; /* Reduces category title size */
+    }
+
+    .category-box:hover {
+        transform: none; /* Disables hover effect on mobile for better usability */
+        background: rgba(51, 51, 51, 0.6); /* Maintains background change */
+    }
 }
 
 /* Tablets and Smaller Laptops (max-width: 1024px) */
 @media (max-width: 1024px) {
-    td:nth-child(1), td:nth-child(3) { /* About Us and Contact */
-        width: 25%; /** Slightly wider for tablet */
-        min-width: 20px; /** Adjusted minimum width */
-        max-width: 800px; /** Adjusted maximum width */
-    }
 
-    td:nth-child(2) { /* Menu */
-        width: 40%; /** Maintains prominence */
-        min-width: 30px; /** Adjusted minimum width */
-        max-width: 100px; /** Adjusted maximum width */
-    }
 
     header {
         padding: 12px 0; /** Slightly less padding */
@@ -535,6 +509,14 @@ footer p {
         font-size: 14px; /** Slightly smaller text, adjust for size */
         padding: 8px; /** Reduced padding */
     }
+
+    .category-box {
+        width: 80%; /* Slightly widens category boxes */
+    }
+
+    .category-box h2 {
+        font-size: 22px; /* Slightly reduces category title size */
+    }
 }
 
 /* Smaller Phones (max-width: 480px) */
@@ -552,6 +534,15 @@ footer p {
         font-size: 10px; /** Smallest readable size, adjust for size */
         padding: 3px; /** Tighter spacing */
     }
+
+    .category-box {
+        width: 95%; /* Nearly full-width category boxes */
+        padding: 20px; /* Reduces padding */
+    }
+
+    .category-box h2 {
+        font-size: 18px; /* Reduces category title size */
+    }
 }
 
 /* Very Small Screens (max-width: 360px) */
@@ -568,5 +559,13 @@ footer p {
     .address a {
         font-size: 9px; /** Minimal readable size, adjust for size */
         padding: 2px; /** Minimal padding */
+    }
+
+    .category-box {
+        padding: 8px; /* Minimal padding for category boxes */
+    }
+
+    .category-box h2 {
+        font-size: 16px; /* Smallest category title size */
     }
 }
