@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Hamburger icon click handler
         hamburgerIcon.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevents the click from bubbling up to document
+            e.stopPropagation(); // Prevents the click紛from bubbling up to document
             if (sidebar.style.width === '250px') {
                 closeSidebar();
             } else {
@@ -80,8 +80,17 @@ document.addEventListener('DOMContentLoaded', () => {
             'es': 'ES'
         };
 
-        // Update the selected language display with the initial
-        document.getElementById('selected-language').textContent = languageMap[selectedLang];
+        console.log('Changing language to:', selectedLang); // Debug log
+        const selectedLanguageSpan = document.getElementById('selected-language');
+        if (selectedLanguageSpan) {
+            console.log('Updating selected-language to:', languageMap[selectedLang]); // Debug log
+            // Force update with setTimeout for iOS compatibility
+            setTimeout(() => {
+                selectedLanguageSpan.textContent = languageMap[selectedLang];
+            }, 0);
+        } else {
+            console.log('selected-language element not found'); // Debug log
+        }
 
         // Update all elements with data attributes
         document.querySelectorAll(`[data-${selectedLang}]`).forEach(element => {
@@ -98,8 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
     /** Applies saved language on page load */
     const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
     const select = document.getElementById('language-select');
-    select.value = savedLanguage;
-    changeLanguage(); // Initialize with saved or default language
+    if (select) {
+        console.log('Setting initial language to:', savedLanguage); // Debug log
+        select.value = savedLanguage;
+        changeLanguage(); // Initialize with saved or default language
+    } else {
+        console.log('language-select element not found'); // Debug log
+    }
 
     select.addEventListener('change', changeLanguage);
 });
