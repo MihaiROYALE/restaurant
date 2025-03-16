@@ -97,8 +97,13 @@ body.restaurant-theme {
     color: #eee; /** Light text color for contrast on dark background */
     text-align: center; /** Centers all text by default for symmetry */
     min-height: 100vh; /** Ensures body spans at least full viewport height */
-    position: relative; /** Allows content to scroll over fixed background */
-    overflow-x: hidden; /** Prevents horizontal scrolling issues */
+    display: flex; /** Use flexbox to control layout */
+    flex-direction: column; /** Stack children vertically */
+}
+
+/* Ensure the main content grows to fill the space */
+main {
+    flex: 1; /** Grow to fill available space, pushing footer to the bottom */
 }
 
 /* Fixed Background Container */
@@ -182,6 +187,7 @@ header a {
 #selected-language {
     margin-right: 5px; /** Space before arrow for readability */
     font-weight: 500; /** Medium weight for visibility */
+    display: inline-block !important; /* Ensure visibility on all devices */
 }
 
 .dropdown-arrow {
@@ -203,8 +209,9 @@ header a {
 .opening-hours {
     font-size: 12px;
     margin-top: 6px;
-    color:  #f0c14b; /* Adjust color to match your theme */
+    color: #f0c14b; /* Adjust color to match your theme */
 }
+
 /* Hero Section */
 /** Styles the prominent hero section with a background image */
 .hero {
@@ -242,7 +249,7 @@ header a {
 .hero p {
     font-size: 18px; /** Legible paragraph size */
     color: #ddd; /** Light gray for contrast */
-    color:  #f0c14b;
+    color: #f0c14b;
     letter-spacing: 1px;
 }
 
@@ -322,7 +329,6 @@ header a {
 footer {
     padding: 8px 0; /** Vertical padding only, adjust for more/less space */
     background: rgba(0, 0, 0, 0.5); /** Dark semi-transparent background */
-    margin-top: 20px; /** Space above footer, adjust for more/less gap */
     backdrop-filter: blur(5px); /** Glass effect */
     z-index: 5; /** Above background */
     width: 100%; /** Full width */
@@ -490,8 +496,6 @@ footer p {
 
 /* Tablets and Smaller Laptops (max-width: 1024px) */
 @media (max-width: 1024px) {
-
-
     header {
         padding: 12px 0; /** Slightly less padding */
     }
