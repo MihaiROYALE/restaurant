@@ -69,9 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
     function changeLanguage() {
         const select = document.getElementById('language-select');
         const selectedLang = select.value;
-        const selectedLanguageText = select.options[select.selectedIndex].text;
-        document.getElementById('selected-language').textContent = selectedLanguageText;
 
+        // Language mapping for initials
+        const languageMap = {
+            'en': 'EN',
+            'fr': 'FR',
+            'ru': 'RU',
+            'ro': 'RO',
+            'it': 'IT',
+            'es': 'ES'
+        };
+
+        // Update the selected language display with the initial
+        document.getElementById('selected-language').textContent = languageMap[selectedLang];
+
+        // Update all elements with data attributes
         document.querySelectorAll(`[data-${selectedLang}]`).forEach(element => {
             const newText = element.getAttribute(`data-${selectedLang}`);
             if (newText) {
@@ -79,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Save the selected language
         localStorage.setItem('selectedLanguage', selectedLang);
     }
 
@@ -86,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
     const select = document.getElementById('language-select');
     select.value = savedLanguage;
-    changeLanguage();
+    changeLanguage(); // Initialize with saved or default language
 
     select.addEventListener('change', changeLanguage);
 });
